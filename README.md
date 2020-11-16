@@ -1,10 +1,48 @@
 # KiraBijoux
 
+Front End for Project Kira Bijoux - projet annuel IPSSI 2021
+
+The application is an e-commerce site that sells Sterling silver jewellery and semi-precious stones jewellery.
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.0.1.
 
-## Development server
+## Getting Started
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy this project.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+# Usage :
+
+## You will need :
+- [X] [Git](https://www.atlassian.com/fr/git/tutorials/install-git)
+    - install on ubuntu dist:
+    ```bash 
+    sudo apt-get install git
+    ```
+- [X] git clone https://github.com/CyrielleGl/kira-bijoux-front.git
+
+- [X] [Angular-cli](https://cli.angular.io/)
+    - install :
+    ```bash 
+    npm install -g @angular/cli
+    ```
+- [X] in the root project
+    - install dependencies :
+    ```bash 
+    npm install
+    ```
+    - install bootstrap :
+    ```bash 
+    npm install bootstrap
+    ```
+    - install jquery :
+    ```bash 
+    npm install jquery
+    ```
+- [X] Launch the app
+    ```bash 
+    ng serve
+    ```
+
+- [X] go to [localhost](http://localhost:4200)
 
 ## Code scaffolding
 
