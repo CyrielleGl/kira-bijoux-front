@@ -1,4 +1,4 @@
-# KiraBijoux
+# Kira Bijoux
 
 Front End for Project Kira Bijoux - projet annuel IPSSI 2021
 
