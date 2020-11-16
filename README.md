@@ -29,19 +29,10 @@ These instructions will get you a copy of the project up and running on your loc
     ```bash 
     npm install
     ```
-    - install bootstrap :
-    ```bash 
-    npm install bootstrap
-    ```
-    - install jquery :
-    ```bash 
-    npm install jquery
-    ```
 - [X] Launch the app
     ```bash 
     ng serve
     ```
-
 - [X] go to [localhost](http://localhost:4200)
 
 ## Code scaffolding
