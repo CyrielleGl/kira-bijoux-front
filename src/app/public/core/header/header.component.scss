@@ -1,0 +1,53 @@
+a {
+    text-decoration: none;
+    color: var(--secondary);
+}
+
+a:hover {
+    color: var(--third);
+}
+
+h1 {
+    margin-bottom: 0rem;
+}
+
+/* mobile screens */
+@media screen and (max-width: 767px)
+{
+    .connexion {
+        text-align: right;
+        font-style: italic;
+        margin-right: 1rem;
+    }
+}
+
+/* tablet screens */
+
+@media screen and (min-width: 768px) and (max-width: 959px)
+{
+    .connexion {
+        text-align: right;
+        font-style: italic;
+        margin-right: 5rem;
+    }
+}
+
+/* tablet landscape & desktop screens */
+@media screen and (min-width: 960px) and (max-width: 1199px)
+{
+    .connexion {
+        text-align: right;
+        font-style: italic;
+        margin-right: 5rem;
+    }
+}
+
+/* large screens */
+@media screen and (min-width: 1200px)
+{
+    .connexion {
+        text-align: right;
+        font-style: italic;
+        margin-right: 5rem;
+    }
+}
