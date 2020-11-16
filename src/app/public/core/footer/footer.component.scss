@@ -4,3 +4,12 @@
     color: #000000; 
     border-radius: 0;
 }
+
+a {
+    text-decoration: none;
+    color: var(--secondary);
+}
+
+a:hover {
+    color: var(--third);
+}
