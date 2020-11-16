@@ -6,6 +6,10 @@ main {
     margin-right: auto;
     margin-left: auto;
   }
+
+  a {
+    text-decoration: none;
+  }
   
   /* mobile screens */
   @media screen and (max-width: 767px)

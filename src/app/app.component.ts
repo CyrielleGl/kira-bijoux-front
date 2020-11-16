@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AppConstants } from './shared/app-constants';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'kira-bijoux';
+  yearNow = new Date().getFullYear().toString();
+  appTitle = AppConstants.appTitle;
+  urlLogoSimple = AppConstants.urlLogoSimple;
 }
