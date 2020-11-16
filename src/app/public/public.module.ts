@@ -4,11 +4,16 @@ import { MentionsLegalesComponent } from './mentions-legales/mentions-legales.co
 import { ContactComponent } from './contact/contact.component';
 import { LivraisonComponent } from './livraison/livraison.component';
 import { ConditionsRetourComponent } from './conditions-retour/conditions-retour.component';
-
+import { CoreModule } from './core/core.module';
 
 
 @NgModule({
-  declarations: [MentionsLegalesComponent, ContactComponent, LivraisonComponent, ConditionsRetourComponent],
+  declarations: [
+    CoreModule,
+    MentionsLegalesComponent, 
+    ContactComponent, 
+    LivraisonComponent, 
+    ConditionsRetourComponent],
   imports: [
     CommonModule
   ]
