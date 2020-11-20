@@ -9,13 +9,13 @@ import { CoreModule } from './core/core.module';
 
 @NgModule({
   declarations: [
-    CoreModule,
     MentionsLegalesComponent, 
     ContactComponent, 
     LivraisonComponent, 
     ConditionsRetourComponent],
   imports: [
-    CommonModule
+    CommonModule,
+    CoreModule
   ]
 })
 export class PublicModule { }
