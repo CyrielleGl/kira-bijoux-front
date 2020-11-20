@@ -2,8 +2,9 @@
     padding-top: 1rem;
     padding-bottom: 1rem;
     width: 100%;
-    background-color: var(--third);
+    background-color: var(--primary);
     text-align: center;
+    border-top: #dddddd solid 0.06rem;
   }
   
   a {
@@ -12,7 +13,7 @@
   }
   
   a:hover {
-    color: var(--primary);
+    color: var(--third);
   }
   
   /* nav footer */
@@ -37,22 +38,21 @@
   }
   
   li a.active {
-    color: #ffffff;
-    border-bottom: 2px dotted var(--primary);
+    color: var(--secondary);
+    border-bottom: 2px dotted var(--secondary);
   }
   
   .link {
-    color: #ffffff;
+    color: var(--secondary);
   }
   
   .link:hover {
-    color: var(--primary);
+    color: var(--third);
     text-decoration: none;
   }
   
   .link:active {
-    color: #ffffff;
-    text-decoration: underline dotted var(--primary);
+    text-decoration: underline dotted var(--third);
   }
   
   /* copyright */
