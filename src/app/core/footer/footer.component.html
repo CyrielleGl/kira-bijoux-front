@@ -1,0 +1,27 @@
+<footer class="footer">
+
+  <!-- nav footer -->
+
+  <div class="footer-nav">
+    <ul>
+      <li>
+        <a class="link" title="Livraison" routerLink="/livraison" routerLinkActive="active">Livraison</a>
+      </li>
+      <li>
+        <a class="link" title="Conditions de retour" routerLink="/conditions-retour" routerLinkActive="active">Conditions de retour</a>
+      </li>
+      <li>
+        <a class="link" title="Contact" routerLink="/contact" routerLinkActive="active">Contact</a>
+      </li>
+    </ul>
+  </div>
+
+  <!-- copyright -->
+
+  <div class="copyright">
+    &copy;
+    <span [innerText]="yearNow"></span>&nbsp;<span [innerText]="appTitle"></span>&nbsp;
+    <span>-&nbsp; <a routerLink="/mentions-legales">Mentions légales</a></span>
+  </div>
+
+</footer>
