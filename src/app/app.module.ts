@@ -3,19 +3,17 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { PublicModule } from './public/public.module';
-import { CoreModule } from './public/core/core.module';
-import { ProtectedModule } from './protected/protected.module';
+import { CoreModule } from './core/core.module';
+import { HomeComponent } from './public/home/home.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    PublicModule,
-    ProtectedModule,
     CoreModule
   ],
   providers: [],

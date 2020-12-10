@@ -7,32 +7,42 @@ The application is an e-commerce site that sells Sterling silver jewellery and s
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.0.1.
 
 ## Getting Started
+
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy this project.
 
-# Usage :
+## Usage
 
-## You will need :
+## You will need
+
 - [X] [Git](https://www.atlassian.com/fr/git/tutorials/install-git)
-    - install on ubuntu dist:
-    ```bash 
+  - install on ubuntu dist:
+
+    ```bash
     sudo apt-get install git
     ```
-- [X] git clone https://github.com/CyrielleGl/kira-bijoux-front.git
+
+- [X] git clone <https://github.com/CyrielleGl/kira-bijoux-front.git>
 
 - [X] [Angular-cli](https://cli.angular.io/)
-    - install :
-    ```bash 
+  - install :
+
+    ```bash
     npm install -g @angular/cli
     ```
+
 - [X] in the root project
-    - install dependencies :
-    ```bash 
+  - install dependencies :
+
+    ```bash
     npm install
     ```
+
 - [X] Launch the app
-    ```bash 
+
+    ```bash
     ng serve
     ```
+
 - [X] go to [localhost](http://localhost:4200)
 
 ## Code scaffolding

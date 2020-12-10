@@ -1,15 +1,18 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { SharedModule } from 'src/app/shared/shared.module';
+
 import { AProposComponent } from './a-propos.component';
 import { EntretienBijouxComponent } from './entretien-bijoux/entretien-bijoux.component';
 import { LaMarqueComponent } from './la-marque/la-marque.component';
-
+import { LithotherapieComponent } from './lithotherapie/lithotherapie.component';
+import { AProposRouterModule } from './a-propos-router.module';
 
 
 @NgModule({
-  declarations: [AProposComponent, EntretienBijouxComponent, LaMarqueComponent],
+  declarations: [AProposComponent, EntretienBijouxComponent, LaMarqueComponent, LithotherapieComponent],
   imports: [
-    CommonModule
+    SharedModule,
+    AProposRouterModule
   ]
 })
 export class AProposModule { }
