@@ -8,7 +8,7 @@ import { Component, Input, OnInit } from '@angular/core';
 export class HeaderComponent implements OnInit {
 
   @Input()
-  urlLogoSimple: string | undefined;
+  urlLogoHeader: string | undefined;
 
   constructor() { }
 

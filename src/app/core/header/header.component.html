@@ -1,12 +1,23 @@
-<div class="jumbotron text-center bg-primary" style="margin-bottom:0; border-radius: 0; border-bottom: #dddddd solid 0.06rem;">
+<div class="jumbotron text-center" style="margin-bottom:0; border-radius: 0; border-bottom: #dddddd solid 0.06rem; background-color: var(--secondary);">
+
+
+  <div>
+    <div class="connexion">
+      <a routerLink="/connexion">Connexion / Inscription</a>
+    </div>
+
+    <div class="panier" placement="top" ngbTooltip="Tooltip on top">
+      <a routerLink="/panier">
+        <i class="fas fa-shopping-basket"></i>
+        <span class="number-of-products"> (2)</span>
+      </a>
+    </div>
+  </div>
+
 
       <h1>
-        <img [src]="urlLogoSimple" width="300rem" title="Kira Bijoux" alt="Kira Bijoux">
+        <img [src]="urlLogoHeader" width="200rem" title="Kira Bijoux" alt="Kira Bijoux">
       </h1>
-
-      <div class="connexion">
-          <a routerLink="/connexion">Connexion / Inscription</a>
-      </div>
     
 </div>
     

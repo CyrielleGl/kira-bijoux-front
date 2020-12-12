@@ -4,8 +4,8 @@ export class AppConstants {
         return 'Kira';
     }
 
-    public static get urlLogoSimple(): string {
-        return 'assets/visuels/logo-kira-transparent.png';
+    public static get urlLogoHeader(): string {
+        return 'assets/visuels/logo-kira-header.png';
       }
     
 }
