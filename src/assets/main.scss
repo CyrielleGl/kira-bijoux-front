@@ -1,3 +1,14 @@
+html {
+  position: relative;
+  min-height: 100vh;
+}
+
+body {
+  background-color: white;
+  margin: 0;
+  padding: 0;
+}
+
 main {
     text-align: center;
     width: 100%;
@@ -5,6 +16,7 @@ main {
     padding-bottom: 2rem;
     margin-right: auto;
     margin-left: auto;
+    min-height: 20rem;
   }
 
   a {

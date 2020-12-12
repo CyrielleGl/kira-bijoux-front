@@ -14,4 +14,15 @@
   .navbar {
     border-bottom: #dddddd solid 0.06rem;
   }
+
+  .nav-link {
+    color: var(--fourth);
+  }
+
+  .nav-link:hover {
+    color: var(--secondary);
+  }
   
+  .nav-link.active {
+    color: var(--secondary);
+  }

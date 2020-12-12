@@ -8,12 +8,12 @@
   }
   
   a {
-    color: var(--secondary);
+    color: var(--fourth);
     text-decoration: none;
   }
   
   a:hover {
-    color: var(--third);
+    color: var(--secondary);
   }
   
   /* nav footer */
@@ -38,16 +38,16 @@
   }
   
   li a.active {
-    color: var(--secondary);
+    color: var(--fourth);
     border-bottom: 2px dotted var(--secondary);
   }
   
   .link {
-    color: var(--secondary);
+    color: var(--fourth);
   }
   
   .link:hover {
-    color: var(--third);
+    color: var(--secondary);
     text-decoration: none;
   }
   
@@ -63,6 +63,6 @@
     text-align: center;
     padding-top: 0.5rem;
     padding-bottom: 0.5rem;
-    color: var(--secondary);
+    color: var(--fourth);
   }
   
