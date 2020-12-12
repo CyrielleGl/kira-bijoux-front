@@ -1,3 +1,9 @@
+.header {
+    padding-top: 1rem;
+    padding-bottom: 3rem;
+    background-color: var(--secondary);
+}
+
 a {
     text-decoration: none;
     color: var(--primary);
@@ -7,31 +13,51 @@ a:hover {
     color: var(--primary-transparent);
 }
 
+.first-line {
+    display: inline-block;
+    width: 100%;
+}
+
 .connexion {
     float: left;
     font-style: italic;
     font-size: 1rem;
+    margin-top: 0.2rem;
 }
 
 .panier {
     float: right;
     color: var(--secondary);
-    font-size: 1rem;
-  }
+    font-size: 1.1rem;
+}
 
 .number-of-products {
     font-size: 1rem;
     font-weight: bold;
 }
 
-.tooltip .tooltip-inner {
-    max-width: 340px;
-    text-align: left;
-    background-color: #fff;
-    color: #000;
-    border-radius: 30px;
-    box-shadow: 0 0 3px #00000040;
+::ng-deep .tooltip-inner {
+    background-color: var(--secondary);
+    color: var(--primary);
+    border: dotted 0.2px;
+    border-color: var(--primary);
+}
+::ng-deep .bs-tooltip-top .arrow::before, .bs-tooltip-auto[x-placement^="top"] .arrow::before {
+    border-top-color: var(--primary) !important;
   }
+  ::ng-deep.bs-tooltip-right .arrow::before, .bs-tooltip-auto[x-placement^="right"] .arrow::before {
+    border-right-color: var(--primary) !important;
+  }
+  ::ng-deep .bs-tooltip-bottom .arrow::before, .bs-tooltip-auto[x-placement^="bottom"] .arrow::before {
+    border-bottom-color: var(--primary) !important;
+  }
+  ::ng-deep.bs-tooltip-left .arrow::before, .bs-tooltip-auto[x-placement^="left"] .arrow::before {
+    border-left-color: var(--primary) !important;
+  }
+
+.logo-header {
+    padding-top: 1rem;
+}
 
 /* mobile screens */
 @media screen and (max-width: 767px)
@@ -89,7 +115,7 @@ a:hover {
 @media screen and (min-width: 1200px)
 {
     .connexion {
-        margin-left: 5rem;
+        margin-left: 8rem;
     }
 
     h1 {
@@ -98,6 +124,6 @@ a:hover {
     }
 
     .panier {
-        margin-right: 5rem;
+        margin-right: 8rem;
       }
 }

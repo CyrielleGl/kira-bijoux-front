@@ -1,12 +1,12 @@
-<div class="jumbotron text-center" style="margin-bottom:0; border-radius: 0; border-bottom: #dddddd solid 0.06rem; background-color: var(--secondary);">
+<div class="header">
 
 
-  <div>
+  <div class="first-line">
     <div class="connexion">
       <a routerLink="/connexion">Connexion / Inscription</a>
     </div>
 
-    <div class="panier" placement="top" ngbTooltip="Voir mon panier">
+    <div class="panier" id="panier" placement="bottom" ngbTooltip="Voir mon panier" tooltipClass="basket-tooltip">
       <a routerLink="/panier">
         <i class="fas fa-shopping-basket"></i>
         <span class="number-of-products"> (2)</span>
@@ -14,9 +14,11 @@
     </div>
   </div>
 
-      <h1>
+  <div class="logo-header" style="display: flex;">
+      <h1 style="margin: auto;" >
         <img [src]="urlLogoHeader" width="200rem" title="Kira Bijoux" alt="Kira Bijoux">
       </h1>
-    
+  </div>
+
 </div>
     
