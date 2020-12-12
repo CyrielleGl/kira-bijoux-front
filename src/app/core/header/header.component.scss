@@ -13,6 +13,8 @@ a:hover {
     color: var(--primary-transparent);
 }
 
+/* First line : connexion & basket */
+
 .first-line {
     display: inline-block;
     width: 100%;
@@ -21,7 +23,7 @@ a:hover {
 .connexion {
     float: left;
     font-style: italic;
-    font-size: 1rem;
+    font-size: 0.9rem;
     margin-top: 0.2rem;
 }
 
@@ -35,6 +37,8 @@ a:hover {
     font-size: 1rem;
     font-weight: bold;
 }
+
+/* Style tooltip */
 
 ::ng-deep .tooltip-inner {
     background-color: var(--secondary);
@@ -55,9 +59,15 @@ a:hover {
     border-left-color: var(--primary) !important;
   }
 
+/* Logo */
+
 .logo-header {
-    padding-top: 1rem;
+    padding-top: 0.5rem;
 }
+
+/*------------------------*/
+/*---- Media Queries ----*/
+/*----------------------*/
 
 /* mobile screens */
 @media screen and (max-width: 767px)
@@ -73,7 +83,7 @@ a:hover {
 
     .panier {
         margin-right: 1rem;
-      }
+    }
 }
 
 /* tablet screens */
@@ -91,7 +101,7 @@ a:hover {
 
     .panier {
         margin-right: 5rem;
-      }
+    }
 }
 
 /* tablet landscape & desktop screens */
@@ -108,7 +118,7 @@ a:hover {
 
     .panier {
         margin-right: 5rem;
-      }
+    }
 }
 
 /* large screens */
@@ -125,5 +135,5 @@ a:hover {
 
     .panier {
         margin-right: 8rem;
-      }
+    }
 }

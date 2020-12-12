@@ -1,3 +1,78 @@
 <main>
-    <p>panier works!</p>
+
+    <div class="title-body">
+        <h2>MON PANIER</h2>
+    </div>
+    
+    <!--
+    // TODO: CREATE LINK API
+    -->
+
+<div class="container mb-4">
+    <div class="row">
+
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr> <!-- Row 1 -->
+                            <th scope="col"> </th>
+                            <th scope="col">Produit</th>
+                            <th scope="col">Disponible</th>
+                            <th scope="col" class="text-center">Quantité</th>
+                            <th scope="col" class="text-right">Prix</th>
+                            <th> </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr> <!-- Row 2 --> <!-- TODO: create *ngFor with data (img, name, stock, prix) -->
+                            <td><img src="https://dummyimage.com/50x50/55595c/fff" /></td>
+                            <td>Kena</td>
+                            <td>En stock</td>
+                            <td><input class="form-control" type="text" value="1" /></td>
+                            <td class="text-right">45 €</td>
+                            <td class="text-right"><button class="btn btn-sm btn-danger"><i class="fa fa-trash"></i> </button> </td>
+                        </tr>
+
+                        <tr> <!-- Row 3 -->
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>Sous-Total</td>
+                            <td class="text-right">45 €</td>
+                        </tr>
+                        <tr> <!-- Row 4 -->
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>Livraison</td>
+                            <td class="text-right">6,90 €</td>
+                        </tr>
+                        <tr> <!-- Row 5 -->
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td><strong>Total</strong></td>
+                            <td class="text-right"><strong>51,90 €</strong></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        <!-- Buttons action -->
+        <div class="col mb-2">
+            <div class="row">
+                <div class="col-sm-12  col-md-6">
+                    <button class="btn btn-block btn-light">Je veux refaire un tour !</button>
+                </div>
+                <div class="col-sm-12 col-md-6 text-right">
+                    <button class="btn btn-lg btn-block btn-success text-uppercase">Je valide</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 </main>

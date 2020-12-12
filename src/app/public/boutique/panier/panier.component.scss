@@ -1,0 +1,9 @@
+.btn-success {
+    background-color: var(--primary-ligth);
+    color: var(--secondary);
+}
+
+.btn-success:hover {
+    background-color: var(--primary);
+    color: var(--secondary);
+}
