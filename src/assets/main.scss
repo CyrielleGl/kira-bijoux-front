@@ -12,19 +12,36 @@ body {
 main {
     text-align: center;
     width: 100%;
-    padding-top: 2rem;
+    padding-top: 1.6rem;
     padding-bottom: 2rem;
     margin-right: auto;
     margin-left: auto;
-    min-height: 20rem;
+    min-height: 25rem;
   }
 
   a {
     text-decoration: none;
   }
+
+  h2 {
+    font-size: 1.6rem;
+    color: var(--primary);
+    padding-bottom: 1.6rem;
+    margin-bottom: 0rem;
+  }
+
+  .title-body {
+    border-bottom: solid 1px;
+    border-color: var(--primary);
+    margin-bottom: 2.2rem;
+  }
+
+/*------------------------*/
+/*---- Media Queries ----*/
+/*----------------------*/
   
   /* mobile screens */
-  @media screen and (max-width: 767px)
+  @media screen and (max-width: 575px)
   {
     main {
       padding-right: 1rem;
@@ -35,11 +52,11 @@ main {
   
   /* tablet screens */
   
-  @media screen and (min-width: 768px) and (max-width: 959px)
+  @media screen and (min-width: 576px) and (max-width: 959px)
   {
     main {
-      padding-right: 3rem;
-      padding-left: 3rem;
+      padding-right: 2.5rem;
+      padding-left: 2.5rem;
       padding-bottom: 3rem;
     }
   }

@@ -18,11 +18,23 @@
         <li class="nav-item">
           <a class="nav-link" [routerLink]="['boucles-oreilles']" [routerLinkActive]="['active']">BO</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" [routerLink]="['a-propos']" [routerLinkActive]="['active']">A PROPOS</a>
-        </li>
       </ul>
-    </div>
+
+      <div class="dropdown-divider"></div>
+        <div class="row">
+          <div class="col">
+            <div ngbDropdown class="d-inline-block">
+              <div class="a-propos" ngbDropdownToggle>A PROPOS</div>
+              <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                <button ngbDropdownItem class="dropdown-item" [routerLink]="['entretien-bijoux']" [routerLinkActive]="['active']">Entretien des bijoux</button>
+                <button ngbDropdownItem class="dropdown-item" [routerLink]="['la-marque']" [routerLinkActive]="['active']">La marque</button>
+                <button ngbDropdownItem class="dropdown-item" [routerLink]="['lithotherapie-accueil']" [routerLinkActive]="['active']">Lithothérapie</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      
+      </div>
   
   </nav>
   
