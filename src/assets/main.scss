@@ -41,7 +41,7 @@ main {
 /*----------------------*/
   
   /* mobile screens */
-  @media screen and (max-width: 767px)
+  @media screen and (max-width: 575px)
   {
     main {
       padding-right: 1rem;
@@ -52,11 +52,11 @@ main {
   
   /* tablet screens */
   
-  @media screen and (min-width: 768px) and (max-width: 959px)
+  @media screen and (min-width: 576px) and (max-width: 959px)
   {
     main {
-      padding-right: 3rem;
-      padding-left: 3rem;
+      padding-right: 2.5rem;
+      padding-left: 2.5rem;
       padding-bottom: 3rem;
     }
   }

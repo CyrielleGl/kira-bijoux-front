@@ -24,7 +24,7 @@
 }
 
 .nav-link.active {
-  color: var(--secondary);
+  color: var(--secondary) !important;
 }
 
 .dropdown-divider {
@@ -32,8 +32,10 @@
 }
 
 /* A PROPOS DROPDOWN */
+
 .a-propos {
   color: var(--fourth) !important;
+  cursor: pointer;
 }
 
 .a-propos:hover {
@@ -83,7 +85,7 @@
 /*----------------------*/
   
   /* mobile screens */
-  @media screen and (max-width: 767px)
+  @media screen and (max-width: 575px)
   {
     .a-propos {
       color: var(--fourth) !important;
