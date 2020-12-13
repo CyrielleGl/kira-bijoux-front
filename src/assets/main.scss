@@ -9,6 +9,40 @@ body {
   padding: 0;
 }
 
+/* Fonts */
+
+@font-face {
+  font-family: "Cinzel";
+  src: url("../assets/fonts/Cinzel-VariableFont_wght.ttf");
+}
+
+@font-face {
+  font-family: "Open-sans-light";
+  src: url("../assets/fonts/Open-sans/OpenSans-Light.ttf");
+}
+
+@font-face {
+  font-family: "Open-sans-regular";
+  src: url("../assets/fonts/Open-sans/OpenSans-Regular.ttf");
+}
+
+@font-face {
+  font-family: "Open-sans-semi-bold";
+  src: url("../assets/fonts/Open-sans/OpenSans-SemiBold.ttf");
+}
+
+@font-face {
+  font-family: "Open-sans-bold";
+  src: url("../assets/fonts/Open-sans/OpenSans-Bold.ttf");
+}
+
+@font-face {
+  font-family: "Open-sans-italic";
+  src: url("../assets/fonts/Open-sans/OpenSans-Italic.ttf");
+}
+
+/* Custom style */
+
 main {
     text-align: center;
     width: 100%;
@@ -17,6 +51,7 @@ main {
     margin-right: auto;
     margin-left: auto;
     min-height: 25rem;
+    font-family: "Open-sans-regular";
   }
 
   a {
@@ -25,6 +60,7 @@ main {
 
   h2 {
     font-size: 1.6rem;
+    font-family: "Cinzel";
     color: var(--primary);
     padding-bottom: 1.6rem;
     margin-bottom: 0rem;
