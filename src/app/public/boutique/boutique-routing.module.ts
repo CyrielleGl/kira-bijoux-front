@@ -7,6 +7,9 @@ import { PanierComponent } from './panier/panier.component';
 import { NouveautesComponent } from './nouveautes/nouveautes.component';
 
 const routes: Routes = [
+  { path: 'boutique',
+  loadChildren: () => import('../boutique/boutique.module').then(m => m.BoutiqueModule)
+  },
   { path: 'boutique/boucles-oreilles', component: BouclesOreillesComponent },
   { path: 'boutique/bracelets', component: BraceletsComponent },
   { path: 'boutique/colliers', component: ColliersComponent },
@@ -18,4 +21,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class BoutiqueRouterModule { }
+export class BoutiqueRoutingModule { }
