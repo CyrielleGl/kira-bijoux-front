@@ -7,11 +7,11 @@ import { PanierComponent } from './panier/panier.component';
 import { NouveautesComponent } from './nouveautes/nouveautes.component';
 
 const routes: Routes = [
-  { path: 'boucles-oreilles', component: BouclesOreillesComponent },
-  { path: 'bracelets', component: BraceletsComponent },
-  { path: 'colliers', component: ColliersComponent },
-  { path: 'panier', component: PanierComponent },
-  { path: 'nouveautes', component: NouveautesComponent },
+  { path: 'boutique/boucles-oreilles', component: BouclesOreillesComponent },
+  { path: 'boutique/bracelets', component: BraceletsComponent },
+  { path: 'boutique/colliers', component: ColliersComponent },
+  { path: 'boutique/panier', component: PanierComponent },
+  { path: 'boutique/nouveautes', component: NouveautesComponent },
 ];
 
 @NgModule({

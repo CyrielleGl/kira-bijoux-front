@@ -1,9 +1,19 @@
+.panier {
+    min-height: 30rem;
+}
+
+.contenu-panier {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+}
 .btn-success {
     background-color: var(--primary-ligth);
     color: var(--secondary);
+    border-color: var(--primary);
 }
 
 .btn-success:hover {
     background-color: var(--primary);
     color: var(--secondary);
+    border-color: var(--primary-ligth);
 }

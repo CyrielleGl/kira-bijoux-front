@@ -7,6 +7,7 @@ import { ContactComponent } from './contact/contact.component';
 import { LivraisonComponent } from './livraison/livraison.component';
 import { ConditionsRetourComponent } from './conditions-retour/conditions-retour.component';
 import { BoutiqueModule } from './boutique/boutique.module';
+import { AProposModule } from './a-propos/a-propos.module';
 
 
 
@@ -20,7 +21,8 @@ import { BoutiqueModule } from './boutique/boutique.module';
   imports: [
     SharedModule,
     PublicRoutingModule,
-    BoutiqueModule
+    BoutiqueModule,
+    AProposModule
   ]
 })
 export class PublicModule { }

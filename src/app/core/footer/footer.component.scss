@@ -1,3 +1,5 @@
+/* Footer */
+
 .footer {
     padding-top: 1rem;
     padding-bottom: 1rem;
@@ -7,15 +9,6 @@
     border-top: #dddddd solid 0.06rem;
     font-family: "Cinzel";
     font-size: 0.8rem;
-  }
-  
-  a {
-    color: var(--fourth);
-    text-decoration: none;
-  }
-  
-  a:hover {
-    color: var(--secondary);
   }
 
   /* link Instagram */
@@ -60,7 +53,16 @@
     margin-right: auto;
     text-align: center;
   }
+
+  a {
+    color: var(--fourth);
+    text-decoration: none;
+  }
   
+  a:hover {
+    color: var(--secondary);
+  }
+
   ul {
     padding: 0;
   }

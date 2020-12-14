@@ -10,12 +10,15 @@ import { GestionReductionsComponent } from './gestion-reductions/gestion-reducti
 
 
 const routes: Routes = [
-  { path: 'dashboard', component: DashboardComponent },
-  { path: 'gestion-articles', component: GestionArticlesComponent },
-  { path: 'gestion-commandes', component: GestionCommandesComponent },
-  { path: 'gestion-newsletters', component: GestionNewslettersComponent },
-  { path: 'gestion-produits', component: GestionProduitsComponent },
-  { path: 'gestion-reductions', component: GestionReductionsComponent },
+  { path: 'administration',
+  loadChildren: () => import('../admin/admin.module').then(m => m.AdminModule)
+  },
+  { path: 'administration/dashboard', component: DashboardComponent },
+  { path: 'administration/gestion-articles', component: GestionArticlesComponent },
+  { path: 'administration/gestion-commandes', component: GestionCommandesComponent },
+  { path: 'administration/gestion-newsletters', component: GestionNewslettersComponent },
+  { path: 'administration/gestion-produits', component: GestionProduitsComponent },
+  { path: 'administration/gestion-reductions', component: GestionReductionsComponent },
   ];
 
 @NgModule({
