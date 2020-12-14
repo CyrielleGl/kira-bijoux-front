@@ -9,26 +9,15 @@ import { ContactComponent } from './contact/contact.component';
 import { HomeComponent } from './home/home.component';
 import { LivraisonComponent } from './livraison/livraison.component';
 import { MentionsLegalesComponent } from './mentions-legales/mentions-legales.component';
-import { EntretienBijouxComponent } from './a-propos/entretien-bijoux/entretien-bijoux.component';
-import { LaMarqueComponent } from './a-propos/la-marque/la-marque.component';
-import { LithotherapieComponent } from './a-propos/lithotherapie/lithotherapie.component';
 
 
 const routes: Routes = [
   { path: 'a-propos',
     loadChildren: () => import('./a-propos/a-propos.module').then(m => m.AProposModule)
   },
-  { path: 'lithotherapie',
-  loadChildren: () => import('./a-propos/lithotherapie/lithotherapie.module').then(m => m.LithotherapieModule)
-},
   { path: 'boutique',
     loadChildren: () => import('./boutique/boutique.module').then(m => m.BoutiqueModule)
   },
-
-  { path: 'entretien-bijoux', component: EntretienBijouxComponent },
-  { path: 'la-marque', component: LaMarqueComponent },
-  { path: 'lithotherapie-accueil', component: LithotherapieComponent },
-
 
   { path: 'conditions-retour', component: ConditionsRetourComponent },
   { path: 'contact', component: ContactComponent },

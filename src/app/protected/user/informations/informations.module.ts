@@ -1,24 +1,23 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { InformationsComponent } from './informations.component';
-<<<<<<< HEAD
+import { SharedModule } from 'src/app/shared/shared.module';
+
+import { InformationsRoutingModule } from './informations-routing.module';
 import { GeneralComponent } from './general/general.component';
 import { AdressesComponent } from './adresses/adresses.component';
 import { PaiementComponent } from './paiement/paiement.component';
 import { SecuriteComponent } from './securite/securite.component';
-=======
->>>>>>> master
 
 
 
 @NgModule({
-<<<<<<< HEAD
-  declarations: [InformationsComponent, GeneralComponent, AdressesComponent, PaiementComponent, SecuriteComponent],
-=======
-  declarations: [InformationsComponent],
->>>>>>> master
+  declarations: [
+    GeneralComponent,
+    AdressesComponent,
+    PaiementComponent,
+    SecuriteComponent],
   imports: [
-    CommonModule
+    SharedModule,
+    InformationsRoutingModule
   ]
 })
 export class InformationsModule { }

@@ -1,3 +1,5 @@
+/* Footer */
+
 .footer {
     padding-top: 1rem;
     padding-bottom: 1rem;
@@ -5,15 +7,8 @@
     background-color: var(--primary);
     text-align: center;
     border-top: #dddddd solid 0.06rem;
-  }
-  
-  a {
-    color: var(--fourth);
-    text-decoration: none;
-  }
-  
-  a:hover {
-    color: var(--secondary);
+    font-family: "Cinzel";
+    font-size: 0.8rem;
   }
 
   /* link Instagram */
@@ -21,6 +16,31 @@
   .instagram {
     padding-top: 0.5rem;
     padding-bottom: 0.5rem;
+    font-size: 1rem;
+  }
+
+  /* ngbTooltip */
+
+  ::ng-deep .tooltip-inner {
+    background-color: var(--secondary);
+    color: var(--primary);
+    border: dotted 0.2px;
+    border-color: var(--primary);
+    font-family: "Cinzel";
+    font-size: 0.68rem;
+  }
+
+  ::ng-deep .bs-tooltip-top .arrow::before, .bs-tooltip-auto[x-placement^="top"] .arrow::before {
+    border-top-color: var(--secondary);
+  }
+  ::ng-deep.bs-tooltip-right .arrow::before, .bs-tooltip-auto[x-placement^="right"] .arrow::before {
+    border-right-color: var(--secondary);
+  }
+  ::ng-deep .bs-tooltip-bottom .arrow::before, .bs-tooltip-auto[x-placement^="bottom"] .arrow::before {
+    border-bottom-color: var(--secondary);
+  }
+  ::ng-deep.bs-tooltip-left .arrow::before, .bs-tooltip-auto[x-placement^="left"] .arrow::before {
+    border-left-color: var(--secondary);
   }
   
   /* nav footer */
@@ -33,7 +53,16 @@
     margin-right: auto;
     text-align: center;
   }
+
+  a {
+    color: var(--fourth);
+    text-decoration: none;
+  }
   
+  a:hover {
+    color: var(--secondary);
+  }
+
   ul {
     padding: 0;
   }
@@ -65,7 +94,6 @@
   /* copyright */
   
   .copyright {
-    font-size: 1rem;
     font-weight: lighter;
     text-align: center;
     padding-top: 0.5rem;

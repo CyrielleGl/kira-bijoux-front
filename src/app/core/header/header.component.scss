@@ -22,7 +22,7 @@ a:hover {
 
 .connexion {
     float: left;
-    font-style: italic;
+    font-family: "Open-sans-light";
     font-size: 0.9rem;
     margin-top: 0.2rem;
 }
@@ -35,7 +35,7 @@ a:hover {
 
 .number-of-products {
     font-size: 1rem;
-    font-weight: bold;
+    font-family: "Open-sans-regular";
 }
 
 /* Style tooltip */
@@ -45,19 +45,8 @@ a:hover {
     color: var(--primary);
     border: dotted 0.2px;
     border-color: var(--primary);
+    font-size: 0.68rem;
 }
-::ng-deep .bs-tooltip-top .arrow::before, .bs-tooltip-auto[x-placement^="top"] .arrow::before {
-    border-top-color: var(--primary) !important;
-  }
-  ::ng-deep.bs-tooltip-right .arrow::before, .bs-tooltip-auto[x-placement^="right"] .arrow::before {
-    border-right-color: var(--primary) !important;
-  }
-  ::ng-deep .bs-tooltip-bottom .arrow::before, .bs-tooltip-auto[x-placement^="bottom"] .arrow::before {
-    border-bottom-color: var(--primary) !important;
-  }
-  ::ng-deep.bs-tooltip-left .arrow::before, .bs-tooltip-auto[x-placement^="left"] .arrow::before {
-    border-left-color: var(--primary) !important;
-  }
 
 /* Logo */
 

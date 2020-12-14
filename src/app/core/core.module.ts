@@ -5,6 +5,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { HeaderComponent } from './header/header.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { FooterComponent } from './footer/footer.component';
+
 import { ProtectedModule } from '../protected/protected.module';
 import { PublicModule } from '../public/public.module';
 
