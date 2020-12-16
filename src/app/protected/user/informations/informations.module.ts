@@ -4,7 +4,6 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { InformationsRoutingModule } from './informations-routing.module';
 import { GeneralComponent } from './general/general.component';
 import { AdressesComponent } from './adresses/adresses.component';
-import { PaiementComponent } from './paiement/paiement.component';
 import { SecuriteComponent } from './securite/securite.component';
 
 
@@ -13,7 +12,6 @@ import { SecuriteComponent } from './securite/securite.component';
   declarations: [
     GeneralComponent,
     AdressesComponent,
-    PaiementComponent,
     SecuriteComponent],
   imports: [
     SharedModule,
