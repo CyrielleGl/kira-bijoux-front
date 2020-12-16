@@ -3,12 +3,17 @@
   <!-- First line : connexion & basket -->
 
   <div class="first-line">
-    <div class="connexion" placement="bottom" ngbTooltip="Me connecter / M'inscrire">
-      <a routerLink="/connexion">Connexion / Inscription</a>
+
+    <div ngbDropdown class="d-inline-block">
+      <div class="connexion" ngbDropdownToggle>Connexion / Inscription</div>
+      <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+        <button ngbDropdownItem class="dropdown-item" [routerLink]="['connexion']" [routerLinkActive]="['active']">Me connecter</button>
+        <button ngbDropdownItem class="dropdown-item" [routerLink]="['inscription']" [routerLinkActive]="['active']">M'inscrire</button>
+      </div>
     </div>
 
     <div class="panier" id="panier" placement="bottom" ngbTooltip="Voir mon panier">
-      <a routerLink="/panier">
+      <a routerLink="/boutique/panier">
         <i class="fas fa-shopping-basket"></i>
         <span class="number-of-products"> (2)</span>
       </a>

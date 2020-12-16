@@ -25,7 +25,13 @@ a:hover {
     font-family: "Open-sans-light";
     font-size: 0.9rem;
     margin-top: 0.2rem;
+    cursor: pointer;
 }
+
+.dropdown-item {
+    font-family: "Open-sans-light";
+    font-size: 0.9rem;
+  }
 
 .panier {
     float: right;
