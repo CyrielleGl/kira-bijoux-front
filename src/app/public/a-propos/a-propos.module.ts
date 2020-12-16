@@ -5,7 +5,7 @@ import { AProposComponent } from './a-propos.component';
 import { EntretienBijouxComponent } from './entretien-bijoux/entretien-bijoux.component';
 import { LaMarqueComponent } from './la-marque/la-marque.component';
 import { LithotherapieComponent } from './lithotherapie/lithotherapie.component';
-import { AProposRouterModule } from './a-propos-router.module';
+import { AProposRouterModule } from './a-propos-routing.module';
 
 
 @NgModule({

@@ -2,7 +2,8 @@
 
 nav {
   font-family: "Cinzel";
-  font-size: 1.05rem;
+  font-size: 1.2rem;
+  font-weight: bold;
 }
 
 #collapsibleNavbar {
@@ -43,6 +44,9 @@ nav {
 .a-propos {
   color: var(--fourth) !important;
   cursor: pointer;
+  font-family: "Cinzel";
+  font-size: 1.2rem;
+  font-weight: bold;
 }
 
 .a-propos:hover {
@@ -82,6 +86,12 @@ nav {
   box-shadow: none;
 }
 
+.dropdown-item {
+  font-family: "Cinzel";
+  font-size: 1.02rem;
+  font-weight: bold;
+}
+
 .dropdown-item:hover {
   background-color: var(--primary-transparent);
   color: var(--secondary);
@@ -94,6 +104,11 @@ nav {
   /* mobile screens */
   @media screen and (max-width: 575px)
   {
+    nav {
+      font-family: "Cinzel";
+      font-size: 1.05rem;
+    }
+
     .a-propos {
       color: var(--fourth) !important;
       padding-bottom: 1rem;

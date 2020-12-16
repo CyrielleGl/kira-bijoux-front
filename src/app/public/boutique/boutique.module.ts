@@ -5,7 +5,7 @@ import { BoutiqueComponent } from './boutique.component';
 import { ColliersComponent } from './colliers/colliers.component';
 import { BraceletsComponent } from './bracelets/bracelets.component';
 import { BouclesOreillesComponent } from './boucles-oreilles/boucles-oreilles.component';
-import { BoutiqueRouterModule } from './boutique-router.module';
+import { BoutiqueRoutingModule } from './boutique-routing.module';
 import { PanierComponent } from './panier/panier.component';
 import { NouveautesComponent } from './nouveautes/nouveautes.component';
 
@@ -21,7 +21,7 @@ import { NouveautesComponent } from './nouveautes/nouveautes.component';
   ],
   imports: [
     SharedModule,
-    BoutiqueRouterModule
+    BoutiqueRoutingModule
   ]
 })
 export class BoutiqueModule { }
