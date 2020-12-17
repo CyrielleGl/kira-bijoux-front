@@ -2,7 +2,7 @@
 
   <!-- link to Instagram -->
 
-  <div class="instagram" placement="bottom" ngbTooltip="Suivez-nous sur Instagram">
+  <div class="instagram" id="instagram-link" placement="bottom" ngbTooltip="Suivez-nous sur Instagram">
     <a href="https://www.instagram.com/kira.bijoux/" target="_blank">
       <i class="fab fa-instagram"></i>
     </a>
@@ -13,13 +13,13 @@
   <div class="footer-nav">
     <ul>
       <li>
-        <a class="link" title="Livraison" routerLink="/livraison" routerLinkActive="active">Livraison</a>
+        <a class="link" id="livraison-link" title="Livraison" routerLink="/livraison" routerLinkActive="active">Livraison</a>
       </li>
       <li>
-        <a class="link" title="Conditions de retour" routerLink="/conditions-retour" routerLinkActive="active">Conditions de retour</a>
+        <a class="link" id="conditions-retour-link" title="Conditions de retour" routerLink="/conditions-retour" routerLinkActive="active">Conditions de retour</a>
       </li>
       <li>
-        <a class="link" title="Contact" routerLink="/contact" routerLinkActive="active">Contact</a>
+        <a class="link" id="contact-link" title="Contact" routerLink="/contact" routerLinkActive="active">Contact</a>
       </li>
     </ul>
   </div>
@@ -29,7 +29,7 @@
   <div class="copyright">
     &copy;
     <span [innerText]="yearNow"></span>&nbsp;<span [innerText]="appTitle"></span>&nbsp;
-    <span>-&nbsp; <a routerLink="/mentions-legales">Mentions légales</a></span>
+    <span>-&nbsp; <a routerLink="/mentions-legales" id="mentions-legales-link">Mentions légales</a></span>
   </div>
 
 </footer>
