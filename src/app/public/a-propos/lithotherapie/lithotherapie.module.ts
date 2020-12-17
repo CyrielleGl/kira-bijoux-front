@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { SharedModule } from 'src/app/shared/shared.module';
-import { LithotherapieRouterModule } from './lithotherapie-router.module';
+import { LithotherapieRouterModule } from './lithotherapie-routing.module';
 
 
 @NgModule({

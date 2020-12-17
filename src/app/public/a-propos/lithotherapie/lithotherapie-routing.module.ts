@@ -2,7 +2,9 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
-
+  { path: 'lithotherapie',
+  loadChildren: () => import('./lithotherapie.module').then(m => m.LithotherapieModule)
+  }
 ];
 
 @NgModule({

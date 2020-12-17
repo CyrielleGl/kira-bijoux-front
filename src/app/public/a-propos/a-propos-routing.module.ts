@@ -10,10 +10,7 @@ const routes: Routes = [
   },
   { path: 'a-propos/entretien-bijoux', component: EntretienBijouxComponent },
   { path: 'a-propos/la-marque', component: LaMarqueComponent },
-  { path: 'lithotherapie', component: LithotherapieComponent },
-  { path: 'lithotherapie',
-    loadChildren: () => import('./lithotherapie/lithotherapie.module').then(m => m.LithotherapieModule)
-  }
+  { path: 'lithotherapie', component: LithotherapieComponent }
 ];
 
 @NgModule({
