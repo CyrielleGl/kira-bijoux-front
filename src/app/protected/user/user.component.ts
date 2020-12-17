@@ -7,16 +7,16 @@ import { UsersService } from '../../shared/services/api/users/users.service';
   styleUrls: ['./user.component.scss']
 })
 export class UserComponent implements OnInit {
-  data: any;
+  public data: string = '';
 
   constructor(private readonly usersService: UsersService) { }
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.getAllUsers();
   }
 
-  getAllUsers(): any {
-    this.usersService.getAllUsers().subscribe((data: any[]) => {
+  public getAllUsers(): void {
+    this.usersService.getAllUsers().subscribe((data: string) => {
       this.data = data;
     });
   }

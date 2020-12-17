@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ApiService } from '../api.service';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -14,23 +15,23 @@ export class UsersService {
     }),
   };
 
-  getAllUsers(): any {
-    return this.http.get(`${ApiService.ApiUrlUsers}`);
+  getAllUsers(): Observable<string> {
+    return this.http.get<string>(`${ApiService.ApiUrlUsers}`);
   }
 
-  getUser(id :any): any {
-    return this.http.get(`${ApiService.ApiUrlUsers}/` + id);
+  getUser(id :number): Observable<string> {
+    return this.http.get<string>(`${ApiService.ApiUrlUsers}/` + id);
   }
 
-  postUser(formData: any): any {
-    return this.http.post(`${ApiService.ApiUrlUsers}`, formData);
+  postUser(formData: any): Observable<string> {
+    return this.http.post<string>(`${ApiService.ApiUrlUsers}`, formData);
   }
 
-  putUser(id: any, formData: any): any {
-    return this.http.put(`${ApiService.ApiUrlUsers}/` + id, formData);
+  putUser(id: number, formData: any): Observable<string> {
+    return this.http.put<string>(`${ApiService.ApiUrlUsers}/` + id, formData);
   }
 
-  deleteUser(id: any): any {
-    return this.http.delete(`${ApiService.ApiUrlUsers}/` + id);
+  deleteUser(id: number): Observable<string> {
+    return this.http.delete<string>(`${ApiService.ApiUrlUsers}/` + id);
   }
 }
