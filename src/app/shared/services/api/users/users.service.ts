@@ -17,4 +17,20 @@ export class UsersService {
   getAllUsers(): any {
     return this.http.get(`${ApiService.ApiUrlUsers}`);
   }
+
+  getUser(id :any): any {
+    return this.http.get(`${ApiService.ApiUrlUsers}/` + id);
+  }
+
+  postUser(formData: any): any {
+    return this.http.post(`${ApiService.ApiUrlUsers}`, formData);
+  }
+
+  putUser(id: any, formData: any): any {
+    return this.http.put(`${ApiService.ApiUrlUsers}/` + id, formData);
+  }
+
+  deleteUser(id: any): any {
+    return this.http.delete(`${ApiService.ApiUrlUsers}/` + id);
+  }
 }

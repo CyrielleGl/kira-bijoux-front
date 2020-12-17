@@ -4,30 +4,4 @@
         <h2>BIENVENUE <!--{{ user.prenom }}--> !</h2>
     </div>
 
-    <div class="container">
-        <form>
-          <h3>CRUD Etudiants</h3>
-          <div class="row">
-            <table class="table table-striped" aria-describedby="My Students">
-              <tr>
-                <th scope="col">Id</th>
-                <th scope="col">Nom</th>
-                <th scope="col">Prénom</th>
-                <th scope="col">Mail</th>
-                <th scope="col">Date</th>
-              </tr>
-      
-              <tr *ngFor="let d of data">
-                <td>{{ d.id }}</td>
-                <td>{{ d.lastname }}</td>
-                <td>{{ d.firstname }}</td>
-                <td>{{ d.mail }}</td>
-                <td>{{ d.inserted_at | date: "y-MM-dd" }}</td>
-              </tr>
-            </table>
-          </div>
-        </form>
-      </div>
-      
-
 </main>
