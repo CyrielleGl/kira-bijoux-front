@@ -5,14 +5,14 @@
   <div class="first-line">
 
     <div ngbDropdown class="d-inline-block">
-      <div class="connexion" ngbDropdownToggle>Connexion / Inscription</div>
+      <div class="connexion" id="connexion-dropdown" ngbDropdownToggle>Connexion / Inscription</div>
       <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-        <button ngbDropdownItem class="dropdown-item" [routerLink]="['connexion']" [routerLinkActive]="['active']">Me connecter</button>
-        <button ngbDropdownItem class="dropdown-item" [routerLink]="['inscription']" [routerLinkActive]="['active']">M'inscrire</button>
+        <button ngbDropdownItem class="dropdown-item" id="connexion-link" [routerLink]="['connexion']" [routerLinkActive]="['active']">Me connecter</button>
+        <button ngbDropdownItem class="dropdown-item" id="inscription-link" [routerLink]="['inscription']" [routerLinkActive]="['active']">M'inscrire</button>
       </div>
     </div>
 
-    <div class="panier" id="panier" placement="bottom" ngbTooltip="Voir mon panier">
+    <div class="panier" id="panier-link" placement="bottom" ngbTooltip="Voir mon panier">
       <a routerLink="/boutique/panier">
         <i class="fas fa-shopping-basket"></i>
         <span class="number-of-products"> (2)</span>

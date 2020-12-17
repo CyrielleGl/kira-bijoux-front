@@ -85,8 +85,17 @@ describe('routing test', () => {
     const url = 'https://www.instagram.com/kira.bijoux/';
     await browser.sleep(500);
     browser.getCurrentUrl().toString().match(url);
-    await browser.sleep(2000);
-   });
+    const allWindowHandlers = await browser.getAllWindowHandles();
+    if (allWindowHandlers.length > 1) {
+      for (let windowHandlerIndex = 1; windowHandlerIndex < allWindowHandlers.length; windowHandlerIndex++) {
+        const windowHandler = allWindowHandlers[windowHandlerIndex];
+        await browser.switchTo().window(windowHandler);
+        await browser.close();
+      }
+    }
+    await browser.switchTo().window(allWindowHandlers[0]);
+    await browser.sleep(500);
+  });
 
   after(async () => {
     browser.waitForAngularEnabled(true);
