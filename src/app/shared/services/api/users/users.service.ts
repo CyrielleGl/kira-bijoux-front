@@ -14,7 +14,7 @@ export class UsersService {
     }),
   };
 
-  getAllData(): any {
+  getAllUsers(): any {
     return this.http.get(`${ApiService.ApiUrlUsers}`);
   }
 }
