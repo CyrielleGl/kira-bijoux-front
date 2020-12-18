@@ -11,6 +11,13 @@ export class RoutingPageObjects {
     connexionRoute!: ElementFinder;
     inscriptionRoute!: ElementFinder;
     panierRoute!: ElementFinder;
+    colliersRoute!: ElementFinder;
+    braceletsRoute!: ElementFinder;
+    boRoute!: ElementFinder;
+    aproposRoute!: ElementFinder;
+    entretienRoute!: ElementFinder;
+    lamarqueRoute!: ElementFinder;
+    lithotherapieRoute!: ElementFinder;
 
     constructor() {
         this.mentionsLegalesRoute = element(by.id('mentions-legales-link'));
@@ -22,6 +29,13 @@ export class RoutingPageObjects {
         this.connexionRoute = element(by.id('connexion-link'));
         this.inscriptionRoute = element(by.id('inscription-link'));
         this.panierRoute = element(by.id('panier-link'));
+        this.colliersRoute = element(by.id('colliers-link'));
+        this.braceletsRoute = element(by.id('bracelets-link'));
+        this.boRoute = element(by.id('bo-link'));
+        this.aproposRoute = element(by.id('a-propos-dropdown'));
+        this.entretienRoute = element(by.id('entretien-bijoux-link'));
+        this.lamarqueRoute = element(by.id('marque-link'));
+        this.lithotherapieRoute = element(by.id('lithotherapie-link'));
     }
 
     async clickOnMentionsLegalesRoute(): Promise<void> {
@@ -58,6 +72,34 @@ export class RoutingPageObjects {
 
     async clickOnPanierRoute(): Promise<void> {
         await this.panierRoute.click();
+    }
+
+    async clickOnColliersRoute(): Promise<void> {
+        await this.colliersRoute.click();
+    }
+
+    async clickOnBraceletsRoute(): Promise<void> {
+        await this.braceletsRoute.click();
+    }
+
+    async clickOnBORoute(): Promise<void> {
+        await this.boRoute.click();
+    }
+
+    async clickOnAProposRoute(): Promise<void> {
+        await this.aproposRoute.click();
+    }
+
+    async clickOnEntretienRoute(): Promise<void> {
+        await this.entretienRoute.click();
+    }
+
+    async clickOnLaMarqueRoute(): Promise<void> {
+        await this.lamarqueRoute.click();
+    }
+
+    async clickOnLithotherapieRoute(): Promise<void> {
+        await this.lithotherapieRoute.click();
     }
 
 }

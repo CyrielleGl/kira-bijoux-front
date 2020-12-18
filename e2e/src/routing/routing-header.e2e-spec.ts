@@ -45,9 +45,9 @@ describe('routing test', () => {
     await browser.wait(ec.visibilityOf(element(by.id('connexion-dropdown'))));
     await routingPageObjects.clickOnDropdownConnexion();
     await browser.sleep(500);
-    const expected = 'connexion-link';
-    await browser.wait(ec.visibilityOf(element(by.id('connexion-link'))));
-    const value = await element(by.id('connexion-link')).getAttribute('id');
+    const expected = 'inscription-link';
+    await browser.wait(ec.visibilityOf(element(by.id('inscription-link'))));
+    const value = await element(by.id('inscription-link')).getAttribute('id');
     expect(value).to.eq(expected);
     await browser.sleep(500);
    });
