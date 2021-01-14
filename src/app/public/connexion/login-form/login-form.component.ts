@@ -29,13 +29,9 @@ export class LoginFormComponent implements OnInit {
       return;
     }
 
-    console.log(this.Form.value);
-
-    // const formData = [, { type: type, cars: { marque: marque }, }, ] = this.Form.value;
-
-    /* this.authService.connexion(this.Form.value).subscribe((data: string[]) => {
+    this.authService.connexion(this.Form.value).subscribe((data: string[]) => {
       this.data = data;
-    }); */
+    });
   }
 
 }

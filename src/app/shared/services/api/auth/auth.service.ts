@@ -18,8 +18,8 @@ export class AuthService {
     }),
   };
 
-  registration(formData: string[]): Observable<string[]> {
-    return this.http.post<string[]>(`${ApiService.ApiUrlAuth}/${this.registrationRoute}`, formData);
+  registration(formData: any): Observable<any> {
+    return this.http.post<any>(`${ApiService.ApiUrlAuth}/${this.registrationRoute}`, formData);
   }
 
   connexion(formData: string[]): Observable<string[]> {

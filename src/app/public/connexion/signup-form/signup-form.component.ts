@@ -31,10 +31,15 @@ export class SignupFormComponent implements OnInit {
       return;
     }
 
-    console.log(this.Form.value);
+    const formData = {
+      lastname: this.Form.value.lastname,
+      firstname: this.Form.value.firstname,
+      mail: this.Form.value.mail,
+      password: this.Form.value.password,
+    };
 
-    /* this.authService.registration(this.Form.value).subscribe((data: string[]) => {
+    this.authService.registration(formData).subscribe((data: any[]) => {
       this.data = data;
-    }); */
+    });
   }
 }
