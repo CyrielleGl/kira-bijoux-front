@@ -12,7 +12,7 @@ export class SignupFormComponent implements OnInit {
   constructor(private authService: AuthService, private router: Router) {}
 
   public data: any;
-  public submitted: boolean = false;
+  public submitted = false;
 
   Form = new FormGroup({
     id: new FormControl(null),
