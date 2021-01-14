@@ -1,64 +1,121 @@
 <main>
+  <div class="title-body">
+    <h2>INSCRIPTION</h2>
+  </div>
 
-    <div class="title-body">
-        <h2>INSCRIPTION</h2>
-    </div>
+  <!-- VOS FEATURES ICI -->
 
-    <!-- VOS FEATURES ICI -->
+  <div>
+    <div class="c">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <p class="text-center text-muted">
+            Si vous avez deja un compte cliquer sur
+            <a href="http://localhost:4200/#/connexion">se connecter</a> et
+            connecter vous.
+          </p>
+          <hr />
 
-    <div>
-        <div class="c">
-            <div class="panel panel-default">
-                <div class="panel-body">
-                    
-                    <p class="text-center text-muted">Si vous avez deja un compte cliquer sur  <a href="http://localhost:4200/#/connexion">se connecter</a> et connecter vous. </p>
-                    <hr>
-
-                    <form>
-                        <div class="top-margin">
-                            <label>Prénom <span class="text-danger">*</span></label>
-                            <input type="text" class="form-control"required>
-                        </div>
-                        
-                        <div class="top-margin">
-                            <label>Nom <span class="text-danger">*</span></label>
-                            <input type="text" class="form-control"required>
-                        </div>
-                        <div class="top-margin">
-                            <label>Email <span class="text-danger">*</span></label>
-                            <input type="text" class="form-control"required>
-                        </div>
-
-                        <div class="row top-margin">
-                        
-                            <div class="col-sm-6">
-                                <label >Mot de passe <span class="text-danger">*</span></label>
-                                <input type="password" class="form-control" required>
-                            </div>
-                            <div class="col-sm-6">
-                                <label  >Confirmer le mot de passe <span class="text-danger">*</span></label>
-                                <input type="password" class="form-control" required>
-                            </div>
-                        </div>
-
-                        <hr>
-
-                        <div class="row">
-                            <div class="col-lg-8">
-                                <label class="checkbox">
-                                    
-                                </label>                        
-                            </div>
-                            <div class="col-lg-4 text-right">
-                                <button class="btn btn-action" type="submit">S'inscrire</button>
-                            </div>
-                        </div>
-                    </form>
+          <form [formGroup]="Form" (ngSubmit)="registration()">
+            <div class="top-margin">
+              <input type="hidden" formControlName="id" />
+              <label>Prénom <span class="text-danger">*</span></label>
+              <input
+                type="text"
+                class="form-control"
+                formControlName="firstname"
+              />
+              <div
+                *ngIf="submitted && Form.controls.firstname.errors"
+                class="text-danger"
+              >
+                <div *ngIf="Form.controls.firstname.errors.required">
+                  le champ Prénom est obligatoire
                 </div>
+              </div>
             </div>
 
+            <div class="top-margin">
+              <label>Nom <span class="text-danger">*</span></label>
+              <input
+                type="text"
+                class="form-control"
+                formControlName="lastname"
+              />
+              <div
+                *ngIf="submitted && Form.controls.lastname.errors"
+                class="text-danger"
+              >
+                <div *ngIf="Form.controls.lastname.errors.required">
+                  le champ Nom est obligatoire
+                </div>
+              </div>
+            </div>
+
+            <div class="top-margin">
+              <label>Email <span class="text-danger">*</span></label>
+              <input type="text" class="form-control" formControlName="mail" />
+              <div
+                *ngIf="submitted && Form.controls.mail.errors"
+                class="text-danger"
+              >
+                <div *ngIf="Form.controls.mail.errors.required">
+                  le champ Email est obligatoire
+                </div>
+              </div>
+            </div>
+
+            <div class="row top-margin">
+              <div class="col-sm-6">
+                <label>Mot de passe <span class="text-danger">*</span></label>
+                <input
+                  type="password"
+                  class="form-control"
+                  formControlName="password"
+                />
+                <div
+                  *ngIf="submitted && Form.controls.password.errors"
+                  class="text-danger"
+                >
+                  <div *ngIf="Form.controls.password.errors.required">
+                    le champ Mot de passe est obligatoire
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <label
+                  >Confirmer le mot de passe
+                  <span class="text-danger">*</span></label
+                >
+                <input
+                  type="password"
+                  class="form-control"
+                  formControlName="confirmpassword"
+                />
+                <div
+                  *ngIf="submitted && Form.controls.confirmpassword.errors"
+                  class="text-danger"
+                >
+                  <div *ngIf="Form.controls.confirmpassword.errors.required">
+                    le champ Confirmer le mot de passe est obligatoire
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <hr />
+
+            <div class="row">
+              <div class="col-lg-8">
+                <label class="checkbox"> </label>
+              </div>
+              <div class="col-lg-4 text-right">
+                <button class="btn btn-action" type="submit">S'inscrire</button>
+              </div>
+            </div>
+          </form>
         </div>
-
+      </div>
     </div>
-
+  </div>
 </main>
