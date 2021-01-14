@@ -14,14 +14,25 @@
                     <p class="text-center text-muted">Si vous n'avez pas de compte cliquer sur <a href="http://localhost:4200/#/inscription">s'inscrire</a> et créer votre compte. </p>
                     <hr>
                     
-                    <form>
+                    <form [formGroup]="Form" (ngSubmit)="connexion()">
                         <div class="top-margin">
+                            <input type="hidden" formControlName="id" />
                             <label>Email <span class="text-danger">*</span></label>
-                            <input type="text" class="form-control">
+                            <input type="text" class="form-control" formControlName="mail"/>
+                            <div *ngIf="submitted && Form.controls.mail.errors" class="text-danger">
+                              <div *ngIf="Form.controls.mail.errors.required">
+                                le champ Email est obligatoire
+                              </div>
+                            </div>
                         </div>
                         <div class="top-margin">
                             <label>Mot de passe <span class="text-danger">*</span></label>
-                            <input type="password" class="form-control">
+                            <input type="password" class="form-control" formControlName="password"/>
+                            <div *ngIf="submitted && Form.controls.password.errors" class="text-danger">
+                              <div *ngIf="Form.controls.password.errors.required">
+                                le champ Mot de passe est obligatoire
+                              </div>
+                            </div>
                         </div>
 
                         <hr>

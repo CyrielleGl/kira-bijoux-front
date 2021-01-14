@@ -33,8 +33,8 @@ export class SignupFormComponent implements OnInit {
 
     console.log(this.Form.value);
 
-    this.authService.registration(this.Form.value).subscribe((data: string[]) => {
+    /* this.authService.registration(this.Form.value).subscribe((data: string[]) => {
       this.data = data;
-    });
+    }); */
   }
 }

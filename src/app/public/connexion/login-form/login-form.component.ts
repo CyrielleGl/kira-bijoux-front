@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { AuthService } from '../../../shared/services/api/auth/auth.service';
 
 @Component({
   selector: 'app-login-form',
@@ -7,9 +9,33 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginFormComponent implements OnInit {
 
-  constructor() { }
+  constructor(private authService: AuthService) { }
 
-  ngOnInit(): void {
+  public data: any;
+  public submitted: boolean = false;
+
+  Form = new FormGroup({
+    id: new FormControl(null),
+    mail: new FormControl('', [Validators.required]),
+    password: new FormControl('', [Validators.required]),
+  });
+
+  ngOnInit(): void {}
+
+  public connexion(): void {
+    this.submitted = true;
+
+    if (this.Form.invalid) {
+      return;
+    }
+
+    console.log(this.Form.value);
+
+    // const formData = [, { type: type, cars: { marque: marque }, }, ] = this.Form.value;
+
+    /* this.authService.connexion(this.Form.value).subscribe((data: string[]) => {
+      this.data = data;
+    }); */
   }
 
 }
