@@ -5,6 +5,8 @@ import { SignupFormComponent } from './signup-form/signup-form.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { ConnexionRoutingModule } from './connexion-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CookieService } from 'ngx-cookie-service';
+import { BrowserModule } from '@angular/platform-browser';
 
 
 
@@ -18,7 +20,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     SharedModule,
     ConnexionRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    BrowserModule,
+  ],
+  providers: [
+    CookieService
   ]
 })
 export class ConnexionModule { }
