@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { AuthService } from '../../../shared/services/api/auth/auth.service';
 
 @Component({
@@ -8,7 +9,7 @@ import { AuthService } from '../../../shared/services/api/auth/auth.service';
   styleUrls: ['./signup-form.component.scss'],
 })
 export class SignupFormComponent implements OnInit {
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService, private router: Router) {}
 
   public data: any;
   public submitted: boolean = false;
@@ -40,6 +41,7 @@ export class SignupFormComponent implements OnInit {
 
     this.authService.registration(formData).subscribe((data: any[]) => {
       this.data = data;
+      this.router.navigateByUrl('/connexion');
     });
   }
 }
