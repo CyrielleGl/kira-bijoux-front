@@ -43,6 +43,9 @@
                 <div *ngIf="Form.controls.mail.errors.required">
                   le champ Email est obligatoire
                 </div>
+                <div *ngIf="Form.controls.mail.invalid && !Form.controls.mail.errors.required">
+                  veuillez saisir une adresse mail valide
+                </div>
               </div>
             </div>
 
@@ -64,6 +67,12 @@
                     le champ Confirmer le mot de passe est obligatoire
                   </div>
                 </div>
+              </div>
+              <div *ngIf="submitted && matchingError" class="text-danger text-center w-100">
+                les 2 mots de passes ne correspondent pas
+              </div>
+              <div *ngIf="submitted && submitError" class="text-danger text-center w-100">
+                une erreur s'est produite lors de l'inscription veuillez réessayer
               </div>
             </div>
 

@@ -23,6 +23,9 @@
                               <div *ngIf="Form.controls.mail.errors.required">
                                 le champ Email est obligatoire
                               </div>
+                              <div *ngIf="Form.controls.mail.invalid && !Form.controls.mail.errors.required">
+                                veuillez saisir une adresse mail valide
+                              </div>
                             </div>
                         </div>
                         <div class="top-margin">
@@ -33,6 +36,10 @@
                                 le champ Mot de passe est obligatoire
                               </div>
                             </div>
+                        </div>
+
+                        <div *ngIf="submitted && submitError" class="text-danger text-center w-100">
+                            email ou mot de passe incorrect
                         </div>
 
                         <hr>

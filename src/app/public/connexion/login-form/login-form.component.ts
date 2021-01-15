@@ -15,10 +15,11 @@ export class LoginFormComponent implements OnInit {
 
   public data: any;
   public submitted = false;
+  public submitError = false;
 
   Form = new FormGroup({
     id: new FormControl(null),
-    mail: new FormControl('', [Validators.required]),
+    mail: new FormControl('', [ Validators.required, Validators.pattern('^[A-Z-a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$') ]),
     password: new FormControl('', [Validators.required]),
   });
 
@@ -31,11 +32,16 @@ export class LoginFormComponent implements OnInit {
       return;
     }
 
-    this.authService.connexion(this.Form.value).subscribe((data: string[]) => {
-      this.data = data;
-      this.cookieService.set('kira-bijoux-cookie', 'user', 365);
-      this.router.navigateByUrl('/home');
-    });
+    this.authService.connexion(this.Form.value).subscribe(
+      (data: string[]) => {
+        this.data = data;
+        this.cookieService.set('kira-bijoux-cookie', 'user', 365);
+        this.router.navigateByUrl('/home');
+      }, err => {
+        this.submitError = true;
+        console.log(err);
+      }
+    );
   }
 
 }
