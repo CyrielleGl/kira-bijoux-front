@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
 import { AuthService } from '../../../shared/services/api/auth/auth.service';
 
 @Component({
@@ -9,7 +10,7 @@ import { AuthService } from '../../../shared/services/api/auth/auth.service';
   styleUrls: ['./signup-form.component.scss'],
 })
 export class SignupFormComponent implements OnInit {
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(private authService: AuthService, private router: Router, private cookieService: CookieService) {}
 
   public data: any;
   public submitted = false;
@@ -41,7 +42,8 @@ export class SignupFormComponent implements OnInit {
 
     this.authService.registration(formData).subscribe((data: any[]) => {
       this.data = data;
-      this.router.navigateByUrl('/connexion');
+      this.cookieService.set('kira-bijoux-cookie', 'user', 365);
+      this.router.navigateByUrl('/home');
     });
   }
 }
