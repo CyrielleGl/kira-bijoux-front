@@ -56,7 +56,6 @@ export class SignupFormComponent implements OnInit {
         this.router.navigateByUrl('/home');
       }, err => {
         this.submitError = true;
-        console.log(err);
       }
     );
   }
