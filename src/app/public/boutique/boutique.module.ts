@@ -8,7 +8,7 @@ import { BouclesOreillesComponent } from './boucles-oreilles/boucles-oreilles.co
 import { BoutiqueRoutingModule } from './boutique-routing.module';
 import { PanierComponent } from './panier/panier.component';
 import { NouveautesComponent } from './nouveautes/nouveautes.component';
-
+import { ItemsComponent } from 'src/app/shared/components/items/items.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +16,7 @@ import { NouveautesComponent } from './nouveautes/nouveautes.component';
     BouclesOreillesComponent,
     BraceletsComponent,
     ColliersComponent,
+    ItemsComponent,
     PanierComponent,
     NouveautesComponent
   ],
