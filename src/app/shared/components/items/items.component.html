@@ -1,3 +1,13 @@
+<main>
+
+  <div id="boutique-title">
+    <div class="title-body">
+      <h2 *ngIf="keyWord == BOUTIQUE_COLLIERS_KEYWORD">COLLIERS</h2>
+      <h2 *ngIf="keyWord == BOUTIQUE_BRACELETS_KEYWORD">BRACELETS</h2>
+      <h2 *ngIf="keyWord == BOUTIQUE_BO_KEYWORD">BOUCLES D'OREILLES</h2>
+    </div>
+  </div>
+
 <div class="input-group mb-5 justify-content-center">
   <div class="form-outline">
     <input type="search" class="form-control" #searchItem (keyup)="onSearchItems(searchItem.value)" />
@@ -15,7 +25,7 @@
         alt="Card image cap">
       <div class="card-body">
         <h5 class="card-title">{{ item.name }}</h5>
-        <p class="card-text">{{ item.description }} <br /> {{ item.collection.name }}
+        <p class="card-text">{{ item.collection.name }}
           <br /> Prix : {{ item.price | currency:'EUR':'symbol':'1.2-2':'fr' }} | Stock : {{ item.stock }}
         </p>
         <a (click)="getByName(item.name)" class="btn btn-primary justify-content-center">Ajouter au panier</a>
@@ -23,3 +33,5 @@
     </div>
   </div>
 </div>
+
+</main>
