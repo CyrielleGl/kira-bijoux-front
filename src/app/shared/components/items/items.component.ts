@@ -25,7 +25,7 @@ export class ItemsComponent implements OnInit {
   }
 
   public onSearchItems(item: string): void {
-    this._itemsService.getSelectedItem(`${item}`).subscribe(
+    this._itemsService.getByName(`${item}`).subscribe(
       (data: string[]) => {
         this.data = data;
       }, err => {
@@ -35,8 +35,8 @@ export class ItemsComponent implements OnInit {
     )
   }
 
-  public getSelectedItem(name: string): any {
-    this._itemsService.getSelectedItem(`${name}`).subscribe(
+  public getByName(name: string): any {
+    this._itemsService.getByName(`${name}`).subscribe(
       (data: string[]) => {
         this.data = data;
       }

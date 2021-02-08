@@ -19,7 +19,7 @@ export class ItemsService {
     return this.http.get<string[]>(`${ApiService.ApiUrlItems}/category/` + name);
   }
 
-  getSelectedItem(name: string): Observable<string[]> {
+  getByName(name: string): Observable<string[]> {
     return this.http.get<string[]>(`${ApiService.ApiUrlItems}/category/item/` + name);
   }
 }

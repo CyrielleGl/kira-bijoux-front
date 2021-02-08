@@ -18,7 +18,7 @@
         <p class="card-text">{{ item.description }} <br /> {{ item.collection.name }}
           <br /> Prix : {{ item.price | currency:'EUR':'symbol':'1.2-2':'fr' }} | Stock : {{ item.stock }}
         </p>
-        <a (click)="getSelectedItem(item.name)" class="btn btn-primary justify-content-center">Ajouter au panier</a>
+        <a (click)="getByName(item.name)" class="btn btn-primary justify-content-center">Ajouter au panier</a>
       </div>
     </div>
   </div>
