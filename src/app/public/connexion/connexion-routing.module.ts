@@ -20,7 +20,6 @@ export const ConnexionRoute: Route = {
   component: LoginFormComponent
 };
 
-
 @NgModule({
   imports: [],
   exports: [RouterModule]

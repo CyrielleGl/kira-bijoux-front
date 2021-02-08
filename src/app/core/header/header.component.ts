@@ -1,3 +1,4 @@
+  
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
@@ -24,11 +25,11 @@ export class HeaderComponent implements OnInit {
   }
 
   private displayByAccessRole(roleAccess: string): void {
-    if (roleAccess == 'user') {
+    if (this.roleAccess == 'user') {
       this.roleUser = true;
-    } else if (roleAccess == 'admin') {
+    } else if (this.roleAccess == 'admin') {
       this.roleAdmin = true;
-    } else if (roleAccess == '') {
+    } else if (this.roleAccess == '') {
       this.roleNotLogged = true;
     }
   }
