@@ -24,11 +24,11 @@ export class HeaderComponent implements OnInit {
   }
 
   private displayByAccessRole(roleAccess: string): void {
-    if (this.roleAccess == 'user') {
+    if (roleAccess == 'user') {
       this.roleUser = true;
-    } else if (this.roleAccess == 'admin') {
+    } else if (roleAccess == 'admin') {
       this.roleAdmin = true;
-    } else if (this.roleAccess == '') {
+    } else if (roleAccess == '') {
       this.roleNotLogged = true;
     }
   }
