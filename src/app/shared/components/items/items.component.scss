@@ -1,0 +1,26 @@
+.col {
+  margin-bottom: 30px;
+  @media screen and (max-width: 500px) {
+    justify-content: center;
+    display: flex;
+  }
+}
+
+.card {
+  width: 300px !important;
+  height: 400px !important;
+}
+
+.card-text {
+  white-space: pre-line;
+}
+
+a.btn-primary {
+  bottom: 15px;
+  position: absolute;
+  left: 25%;
+}
+
+::ng-deep .card-body {
+  padding: 0.5rem;
+}
