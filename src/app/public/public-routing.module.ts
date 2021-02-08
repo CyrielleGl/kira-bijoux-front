@@ -10,8 +10,18 @@ import { HomeComponent } from './home/home.component';
 import { LivraisonComponent } from './livraison/livraison.component';
 import { MentionsLegalesComponent } from './mentions-legales/mentions-legales.component';
 
+import {
+  KiraBoRoute,
+  KiraColliersRoute,
+  KiraBraceletsRoute,
+  KiraNouveautesRoute
+} from './boutique/boutique-routing.module';
 
 const routes: Routes = [
+  KiraBoRoute,
+  KiraColliersRoute,
+  KiraBraceletsRoute,
+  KiraNouveautesRoute,
   { path: 'a-propos', component: AProposComponent },
   { path: 'boutique', component: BoutiqueComponent },
   { path: 'connexion-inscription', component: ConnexionComponent },
