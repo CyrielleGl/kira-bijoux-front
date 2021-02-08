@@ -15,23 +15,23 @@ export class UsersService {
     }),
   };
 
-  getAllUsers(): Observable<string> {
-    return this.http.get<string>(`${ApiService.ApiUrlUsers}`);
+  getAllUsers(): Observable<string[]> {
+    return this.http.get<string[]>(`${ApiService.ApiUrlUsers}`);
   }
 
-  getUser(id :number): Observable<string> {
-    return this.http.get<string>(`${ApiService.ApiUrlUsers}/` + id);
+  getUser(id: number): Observable<string[]> {
+    return this.http.get<string[]>(`${ApiService.ApiUrlUsers}/` + id);
   }
 
-  postUser(formData: any): Observable<string> {
-    return this.http.post<string>(`${ApiService.ApiUrlUsers}`, formData);
+  postUser(formData: string[]): Observable<string[]> {
+    return this.http.post<string[]>(`${ApiService.ApiUrlUsers}`, formData);
   }
 
-  putUser(id: number, formData: any): Observable<string> {
-    return this.http.put<string>(`${ApiService.ApiUrlUsers}/` + id, formData);
+  putUser(id: number, formData: string[]): Observable<string[]> {
+    return this.http.put<string[]>(`${ApiService.ApiUrlUsers}/` + id, formData);
   }
 
-  deleteUser(id: number): Observable<string> {
-    return this.http.delete<string>(`${ApiService.ApiUrlUsers}/` + id);
+  deleteUser(id: number): Observable<string[]> {
+    return this.http.delete<string[]>(`${ApiService.ApiUrlUsers}/` + id);
   }
 }
