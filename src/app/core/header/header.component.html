@@ -5,15 +5,27 @@
   <div class="first-line">
 
     <div ngbDropdown class="d-inline-block">
-      <div class="connexion" id="connexion-dropdown" ngbDropdownToggle>Connexion / Inscription</div>
-      <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-        <button ngbDropdownItem class="dropdown-item" id="connexion-link" [routerLink]="['connexion']" [routerLinkActive]="['active']">Me connecter</button>
-        <button ngbDropdownItem class="dropdown-item" id="inscription-link" [routerLink]="['inscription']" [routerLinkActive]="['active']">M'inscrire</button>
-        <button ngbDropdownItem class="dropdown-item" id="deconnexion-link" [routerLink]="['deconnexion']" [routerLinkActive]="['active']">Me déconnecter</button>
+      <!-- Affichage pour l'utilisateur non connecté -->
+      <div *ngIf="roleNotLogged">
+        <div class="connexion" id="connexion-dropdown" ngbDropdownToggle>Connexion / Inscription</div>
+        <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+          <button ngbDropdownItem class="dropdown-item" id="connexion-link" [routerLink]="['connexion']"
+            [routerLinkActive]="['active']">Me connecter</button>
+          <button ngbDropdownItem class="dropdown-item" id="inscription-link" [routerLink]="['inscription']"
+            [routerLinkActive]="['active']">M'inscrire</button>
+        </div>
+      </div>
+      <!-- Affichage pour l'utilisateur connecté ou l'admin -->
+      <div *ngIf="roleUser || roleAdmin">
+        <div class="connexion" id="connexion-dropdown" ngbDropdownToggle>Déconnexion</div>
+        <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+          <button ngbDropdownItem class="dropdown-item" id="deconnexion-link" (click)="logout()"
+            [routerLinkActive]="['active']">Me déconnecter</button>
+        </div>
       </div>
     </div>
-
-    <div class="panier" id="panier-link" placement="bottom" ngbTooltip="Voir mon panier">
+    <!-- Affichage pour l'utilisateur connecté -->
+    <div *ngIf="roleUser" class="panier" id="panier-link" placement="bottom" ngbTooltip="Voir mon panier">
       <a routerLink="/boutique/panier">
         <i class="fas fa-shopping-basket"></i>
         <span class="number-of-products"> (2)</span>
@@ -24,10 +36,9 @@
   <!-- Logo -->
 
   <div class="logo-header" style="display: flex;">
-      <h1 style="margin: auto;" >
-        <img [src]="urlLogoHeader" width="200rem" title="Kira Bijoux" alt="Kira Bijoux">
-      </h1>
+    <h1 style="margin: auto;">
+      <img [src]="urlLogoHeader" width="200rem" title="Kira Bijoux" alt="Kira Bijoux">
+    </h1>
   </div>
 
 </div>
-    

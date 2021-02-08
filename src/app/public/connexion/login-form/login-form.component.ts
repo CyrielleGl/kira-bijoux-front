@@ -42,7 +42,10 @@ export class LoginFormComponent implements OnInit {
         } else if(this.role == 'admin') {
           this.cookieService.set('kira-bijoux-cookie', 'admin', 365);
         }
-        this.router.navigateByUrl('/home');
+        this.router.navigateByUrl('/home', { skipLocationChange: false }).then(() => {
+          this.router.navigate(['home']);
+          document.location.reload();
+        });
       }, err => {
         this.submitError = true;
       }
