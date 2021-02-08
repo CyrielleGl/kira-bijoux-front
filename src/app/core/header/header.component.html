@@ -19,8 +19,7 @@
       <div *ngIf="roleUser || roleAdmin">
         <div class="connexion" id="connexion-dropdown" ngbDropdownToggle>Déconnexion</div>
         <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-          <button ngbDropdownItem class="dropdown-item" id="deconnexion-link" (click)="logout()"
-            [routerLinkActive]="['active']">Me déconnecter</button>
+          <button ngbDropdownItem class="dropdown-item" id="deconnexion-link" (click)="logout()">Me déconnecter</button>
         </div>
       </div>
     </div>
@@ -29,6 +28,13 @@
       <a routerLink="/boutique/panier">
         <i class="fas fa-shopping-basket"></i>
         <span class="number-of-products"> (2)</span>
+      </a>
+    </div>
+    <!-- Affichage pour l'admin -->
+    <div *ngIf="roleAdmin" class="panier" id="admin-link" placement="bottom" ngbTooltip="Voir le CRM">
+      <a routerLink="/administration">
+        <i class="fa fa-user-secret"></i>
+        <span class="number-of-products"> (1)</span>
       </a>
     </div>
   </div>
