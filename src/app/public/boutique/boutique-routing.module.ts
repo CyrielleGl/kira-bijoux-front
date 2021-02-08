@@ -3,6 +3,7 @@ import { ActivatedRouteSnapshot, Resolve, Route, RouterModule, RouterStateSnapsh
 
 import { ItemsComponent } from 'src/app/shared/components/items/items.component';
 import { Observable, of } from 'rxjs';
+import { PanierComponent } from './panier/panier.component';
 
 @Injectable({ providedIn: 'root' })
 export class KiraBoRouteResolve implements Resolve<string> {
@@ -53,11 +54,6 @@ export class KiraNouveautesRouteResolve implements Resolve<string> {
   }
 }
 
-export const BoutiqueRoute: Route = {
-  path: 'boutique',
-  loadChildren: () => import('../boutique/boutique.module').then(m => m.BoutiqueModule)
-};
-
 export const KiraBoRoute: Route = {
   path: 'boutique/boucles-oreilles',
   component: ItemsComponent,
@@ -88,6 +84,11 @@ export const KiraNouveautesRoute: Route = {
   resolve: {
     keyWord: KiraNouveautesRouteResolve
   }
+};
+
+export const KiraPanierRoute: Route = {
+  path: 'boutique/panier',
+  component: PanierComponent,
 };
 
 @NgModule({

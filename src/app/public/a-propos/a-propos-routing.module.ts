@@ -1,20 +1,31 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { Route, RouterModule } from '@angular/router';
 import { EntretienBijouxComponent } from './entretien-bijoux/entretien-bijoux.component';
 import { LaMarqueComponent } from './la-marque/la-marque.component';
 import { LithotherapieComponent } from './lithotherapie/lithotherapie.component';
 
-const routes: Routes = [
-  { path: 'a-propos',
+export const AProposRoute: Route = {
+  path: 'a-propos',
   loadChildren: () => import('../a-propos/a-propos.module').then(m => m.AProposModule)
-  },
-  { path: 'a-propos/entretien-bijoux', component: EntretienBijouxComponent },
-  { path: 'a-propos/la-marque', component: LaMarqueComponent },
-  { path: 'lithotherapie', component: LithotherapieComponent }
-];
+};
+
+export const KiraEntretienBijouxRoute: Route = {
+  path: 'a-propos/entretien-bijoux',
+  component: EntretienBijouxComponent
+};
+
+export const KiraLaMarqueRoute: Route = {
+  path: 'a-propos/la-marque',
+  component: LaMarqueComponent
+};
+
+export const KiraLithotherapieRoute: Route = {
+  path: 'lithotherapie',
+  component: LithotherapieComponent
+};
 
 @NgModule({
-  imports: [RouterModule.forChild(routes)],
+  imports: [],
   exports: [RouterModule]
 })
 export class AProposRouterModule { }

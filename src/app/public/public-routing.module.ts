@@ -1,10 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AProposComponent } from './a-propos/a-propos.component';
-import { BoutiqueComponent } from './boutique/boutique.component';
 
 import { ConditionsRetourComponent } from './conditions-retour/conditions-retour.component';
-import { ConnexionComponent } from './connexion/connexion.component';
 import { ContactComponent } from './contact/contact.component';
 import { HomeComponent } from './home/home.component';
 import { LivraisonComponent } from './livraison/livraison.component';
@@ -14,17 +11,34 @@ import {
   KiraBoRoute,
   KiraColliersRoute,
   KiraBraceletsRoute,
-  KiraNouveautesRoute
+  KiraNouveautesRoute,
+  KiraPanierRoute
 } from './boutique/boutique-routing.module';
+import {
+  KiraEntretienBijouxRoute,
+  KiraLaMarqueRoute,
+  KiraLithotherapieRoute
+} from './a-propos/a-propos-routing.module';
+import {
+  ConnexionInscriptionroute,
+  ConnexionRoute,
+  DeconnexionRoute,
+  InscriptionRoute,
+} from './connexion/connexion-routing.module';
 
 const routes: Routes = [
   KiraBoRoute,
   KiraColliersRoute,
   KiraBraceletsRoute,
   KiraNouveautesRoute,
-  { path: 'a-propos', component: AProposComponent },
-  { path: 'boutique', component: BoutiqueComponent },
-  { path: 'connexion-inscription', component: ConnexionComponent },
+  KiraPanierRoute,
+  KiraEntretienBijouxRoute,
+  KiraLaMarqueRoute,
+  KiraLithotherapieRoute,
+  ConnexionInscriptionroute,
+  ConnexionRoute,
+  InscriptionRoute,
+  DeconnexionRoute,
   { path: 'conditions-retour', component: ConditionsRetourComponent },
   { path: 'contact', component: ContactComponent },
   { path: 'home', component: HomeComponent },
