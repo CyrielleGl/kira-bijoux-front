@@ -10,21 +10,64 @@ main {
   }
 }
 
-.card {
-  width: 300px !important;
-  height: 400px !important;
-}
-
-.card-text {
-  white-space: pre-line;
-}
-
 a.btn-primary {
   bottom: 15px;
-  position: absolute;
-  left: 25%;
+  padding: 0.3rem;
+  align-self: center;
 }
 
 ::ng-deep .card-body {
   padding: 0.5rem;
+}
+
+.img-overlay {
+  position: relative;
+  width: 100%;
+  border: 1px solid #f5f6f7
+}
+
+.img-overlay .image {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.img-caption {
+position: absolute;
+top: 0;
+height: 100%;
+width: 100%;
+background-color: rgb(92, 100, 107);
+opacity: 0;
+transition: .8s ease-out;
+}
+
+.img-overlay:hover .img-caption {
+opacity: 1;
+}
+
+.link {
+padding-top: 10rem;
+max-width: 50%;
+margin-left: auto;
+margin-right: auto;
+}
+
+.title {
+color: var(--primary);
+}
+
+.price {
+color: #cccccc;
+}
+
+.collection {
+  color: #cccccc;
+  font-style: italic;
+}
+
+.item-details-link {
+  color: var(--primary);
+  cursor: pointer;
+  text-decoration: none;
 }

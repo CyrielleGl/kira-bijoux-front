@@ -67,4 +67,12 @@ export class ItemsComponent implements OnInit {
     );
   }
 
+  redirectToDetails(): void {
+    console.warn('REDIRECTION');
+  }
+
+  addToBasket(): void {
+    console.warn('Add to Basket');
+  }
+
 }
