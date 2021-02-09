@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, Input, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { BOUTIQUE_BO_KEYWORD, BOUTIQUE_BRACELETS_KEYWORD, BOUTIQUE_COLLIERS_KEYWORD, BOUTIQUE_NOUVEAUTES_KEYWORD } from '../../app-constants';
 import { ItemsService } from '../../services/api/items/items.service';
 
@@ -9,6 +9,9 @@ import { ItemsService } from '../../services/api/items/items.service';
   styleUrls: ['./items.component.scss']
 })
 export class ItemsComponent implements OnInit {
+  @Input()
+  cardData: any;
+
   data: any;
   category: any;
   name: any;
@@ -18,7 +21,7 @@ export class ItemsComponent implements OnInit {
   BOUTIQUE_BRACELETS_KEYWORD = BOUTIQUE_BRACELETS_KEYWORD;
   BOUTIQUE_NOUVEAUTES_KEYWORD = BOUTIQUE_NOUVEAUTES_KEYWORD;
 
-  constructor(private activatedRoute: ActivatedRoute, private itemsService: ItemsService) { }
+  constructor(private router: Router, private activatedRoute: ActivatedRoute, private itemsService: ItemsService) { }
 
   ngOnInit(): void {
     this.activatedRoute.data.subscribe(({ keyWord }) => {
@@ -65,6 +68,15 @@ export class ItemsComponent implements OnInit {
         this.data = data;
       }
     );
+  }
+
+  redirectToDetails(item: any): void {
+    console.warn(item);
+    this.router.navigateByUrl('details/' + item.name).then();
+  }
+
+  addToBasket(): void {
+    console.warn('Add to Basket');
   }
 
 }
