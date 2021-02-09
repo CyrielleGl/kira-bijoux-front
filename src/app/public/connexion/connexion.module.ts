@@ -7,16 +7,13 @@ import { ConnexionRoutingModule } from './connexion-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CookieService } from 'ngx-cookie-service';
 import { BrowserModule } from '@angular/platform-browser';
-import { LogoutFormComponent } from './logout-form/logout-form.component';
-
 
 
 @NgModule({
   declarations: [
     ConnexionComponent,
     LoginFormComponent,
-    SignupFormComponent,
-    LogoutFormComponent
+    SignupFormComponent
   ],
   imports: [
     SharedModule,

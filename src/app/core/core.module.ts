@@ -8,6 +8,7 @@ import { FooterComponent } from './footer/footer.component';
 
 import { ProtectedModule } from '../protected/protected.module';
 import { PublicModule } from '../public/public.module';
+import { CookieService } from 'ngx-cookie-service';
 
 
 @NgModule({
@@ -26,6 +27,9 @@ import { PublicModule } from '../public/public.module';
     RouterModule,
     PublicModule,
     ProtectedModule
+  ],
+  providers: [
+    CookieService
   ]
 })
 export class CoreModule {
