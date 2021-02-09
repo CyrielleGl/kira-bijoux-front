@@ -38,37 +38,37 @@ a.btn-primary:hover {
 }
 
 .img-caption {
-position: absolute;
-top: 0;
-height: 100%;
-width: 100%;
-background-color: rgb(92, 100, 107);
-opacity: 0;
-transition: .8s ease-out;
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgb(178, 184, 189);
+  opacity: 0;
+  transition: .8s ease-out;
 }
 
 .img-overlay:hover .img-caption {
-opacity: 1;
+  opacity: 1;
 }
 
 .link {
-padding-top: 10rem;
-max-width: 50%;
-margin-left: auto;
-margin-right: auto;
+  padding-top: 10rem;
+  max-width: 50%;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .title {
-color: var(--primary);
+  color: var(--primary);
 }
 
 .price {
-color: #cccccc;
+  color: #ebebeb;
+  font-size: 1.15rem;
 }
 
 .collection {
   color: #cccccc;
-  font-style: italic;
 }
 
 .item-details-link {

@@ -4,6 +4,7 @@ import { ActivatedRouteSnapshot, Resolve, Route, RouterModule, RouterStateSnapsh
 import { ItemsComponent } from 'src/app/shared/components/items/items.component';
 import { Observable, of } from 'rxjs';
 import { PanierComponent } from './panier/panier.component';
+import { ItemDetailsComponent } from 'src/app/shared/components/item-details/item-details.component';
 
 @Injectable({ providedIn: 'root' })
 export class KiraBoRouteResolve implements Resolve<string> {
@@ -54,6 +55,18 @@ export class KiraNouveautesRouteResolve implements Resolve<string> {
   }
 }
 
+@Injectable({ providedIn: 'root' })
+export class ItemDetailsRouteResolve implements Resolve<string> {
+  constructor() {}
+  resolve(route: ActivatedRouteSnapshot): Observable<string> {
+    const nameItem = route.params.nameItem ? route.params.nameItem : null;
+    if (nameItem) {
+      return nameItem;
+    }
+    return of('');
+  }
+}
+
 export const KiraBoRoute: Route = {
   path: 'boutique/boucles-oreilles',
   component: ItemsComponent,
@@ -83,6 +96,14 @@ export const KiraNouveautesRoute: Route = {
   component: ItemsComponent,
   resolve: {
     keyWord: KiraNouveautesRouteResolve
+  }
+};
+
+export const ItemDetailsRoute: Route = {
+  path: 'details/:nameItem',
+  component: ItemDetailsComponent,
+  resolve: {
+    nameItem: ItemDetailsRouteResolve
   }
 };
 

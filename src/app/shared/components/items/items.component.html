@@ -30,7 +30,7 @@
           <span class="price">{{ item.price | currency:'EUR':'symbol':'1.2-2':'fr' }}</span>
           <br><br>
           <div class="item-details-link">
-            <a (click)="redirectToDetails()"><span>-- Plus de détails --</span>
+            <a (click)="redirectToDetails(item)"><span>-- Plus de détails --</span>
             </a>
           </div>
           <br>

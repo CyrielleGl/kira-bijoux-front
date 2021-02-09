@@ -2,11 +2,11 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { NgbDropdown, NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { ItemDetailComponent } from './components/item-detail/item-detail.component';
+import { ItemDetailsComponent } from './components/item-details/item-details.component';
 
 
 @NgModule({
-  declarations: [ItemDetailComponent],
+  declarations: [ItemDetailsComponent],
   imports: [
     CommonModule,
     NgbModule,

@@ -12,7 +12,8 @@ import {
   KiraColliersRoute,
   KiraBraceletsRoute,
   KiraNouveautesRoute,
-  KiraPanierRoute
+  KiraPanierRoute,
+  ItemDetailsRoute
 } from './boutique/boutique-routing.module';
 import {
   KiraEntretienBijouxRoute,
@@ -31,6 +32,7 @@ const routes: Routes = [
   KiraColliersRoute,
   KiraBraceletsRoute,
   KiraNouveautesRoute,
+  ItemDetailsRoute,
   KiraPanierRoute,
   KiraEntretienBijouxRoute,
   KiraLaMarqueRoute,
