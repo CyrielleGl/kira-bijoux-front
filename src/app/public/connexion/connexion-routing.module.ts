@@ -20,11 +20,6 @@ export const ConnexionRoute: Route = {
   component: LoginFormComponent
 };
 
-export const DeconnexionRoute: Route = {
-  path: 'deconnexion',
-  component: LogoutFormComponent
-};
-
 @NgModule({
   imports: [],
   exports: [RouterModule]
