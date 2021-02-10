@@ -16,6 +16,7 @@ export class SignupFormComponent implements OnInit {
   public submitted = false;
   public matchingError = false;
   public submitError = false;
+  public id_user: number = 0;
 
   Form = new FormGroup({
     id: new FormControl(null),
@@ -52,7 +53,9 @@ export class SignupFormComponent implements OnInit {
     this.authService.registration(formData).subscribe(
       (data: any[]) => {
         this.data = data;
+        this.id_user = this.data.id;
         this.cookieService.set('kira-bijoux-cookie', 'user', 365);
+        this.cookieService.set('kira-bijoux-id', `${this.id_user}`, 365);
         this.router.navigateByUrl('/home', { skipLocationChange: false }).then(() => {
           this.router.navigate(['home']);
           document.location.reload();

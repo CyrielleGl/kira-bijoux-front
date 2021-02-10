@@ -17,6 +17,7 @@ export class LoginFormComponent implements OnInit {
   public submitted = false;
   public submitError = false;
   public role: string = '';
+  public id_user: number = 0;
 
   Form = new FormGroup({
     id: new FormControl(null),
@@ -37,11 +38,13 @@ export class LoginFormComponent implements OnInit {
       (data: string[]) => {
         this.data = data;
         this.role = this.data.role.role;
+        this.id_user = this.data.id;
         if (this.role == 'user') {
           this.cookieService.set('kira-bijoux-cookie', 'user', 365);
         } else if(this.role == 'admin') {
           this.cookieService.set('kira-bijoux-cookie', 'admin', 365);
         }
+        this.cookieService.set('kira-bijoux-id', `${this.id_user}`, 365);
         this.router.navigateByUrl('/home', { skipLocationChange: false }).then(() => {
           this.router.navigate(['home']);
           document.location.reload();

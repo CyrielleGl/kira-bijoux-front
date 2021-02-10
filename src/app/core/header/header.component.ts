@@ -35,6 +35,7 @@ export class HeaderComponent implements OnInit {
 
   public logout(): void {
     this.cookieService.delete('kira-bijoux-cookie');
+    this.cookieService.delete('kira-bijoux-id');
     this.router.navigateByUrl('/home', { skipLocationChange: false }).then(() => {
       this.router.navigate(['home']);
       document.location.reload();
