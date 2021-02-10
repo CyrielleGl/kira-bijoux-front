@@ -33,16 +33,13 @@ label {
 
 .submit {
     margin-top: 1rem;
-}
-
-.modal-body {
+    text-align: left;
     @media screen and (max-width: 500px) {
         text-align: center;
     }
 }
 
-.submit {
-    text-align: left;
+.modal-body {
     @media screen and (max-width: 500px) {
         text-align: center;
     }

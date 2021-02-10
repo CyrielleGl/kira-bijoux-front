@@ -13,11 +13,11 @@ export class LoginFormComponent implements OnInit {
 
   constructor(private authService: AuthService, private router: Router, private cookieService: CookieService) { }
 
-  public data: any;
-  public submitted = false;
-  public submitError = false;
-  public role: string = '';
-  public id_user: number = 0;
+  currentUser: any;
+  submitted = false;
+  submitError = false;
+  role = '';
+  idUser = 0;
 
   Form = new FormGroup({
     id: new FormControl(null),
@@ -27,7 +27,7 @@ export class LoginFormComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  public connexion(): void {
+  connexion(): void {
     this.submitted = true;
 
     if (this.Form.invalid) {
@@ -36,15 +36,15 @@ export class LoginFormComponent implements OnInit {
 
     this.authService.connexion(this.Form.value).subscribe(
       (data: string[]) => {
-        this.data = data;
-        this.role = this.data.role.role;
-        this.id_user = this.data.id;
-        if (this.role == 'user') {
+        this.currentUser = data;
+        this.role = this.currentUser.role.role;
+        this.idUser = this.currentUser.id;
+        if (this.role === 'user') {
           this.cookieService.set('kira-bijoux-cookie', 'user', 365);
-        } else if(this.role == 'admin') {
+        } else if (this.role === 'admin') {
           this.cookieService.set('kira-bijoux-cookie', 'admin', 365);
         }
-        this.cookieService.set('kira-bijoux-id', `${this.id_user}`, 365);
+        this.cookieService.set('kira-bijoux-id', `${this.idUser}`, 365);
         this.router.navigateByUrl('/home', { skipLocationChange: false }).then(() => {
           this.router.navigate(['home']);
           document.location.reload();

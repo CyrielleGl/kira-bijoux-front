@@ -4,63 +4,54 @@
     <h2>CONNEXION</h2>
   </div>
 
-  <!-- VOS FEATURES ICI -->
-
   <div>
-    <div class="">
-      <div class="panel panel-default">
-        <div class="panel-body">
+    <div class="panel panel-default">
+      <div class="panel-body">
 
-          <p class="text-center text-muted">Si vous n'avez pas de compte cliquer sur <a
-              routerLink="/inscription">s'inscrire</a> et créer votre compte. </p>
+        <p class="text-center text-muted">Si vous n'avez pas de compte, 
+          <a routerLink="/inscription">vous pouvez vous inscrire ici !</a>
+        </p>
+
+        <hr>
+
+        <form [formGroup]="Form" (ngSubmit)="connexion()">
+          <div class="top-margin">
+            <input type="hidden" formControlName="id" />
+            <label>Email <span class="text-danger">*</span></label>
+            <input type="text" class="form-control" formControlName="mail" placeholder="exemple@exemple.com"/>
+            <div *ngIf="submitted && Form.controls.mail.errors" class="text-danger">
+              <div *ngIf="Form.controls.mail.errors.required">
+                Merci de renseigner votre adresse mail
+              </div>
+              <div *ngIf="Form.controls.mail.invalid && !Form.controls.mail.errors.required">
+                Veuillez saisir une adresse mail valide
+              </div>
+            </div>
+          </div>
+          <div class="top-margin">
+            <label>Mot de passe <span class="text-danger">*</span></label>
+            <input type="password" class="form-control" formControlName="password" placeholder="mot de passe"/>
+            <div *ngIf="submitted && Form.controls.password.errors" class="text-danger">
+              <div *ngIf="Form.controls.password.errors.required">
+                Merci de renseigner votre mot de passe
+              </div>
+            </div>
+          </div>
+
+          <div *ngIf="submitted && submitError" class="text-danger text-center w-100">
+            Email et/ou mot de passe incorrect(s)
+          </div>
+
           <hr>
 
-          <form [formGroup]="Form" (ngSubmit)="connexion()">
-            <div class="top-margin">
-              <input type="hidden" formControlName="id" />
-              <label>Email <span class="text-danger">*</span></label>
-              <input type="text" class="form-control" formControlName="mail" />
-              <div *ngIf="submitted && Form.controls.mail.errors" class="text-danger">
-                <div *ngIf="Form.controls.mail.errors.required">
-                  le champ Email est obligatoire
-                </div>
-                <div *ngIf="Form.controls.mail.invalid && !Form.controls.mail.errors.required">
-                  veuillez saisir une adresse mail valide
-                </div>
-              </div>
+          <div class="row submit">
+            <div class="col-lg">
+              <button class="btn btn-primary" type="submit">Se connecter</button>
             </div>
-            <div class="top-margin">
-              <label>Mot de passe <span class="text-danger">*</span></label>
-              <input type="password" class="form-control" formControlName="password" />
-              <div *ngIf="submitted && Form.controls.password.errors" class="text-danger">
-                <div *ngIf="Form.controls.password.errors.required">
-                  le champ Mot de passe est obligatoire
-                </div>
-              </div>
-            </div>
-
-            <div *ngIf="submitted && submitError" class="text-danger text-center w-100">
-              email ou mot de passe incorrect
-            </div>
-
-            <hr>
-
-            <div class="row">
-              <div class="col-lg-8">
-                <label class="checkbox">
-
-                </label>
-              </div>
-              <div class="col-lg-4 text-right">
-                <button class="btn btn-action" type="submit">Se connecter</button>
-              </div>
-            </div>
-          </form>
-        </div>
+          </div>
+        </form>
       </div>
-
     </div>
-
   </div>
 
 </main>

@@ -12,10 +12,11 @@ import { AuthService } from 'src/app/shared/services/api/auth/auth.service';
 })
 export class AlertStockModalComponent implements OnInit {
   item: any;
-  public data: any;
-  public submitted = false;
-  public submitError = false;
-  public role = '';
+  data: any;
+  submitted = false;
+  submitError = false;
+  role = '';
+  idUser = 0;
 
   Form = new FormGroup({
     id: new FormControl(null),
@@ -49,11 +50,13 @@ export class AlertStockModalComponent implements OnInit {
       (data: string[]) => {
         this.data = data;
         this.role = this.data.role.role;
+        this.idUser = this.data.id;
         if (this.role === 'user') {
           this.cookieService.set('kira-bijoux-cookie', 'user', 365);
         } else if (this.role === 'admin') {
           this.cookieService.set('kira-bijoux-cookie', 'admin', 365);
         }
+        this.cookieService.set('kira-bijoux-id', `${this.idUser}`, 365);
         this.router.navigateByUrl('/home', { skipLocationChange: false }).then(() => {
           this.router.navigate(['home']);
           document.location.reload();
