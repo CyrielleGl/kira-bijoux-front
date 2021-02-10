@@ -27,7 +27,6 @@ export class ItemDetailsComponent implements OnInit {
     this.itemsService.getByName(nameItem).subscribe(
       (data: string[]) => {
         this.currentItem = data[0];
-        console.warn(this.currentItem);
         if (this.currentItem.stock <= 3 && this.currentItem.stock !== 0) {
           this.stockVisibility = true;
         }

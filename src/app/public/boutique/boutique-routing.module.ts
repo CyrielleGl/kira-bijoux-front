@@ -7,47 +7,11 @@ import { PanierComponent } from './panier/panier.component';
 import { ItemDetailsComponent } from 'src/app/shared/components/item-details/item-details.component';
 
 @Injectable({ providedIn: 'root' })
-export class KiraBoRouteResolve implements Resolve<string> {
+export class KiraKeyWordRouteResolve implements Resolve<string> {
   constructor() {}
   resolve(route: ActivatedRouteSnapshot): Observable<string> {
     const keyWord: any = route.url[1].path;
     console.warn(route);
-    if (keyWord) {
-      return keyWord;
-    }
-    return of('');
-  }
-}
-
-@Injectable({ providedIn: 'root' })
-export class KiraColliersRouteResolve implements Resolve<string> {
-  constructor() {}
-  resolve(route: ActivatedRouteSnapshot): Observable<string> {
-    const keyWord: any = route.url[1].path;
-    if (keyWord) {
-      return keyWord;
-    }
-    return of('');
-  }
-}
-
-@Injectable({ providedIn: 'root' })
-export class KiraBraceletsRouteResolve implements Resolve<string> {
-  constructor() {}
-  resolve(route: ActivatedRouteSnapshot): Observable<string> {
-    const keyWord: any = route.url[1].path;
-    if (keyWord) {
-      return keyWord;
-    }
-    return of('');
-  }
-}
-
-@Injectable({ providedIn: 'root' })
-export class KiraNouveautesRouteResolve implements Resolve<string> {
-  constructor() {}
-  resolve(route: ActivatedRouteSnapshot): Observable<string> {
-    const keyWord: any = route.url[1].path;
     if (keyWord) {
       return keyWord;
     }
@@ -71,7 +35,7 @@ export const KiraBoRoute: Route = {
   path: 'boutique/boucles-oreilles',
   component: ItemsComponent,
   resolve: {
-    keyWord: KiraBoRouteResolve
+    keyWord: KiraKeyWordRouteResolve
   }
 };
 
@@ -79,7 +43,7 @@ export const KiraColliersRoute: Route = {
   path: 'boutique/colliers',
   component: ItemsComponent,
   resolve: {
-    keyWord: KiraColliersRouteResolve
+    keyWord: KiraKeyWordRouteResolve
   }
 };
 
@@ -87,7 +51,7 @@ export const KiraBraceletsRoute: Route = {
   path: 'boutique/bracelets',
   component: ItemsComponent,
   resolve: {
-    keyWord: KiraBraceletsRouteResolve
+    keyWord: KiraKeyWordRouteResolve
   }
 };
 
@@ -95,14 +59,15 @@ export const KiraNouveautesRoute: Route = {
   path: 'boutique/nouveautes',
   component: ItemsComponent,
   resolve: {
-    keyWord: KiraNouveautesRouteResolve
+    keyWord: KiraKeyWordRouteResolve
   }
 };
 
 export const ItemDetailsRoute: Route = {
-  path: 'details/:nameItem',
+  path: 'boutique/:keyWord/:nameItem',
   component: ItemDetailsComponent,
   resolve: {
+    keyWord: KiraKeyWordRouteResolve,
     nameItem: ItemDetailsRouteResolve
   }
 };

@@ -6,7 +6,7 @@ export class AppConstants {
 
     public static get urlLogoHeader(): string {
         return 'assets/img/visuels/logo-kira-header.png';
-      }
+    }
 
 }
 
