@@ -23,7 +23,6 @@ import {
 import {
   ConnexionInscriptionroute,
   ConnexionRoute,
-  DeconnexionRoute,
   InscriptionRoute,
 } from './connexion/connexion-routing.module';
 
@@ -40,7 +39,6 @@ const routes: Routes = [
   ConnexionInscriptionroute,
   ConnexionRoute,
   InscriptionRoute,
-  DeconnexionRoute,
   { path: 'conditions-retour', component: ConditionsRetourComponent },
   { path: 'contact', component: ContactComponent },
   { path: 'home', component: HomeComponent },
