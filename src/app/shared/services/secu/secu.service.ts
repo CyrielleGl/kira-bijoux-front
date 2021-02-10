@@ -8,10 +8,10 @@ import { CookieService } from 'ngx-cookie-service';
 export class SecuService {
   constructor(private cookieService: CookieService, private router: Router) {}
 
-  public cookie = this.cookieService.get('kira-bijoux-cookie');
+  cookie = this.cookieService.get('kira-bijoux-cookie');
 
-  public verifyAccess(paramAccess: string): void {
-    if (this.cookie != paramAccess) {
+  verifyAccess(paramAccess: string): void {
+    if (this.cookie !== paramAccess) {
       this.router.navigateByUrl('/home', { skipLocationChange: false }).then(() => {
         this.router.navigate(['home']);
         document.location.reload();
