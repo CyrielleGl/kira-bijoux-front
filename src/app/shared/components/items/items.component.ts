@@ -12,7 +12,7 @@ export class ItemsComponent implements OnInit {
   @Input()
   cardData: any;
 
-  data: any;
+  item: any;
   category: any;
   name: any;
   keyWord = '';
@@ -21,7 +21,11 @@ export class ItemsComponent implements OnInit {
   BOUTIQUE_BRACELETS_KEYWORD = BOUTIQUE_BRACELETS_KEYWORD;
   BOUTIQUE_NOUVEAUTES_KEYWORD = BOUTIQUE_NOUVEAUTES_KEYWORD;
 
-  constructor(private router: Router, private activatedRoute: ActivatedRoute, private itemsService: ItemsService) { }
+  constructor(
+    private router: Router,
+    private activatedRoute: ActivatedRoute,
+    private itemsService: ItemsService
+    ) { }
 
   ngOnInit(): void {
     this.activatedRoute.data.subscribe(({ keyWord }) => {
@@ -46,7 +50,7 @@ export class ItemsComponent implements OnInit {
   getByCategory(name: string): any {
     this.itemsService.getByCategory(`${name}`).subscribe(
       (data: string[]) => {
-        this.data = data;
+        this.item = data;
       }
     );
   }
@@ -54,7 +58,7 @@ export class ItemsComponent implements OnInit {
   onSearchItems(item: string): void {
     this.itemsService.getByName(`${item}`).subscribe(
       (data: string[]) => {
-        this.data = data;
+        this.item = data;
       }, err => {
         console.clear();
         return;
@@ -65,18 +69,17 @@ export class ItemsComponent implements OnInit {
   getByName(name: string): any {
     this.itemsService.getByName(`${name}`).subscribe(
       (data: string[]) => {
-        this.data = data;
+        this.item = data;
       }
     );
   }
 
   redirectToDetails(item: any): void {
-    console.warn(item);
-    this.router.navigateByUrl('details/' + item.name).then();
+    this.router.navigateByUrl('boutique/' + this.keyWord + '/' + item.name).then();
   }
 
   addToBasket(): void {
-    console.warn('Add to Basket');
+    // TODO: add to Basket
   }
 
 }
