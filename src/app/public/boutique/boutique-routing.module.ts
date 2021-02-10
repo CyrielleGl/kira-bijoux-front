@@ -1,5 +1,5 @@
 import { Injectable, NgModule } from '@angular/core';
-import { ActivatedRouteSnapshot, Resolve, Route, RouterModule, RouterStateSnapshot, Routes } from '@angular/router';
+import { ActivatedRouteSnapshot, Resolve, Route, RouterModule } from '@angular/router';
 
 import { ItemsComponent } from 'src/app/shared/components/items/items.component';
 import { Observable, of } from 'rxjs';
@@ -11,7 +11,6 @@ export class KiraKeyWordRouteResolve implements Resolve<string> {
   constructor() {}
   resolve(route: ActivatedRouteSnapshot): Observable<string> {
     const keyWord: any = route.url[1].path;
-    console.warn(route);
     if (keyWord) {
       return keyWord;
     }

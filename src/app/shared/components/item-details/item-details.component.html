@@ -16,7 +16,7 @@
         
         <div class="col col-md-6 col-sm-6">
             <div class="item-title">
-                <h5 class="title">Collier {{ this.currentItem?.name }}</h5>
+                <h5 class="title">{{ this.category }} {{ this.currentItem?.name }}</h5>
                 <span class="price">{{ this.currentItem?.price | currency:'EUR':'symbol':'1.2-2':'fr' }}</span>
             </div>
 
@@ -35,12 +35,12 @@
             </div>
 
             <div class="item-stock" *ngIf="this.stockVisibility === true">
-                <span class="stock">Plus que {{ this.currentItem?.stock }} disponibles </span>
+                <span class="stock"><i class="fas fa-spinner"></i> Plus que {{ this.currentItem?.stock }} disponible(s) </span>
             </div>
             <div class="item-stock" *ngIf="this.noMoreStock === true">
-                <span class="no-more-stock">Cet article sera bientôt disponible !</span>
+                <span class="no-more-stock"><i class="fas fa-clock"></i> Cet article sera bientôt disponible !</span>
             </div>
-            <div class="alert-stock" *ngIf="this.noMoreStock === true">
+            <div class="alert-stock" *ngIf="this.noMoreStock === true" (click)="openAlertStockDialog()">
                 <i class="fa fa-arrow-alt-circle-right"></i>
                 <span> M'avertir lorsque cet article sera de nouveau en stock</span>
             </div>

@@ -1,0 +1,56 @@
+.modal-subtitle {
+    font-style: italic;
+}
+
+.form-control {
+    max-width: 50%;
+    @media screen and (max-width: 500px) {
+        max-width:100%;
+    }
+}
+
+label {
+    margin-top: 0.5rem;
+}
+
+.label-title {
+    color: var(--primary-ligth);
+}
+
+#no-user {
+    margin-bottom: 2rem;
+}
+
+.no-user-body {
+    margin-top: 0.5rem;
+}
+
+.redirect-signup {
+    cursor: pointer;
+    font-size: 0.8rem;
+    color: var(--primary);
+}
+
+.submit {
+    margin-top: 1rem;
+}
+
+.modal-body {
+    @media screen and (max-width: 500px) {
+        text-align: center;
+    }
+}
+
+.submit {
+    text-align: left;
+    @media screen and (max-width: 500px) {
+        text-align: center;
+    }
+}
+
+input::placeholder {  
+	text-align: left;
+    @media screen and (max-width: 500px) {
+        text-align: center;
+    }
+}
