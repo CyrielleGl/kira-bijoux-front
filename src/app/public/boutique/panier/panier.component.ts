@@ -30,7 +30,6 @@ export class PanierComponent implements OnInit {
     this.shopService.getShoppingCartByUser(this.idUser).subscribe(
       (data: any[]) => {
         this.shoppingCart = data;
-        console.log(this.shoppingCart);
         this.shoppingCart.map((res: any) => {
           if (res.quantity == 1) {
             this.subTotalPrice += res.item.price;
