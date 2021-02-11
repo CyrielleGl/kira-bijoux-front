@@ -24,8 +24,6 @@ export class ConnexionPageObjects {
         await this.setEmail(email);
         await this.setPassword(password);
         await this.setConfirmPassword(confirmPassword);
-        await this.checkBoxClick();
-        await this.login();
     }
 
     async setFirstName(firstname: string): Promise<void> {

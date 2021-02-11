@@ -44,8 +44,33 @@ describe('routing test', () => {
     expect(value).to.eq(expected);
   });
 
-  it('should set user data', async () => {
+  it('should set bad user data to check badUserData', async () => {
+    await connexionPageObjects.autoSignInUser('badmail@test.com', 'badpassword');
+    await connexionPageObjects.login();
+    await browser.sleep(500);
+    const expected = 'badUserData';
+    await browser.wait(ec.visibilityOf(element(by.id('badUserData'))));
+    const value = await element(by.id('badUserData')).getAttribute('id');
+    expect(value).to.eq(expected);
+    await browser.sleep(500);
+    await browser.navigate().refresh();
+  });
+
+  it('should set bad user data to check invalidMail', async () => {
+    await connexionPageObjects.autoSignInUser('test.com', 'test');
+    await connexionPageObjects.login();
+    await browser.sleep(500);
+    const expected = 'invalidMail';
+    await browser.wait(ec.visibilityOf(element(by.id('invalidMail'))));
+    const value = await element(by.id('invalidMail')).getAttribute('id');
+    expect(value).to.eq(expected);
+    await browser.sleep(500);
+    await browser.navigate().refresh();
+  });
+
+  it('should set good user data', async () => {
     await connexionPageObjects.autoSignInUser('test@test.com', 'test');
+    await connexionPageObjects.login();
     await browser.sleep(500);
     const expected = 'home';
     await browser.wait(ec.visibilityOf(element(by.id('home'))));

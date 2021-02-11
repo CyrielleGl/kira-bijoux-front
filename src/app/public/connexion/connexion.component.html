@@ -45,7 +45,7 @@
                         <div *ngIf="Form.controls.mail.errors.required">
                           Merci de renseigner votre adresse mail
                         </div>
-                        <div *ngIf="Form.controls.mail.invalid && !Form.controls.mail.errors.required">
+                        <div *ngIf="Form.controls.mail.invalid && !Form.controls.mail.errors.required" id="invalidMail">
                           Veuillez saisir une adresse mail valide
                         </div>
                       </div>
@@ -70,7 +70,7 @@
                           </div>
                         </div>
                       </div>
-                      <div *ngIf="submitted && matchingError" class="text-danger text-center w-100">
+                      <div *ngIf="submitted && matchingError" id="passwordMatchingError" class="text-danger text-center w-100">
                         Les deux mots de passe ne correspondent pas !
                       </div>
                     </div>
@@ -90,7 +90,7 @@
                               En cochant cette case, je reconnais avoir pris connaissance des <a routerLink='/mentions-legales' style="border-bottom: 1px dashed var(--primary);">Conditions Générales d'Utilisation du site</a> ainsi que de sa <a routerLink='/mentions-legales' style="border-bottom: 1px dashed var(--primary);">Politique de Confidentialité</a> et je les accepte.
                             </label>
                             <div *ngIf="submitted && Form.controls.check.errors" class="text-danger">
-                              <div *ngIf="Form.controls.check.errors.required">
+                              <div *ngIf="Form.controls.check.errors.required" id="invalidGridCheck" >
                                 Vous devez accepter les Conditions Générales d'Utilisation du site pour pouvoir vous inscrire.
                               </div>
                             </div>
@@ -113,7 +113,7 @@
                         <div *ngIf="Form.controls.mail.errors.required">
                           Merci de renseigner votre adresse mail
                         </div>
-                        <div *ngIf="Form.controls.mail.invalid && !Form.controls.mail.errors.required">
+                        <div *ngIf="Form.controls.mail.invalid && !Form.controls.mail.errors.required" id="invalidMail">
                           Veuillez saisir une adresse mail valide
                         </div>
                       </div>
@@ -128,7 +128,7 @@
                       </div>
                     </div>
           
-                    <div *ngIf="submitted && submitError" class="text-danger text-center w-100">
+                    <div *ngIf="submitted && submitError" id="badUserData" class="text-danger text-center w-100">
                       Email et/ou mot de passe incorrect(s)
                     </div>
           

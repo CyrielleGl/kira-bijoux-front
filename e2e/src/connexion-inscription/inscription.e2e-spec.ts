@@ -22,7 +22,7 @@ describe('routing test', () => {
     await browser.sleep(500);
   });
 
-  it('should re-open dropdown connexion/inscription', async () => {
+  it('should open dropdown connexion/inscription', async () => {
     await browser.wait(ec.visibilityOf(element(by.id('connexion-dropdown'))));
     await routingPageObjects.clickOnDropdownConnexion();
     await browser.sleep(500);
@@ -44,8 +44,46 @@ describe('routing test', () => {
     await browser.sleep(500);
   });
 
-  it('should set new user data', async () => {
+  it('should set new user data with badmail to check invalidMail err', async () => {
+    await connexionPageObjects.autoSignUpUser('selenium', 'e2e', 'selenium.com', 'selenium', 'selenium');
+    await connexionPageObjects.checkBoxClick();
+    await connexionPageObjects.login();
+    await browser.sleep(500);
+    const expected = 'invalidMail';
+    await browser.wait(ec.visibilityOf(element(by.id('invalidMail'))));
+    const value = await element(by.id('invalidMail')).getAttribute('id');
+    expect(value).to.eq(expected);
+    await browser.sleep(500);
+    await browser.navigate().refresh();
+  });
+
+  it('should set new user data with bad confirmPassword to check passwordMatchingError err', async () => {
+    await connexionPageObjects.autoSignUpUser('selenium', 'e2e', 'selenium@selenium.com', 'selenium', 'seleium');
+    await connexionPageObjects.checkBoxClick();
+    await connexionPageObjects.login();
+    await browser.sleep(500);
+    const expected = 'passwordMatchingError';
+    await browser.wait(ec.visibilityOf(element(by.id('passwordMatchingError'))));
+    const value = await element(by.id('passwordMatchingError')).getAttribute('id');
+    expect(value).to.eq(expected);
+    await browser.sleep(500);
+    await browser.navigate().refresh();
+  });
+
+  it('should set new user data without checkBoxClick', async () => {
     await connexionPageObjects.autoSignUpUser('selenium', 'e2e', 'selenium@selenium.com', 'selenium', 'selenium');
+    await connexionPageObjects.login();
+    await browser.sleep(500);
+    const expected = 'invalidGridCheck';
+    await browser.wait(ec.visibilityOf(element(by.id('invalidGridCheck'))));
+    const value = await element(by.id('invalidGridCheck')).getAttribute('id');
+    expect(value).to.eq(expected);
+  });
+
+  it('should set GOOD new user data', async () => {
+    await connexionPageObjects.autoSignUpUser('selenium', 'e2e', 'selenium@selenium.com', 'selenium', 'selenium');
+    await connexionPageObjects.checkBoxClick();
+    await connexionPageObjects.login();
     await browser.sleep(500);
     const expected = 'home';
     await browser.wait(ec.visibilityOf(element(by.id('home'))));
