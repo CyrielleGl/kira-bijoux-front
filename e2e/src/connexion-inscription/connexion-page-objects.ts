@@ -1,4 +1,4 @@
-import { element, by, ElementFinder } from 'protractor';
+import { element, by } from 'protractor';
 
 export class ConnexionPageObjects {
 

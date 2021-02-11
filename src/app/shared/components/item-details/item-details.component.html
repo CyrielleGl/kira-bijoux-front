@@ -40,7 +40,7 @@
             <div class="item-stock" *ngIf="this.noMoreStock === true">
                 <span class="no-more-stock"><i class="fas fa-clock"></i> Cet article sera bientôt disponible !</span>
             </div>
-            <div class="alert-stock" *ngIf="this.noMoreStock === true" (click)="openAlertStockDialog()">
+            <div class="alert-stock" id="alert-stock" *ngIf="this.noMoreStock === true" (click)="openAlertStockDialog()">
                 <i class="fa fa-arrow-alt-circle-right"></i>
                 <span> M'avertir lorsque cet article sera de nouveau en stock</span>
             </div>
