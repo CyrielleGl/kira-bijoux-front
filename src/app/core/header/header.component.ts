@@ -8,10 +8,10 @@ import { CookieService } from 'ngx-cookie-service';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-  private roleAccess: string = '';
-  public roleUser: boolean = false;
-  public roleAdmin: boolean = false;
-  public roleNotLogged: boolean = false;
+  private roleAccess = '';
+  roleUser = false;
+  roleAdmin = false;
+  roleNotLogged = false;
 
   @Input()
   urlLogoHeader: string | undefined;
@@ -24,16 +24,16 @@ export class HeaderComponent implements OnInit {
   }
 
   private displayByAccessRole(roleAccess: string): void {
-    if (this.roleAccess == 'user') {
+    if (this.roleAccess === 'user') {
       this.roleUser = true;
-    } else if (this.roleAccess == 'admin') {
+    } else if (this.roleAccess === 'admin') {
       this.roleAdmin = true;
-    } else if (this.roleAccess == '') {
+    } else if (this.roleAccess === '') {
       this.roleNotLogged = true;
     }
   }
 
-  public logout(): void {
+  logout(): void {
     this.cookieService.delete('kira-bijoux-cookie');
     this.cookieService.delete('kira-bijoux-id');
     this.router.navigateByUrl('/home', { skipLocationChange: false }).then(() => {

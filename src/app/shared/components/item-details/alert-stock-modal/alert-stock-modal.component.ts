@@ -1,19 +1,18 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { AuthService } from '../../../shared/services/api/auth/auth.service';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { CookieService } from 'ngx-cookie-service';
+import { AuthService } from 'src/app/shared/services/api/auth/auth.service';
 
 @Component({
-  selector: 'app-login-form',
-  templateUrl: './login-form.component.html',
-  styleUrls: ['./login-form.component.scss']
+  selector: 'app-alert-stock-modal',
+  templateUrl: './alert-stock-modal.component.html',
+  styleUrls: ['./alert-stock-modal.component.scss']
 })
-export class LoginFormComponent implements OnInit {
-
-  constructor(private authService: AuthService, private router: Router, private cookieService: CookieService) { }
-
-  currentUser: any;
+export class AlertStockModalComponent implements OnInit {
+  item: any;
+  data: any;
   submitted = false;
   submitError = false;
   role = '';
@@ -25,7 +24,20 @@ export class LoginFormComponent implements OnInit {
     password: new FormControl('', [Validators.required]),
   });
 
-  ngOnInit(): void {}
+  constructor(
+    public activeModal: NgbActiveModal,
+    private router: Router,
+    private authService: AuthService,
+    private cookieService: CookieService
+    ) { }
+
+  ngOnInit(): void {
+  }
+
+  redirectToSignUp(): void {
+    this.router.navigateByUrl('/inscription').then();
+    this.cancel();
+  }
 
   connexion(): void {
     this.submitted = true;
@@ -36,16 +48,14 @@ export class LoginFormComponent implements OnInit {
 
     this.authService.connexion(this.Form.value).subscribe(
       (data: string[]) => {
-        this.currentUser = data;
-        this.role = this.currentUser.role.role;
-        this.idUser = this.currentUser.id;
-
+        this.data = data;
+        this.role = this.data.role.role;
+        this.idUser = this.data.id;
         if (this.role === 'user') {
           this.cookieService.set('kira-bijoux-cookie', 'user', 365);
         } else if (this.role === 'admin') {
           this.cookieService.set('kira-bijoux-cookie', 'admin', 365);
         }
-
         this.cookieService.set('kira-bijoux-id', `${this.idUser}`, 365);
         this.router.navigateByUrl('/home', { skipLocationChange: false }).then(() => {
           this.router.navigate(['home']);
@@ -55,6 +65,13 @@ export class LoginFormComponent implements OnInit {
         this.submitError = true;
       }
     );
+    // this.addAlertUser();
+  }
+
+  // TODO: addAlertUser(): void {}
+
+  cancel(): void {
+    this.activeModal.close();
   }
 
 }

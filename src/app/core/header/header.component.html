@@ -23,8 +23,8 @@
         </div>
       </div>
     </div>
-    <!-- Affichage pour l'utilisateur connecté -->
-    <div *ngIf="roleUser" class="panier" id="panier-link" placement="bottom" ngbTooltip="Voir mon panier">
+    <!-- Affichage pour l'utilisateur connecté ou non -->
+    <div class="panier" id="panier-link" placement="bottom" ngbTooltip="Voir mon panier">
       <a routerLink="/boutique/panier">
         <i class="fas fa-shopping-basket"></i>
         <span class="number-of-products"> (2)</span>

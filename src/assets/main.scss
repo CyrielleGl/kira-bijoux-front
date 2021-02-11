@@ -55,7 +55,7 @@ main {
   }
 
   a {
-    text-decoration: none;
+    text-decoration: none !important;
   }
 
   h2 {
@@ -63,6 +63,14 @@ main {
     font-family: "Cinzel";
     color: var(--primary);
     padding-bottom: 1.6rem;
+    margin-bottom: 0rem;
+  }
+  
+  h3 {
+    font-size: 1.2rem;
+    font-family: "Open-sans-light";
+    color: var(--primary);
+    padding-bottom: 1rem;
     margin-bottom: 0rem;
   }
 

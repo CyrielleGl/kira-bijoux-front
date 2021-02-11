@@ -12,11 +12,11 @@ import { AuthService } from '../../../shared/services/api/auth/auth.service';
 export class SignupFormComponent implements OnInit {
   constructor(private authService: AuthService, private router: Router, private cookieService: CookieService) {}
 
-  public data: any;
-  public submitted = false;
-  public matchingError = false;
-  public submitError = false;
-  public id_user: number = 0;
+  currentUser: any;
+  submitted = false;
+  matchingError = false;
+  submitError = false;
+  idUser = 0;
 
   Form = new FormGroup({
     id: new FormControl(null),
@@ -25,11 +25,12 @@ export class SignupFormComponent implements OnInit {
     mail: new FormControl('', [ Validators.required, Validators.pattern('^[A-Z-a-z0-9._%+-]+@[A-Z-a-z0-9.-]+\\.[A-Z-a-z]{2,4}$') ]),
     password: new FormControl('', [Validators.required]),
     confirmpassword: new FormControl('', [Validators.required]),
+    check: new FormControl(false, [Validators.required])
   });
 
   ngOnInit(): void {}
 
-  public registration(): void {
+  registration(): void {
     this.submitted = true;
 
     if (this.Form.invalid) {
@@ -52,10 +53,11 @@ export class SignupFormComponent implements OnInit {
 
     this.authService.registration(formData).subscribe(
       (data: any[]) => {
-        this.data = data;
-        this.id_user = this.data.id;
+        this.currentUser = data;
+        this.idUser = this.currentUser.id;
         this.cookieService.set('kira-bijoux-cookie', 'user', 365);
-        this.cookieService.set('kira-bijoux-id', `${this.id_user}`, 365);
+        this.cookieService.set('kira-bijoux-id', `${this.idUser}`, 365);
+        
         this.router.navigateByUrl('/home', { skipLocationChange: false }).then(() => {
           this.router.navigate(['home']);
           document.location.reload();

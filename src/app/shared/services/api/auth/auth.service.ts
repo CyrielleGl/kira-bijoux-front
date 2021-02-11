@@ -7,8 +7,8 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class AuthService {
-  private registrationRoute: string = 'registration';
-  private connexionRoute: string = 'connexion';
+  private registrationRoute = 'registration';
+  private connexionRoute = 'connexion';
 
   constructor(private http: HttpClient) {}
 

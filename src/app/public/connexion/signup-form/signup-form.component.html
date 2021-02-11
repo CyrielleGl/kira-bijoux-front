@@ -1,16 +1,14 @@
 <main>
-  <div class="title-body">
+  <div class="title-inscription">
     <h2>INSCRIPTION</h2>
   </div>
 
-  <!-- VOS FEATURES ICI -->
-
   <div>
-    <div class="c">
+    <div class="inscription">
       <div class="panel panel-default">
         <div class="panel-body">
           <p class="text-center text-muted">
-            Si vous avez deja un compte cliquer sur <a routerLink="/connexion">se connecter</a> et connecter vous.
+            Si vous avez déjà un compte, <a routerLink="/connexion">connectez-vous ici !</a>
           </p>
           <hr />
 
@@ -18,33 +16,33 @@
             <div class="top-margin">
               <input type="hidden" formControlName="id" />
               <label>Prénom <span class="text-danger">*</span></label>
-              <input type="text" class="form-control" formControlName="firstname" />
+              <input type="text" class="form-control" formControlName="firstname" placeholder="Votre prénom"/>
               <div *ngIf="submitted && Form.controls.firstname.errors" class="text-danger">
                 <div *ngIf="Form.controls.firstname.errors.required">
-                  le champ Prénom est obligatoire
+                  Merci de renseigner votre prénom
                 </div>
               </div>
             </div>
 
             <div class="top-margin">
               <label>Nom <span class="text-danger">*</span></label>
-              <input type="text" class="form-control" formControlName="lastname" />
+              <input type="text" class="form-control" formControlName="lastname" placeholder="Votre nom"/>
               <div *ngIf="submitted && Form.controls.lastname.errors" class="text-danger">
                 <div *ngIf="Form.controls.lastname.errors.required">
-                  le champ Nom est obligatoire
+                  Merci de renseigner votre nom de famille
                 </div>
               </div>
             </div>
 
             <div class="top-margin">
               <label>Email <span class="text-danger">*</span></label>
-              <input type="text" class="form-control" formControlName="mail" />
+              <input type="text" class="form-control" formControlName="mail" placeholder="exemple@exemple.com"/>
               <div *ngIf="submitted && Form.controls.mail.errors" class="text-danger">
                 <div *ngIf="Form.controls.mail.errors.required">
-                  le champ Email est obligatoire
+                  Merci de renseigner votre adresse mail
                 </div>
                 <div *ngIf="Form.controls.mail.invalid && !Form.controls.mail.errors.required">
-                  veuillez saisir une adresse mail valide
+                  Veuillez saisir une adresse mail valide
                 </div>
               </div>
             </div>
@@ -52,24 +50,24 @@
             <div class="row top-margin">
               <div class="col-sm-6">
                 <label>Mot de passe <span class="text-danger">*</span></label>
-                <input type="password" class="form-control" formControlName="password" />
+                <input type="password" class="form-control" formControlName="password" placeholder="mot de passe"/>
                 <div *ngIf="submitted && Form.controls.password.errors" class="text-danger">
                   <div *ngIf="Form.controls.password.errors.required">
-                    le champ Mot de passe est obligatoire
+                    Merci d'entrer un mot de passe
                   </div>
                 </div>
               </div>
               <div class="col-sm-6">
                 <label>Confirmer le mot de passe <span class="text-danger">*</span></label>
-                <input type="password" class="form-control" formControlName="confirmpassword" />
+                <input type="password" class="form-control" formControlName="confirmpassword" placeholder="mot de passe"/>
                 <div *ngIf="submitted && Form.controls.confirmpassword.errors" class="text-danger">
                   <div *ngIf="Form.controls.confirmpassword.errors.required">
-                    le champ Confirmer le mot de passe est obligatoire
+                    Merci de confirmer le mot de passe
                   </div>
                 </div>
               </div>
               <div *ngIf="submitted && matchingError" class="text-danger text-center w-100">
-                les 2 mots de passes ne correspondent pas
+                Les deux mots de passe ne correspondent pas !
               </div>
               <div *ngIf="submitted && submitError" class="text-danger text-center w-100">
                 une erreur s'est produite lors de l'inscription veuillez réessayer
@@ -78,12 +76,25 @@
 
             <hr />
 
-            <div class="row">
-              <div class="col-lg-8">
-                <label class="checkbox"> </label>
+            <div class="row submit">
+              <div class="form-group col-lg-12">
+                <div class="form-check">
+
+                  <input class="form-check-input" type="checkbox" id="gridCheck" name="check" formControlName="check" required="true">
+                    <label class="form-check-label" for="gridCheck" style="margin-top: 0rem !important;">
+                      En cochant cette case, je reconnais avoir pris connaissance des <a routerLink='/mentions-legales' style="border-bottom: 1px dashed var(--primary);">Conditions Générales d'Utilisation du site</a> ainsi que de sa <a routerLink='/mentions-legales' style="border-bottom: 1px dashed var(--primary);">Politique de Confidentialité</a> et je les accepte.
+                    </label>
+                    <div *ngIf="submitted && Form.controls.check.errors" class="text-danger">
+                      <div *ngIf="Form.controls.check.errors.required">
+                        Vous devez accepter les Conditions Générales d'Utilisation du site pour pouvoir vous inscrire.
+                      </div>
+                    </div>
+
+                </div>
               </div>
-              <div class="col-lg-4 text-right">
-                <button class="btn btn-action" type="submit">S'inscrire</button>
+
+              <div class="col-lg-12">
+                <button class="btn btn-primary" type="submit">Je m'inscris ! </button>
               </div>
             </div>
           </form>
