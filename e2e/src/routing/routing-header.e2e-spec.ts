@@ -60,7 +60,7 @@ describe('routing test', () => {
     await browser.wait(ec.visibilityOf(element(by.id('inscription'))));
     const value = await element(by.id('inscription')).getAttribute('id');
     expect(value).to.eq(expected);
-    await browser.sleep(1000);
+    await browser.sleep(500);
    });
 
   it('should load panier page', async () => {

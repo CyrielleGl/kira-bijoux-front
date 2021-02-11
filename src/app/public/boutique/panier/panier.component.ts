@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { SecuService } from 'src/app/shared/services/secu/secu.service';
 
 @Component({
   selector: 'app-panier',
@@ -8,10 +7,8 @@ import { SecuService } from 'src/app/shared/services/secu/secu.service';
 })
 export class PanierComponent implements OnInit {
 
-  constructor(private cookieService: SecuService) { }
+  constructor() { }
 
-  ngOnInit(): void {
-    this.cookieService.verifyAccess('user');
-  }
+  ngOnInit(): void {}
 
 }
