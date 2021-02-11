@@ -39,11 +39,13 @@ export class LoginFormComponent implements OnInit {
         this.currentUser = data;
         this.role = this.currentUser.role.role;
         this.idUser = this.currentUser.id;
+
         if (this.role === 'user') {
           this.cookieService.set('kira-bijoux-cookie', 'user', 365);
         } else if (this.role === 'admin') {
           this.cookieService.set('kira-bijoux-cookie', 'admin', 365);
         }
+
         this.cookieService.set('kira-bijoux-id', `${this.idUser}`, 365);
         this.router.navigateByUrl('/home', { skipLocationChange: false }).then(() => {
           this.router.navigate(['home']);

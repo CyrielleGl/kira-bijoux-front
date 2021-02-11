@@ -57,6 +57,7 @@ export class SignupFormComponent implements OnInit {
         this.idUser = this.currentUser.id;
         this.cookieService.set('kira-bijoux-cookie', 'user', 365);
         this.cookieService.set('kira-bijoux-id', `${this.idUser}`, 365);
+        
         this.router.navigateByUrl('/home', { skipLocationChange: false }).then(() => {
           this.router.navigate(['home']);
           document.location.reload();
