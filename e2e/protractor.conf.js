@@ -15,8 +15,7 @@ const { browser, WebDriver } = require('protractor');
 exports.config = {
   allScriptsTimeout: 20000,
   specs: [
-    //'./src/**/*.e2e-spec.ts',
-    './src/routing/*.e2e-spec.ts'
+    './src/**/*.e2e-spec.ts'
   ],
   capabilities: {
     browserName: 'chrome',

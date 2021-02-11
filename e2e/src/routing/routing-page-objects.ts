@@ -9,6 +9,7 @@ export class RoutingPageObjects {
     instagramRoute!: ElementFinder;
     dropdownConnexionRoute!: ElementFinder;
     connexionRoute!: ElementFinder;
+    deconnexionRoute!: ElementFinder;
     inscriptionRoute!: ElementFinder;
     panierRoute!: ElementFinder;
     colliersRoute!: ElementFinder;
@@ -27,6 +28,7 @@ export class RoutingPageObjects {
         this.instagramRoute = element(by.id('instagram-link'));
         this.dropdownConnexionRoute = element(by.id('connexion-dropdown'));
         this.connexionRoute = element(by.id('connexion-link'));
+        this.deconnexionRoute = element(by.id('deconnexion-link'));
         this.inscriptionRoute = element(by.id('inscription-link'));
         this.panierRoute = element(by.id('panier-link'));
         this.colliersRoute = element(by.id('colliers-link'));
@@ -64,6 +66,10 @@ export class RoutingPageObjects {
 
     async clickOnConnexionRoute(): Promise<void> {
         await this.connexionRoute.click();
+    }
+
+    async clickOnDeconnexionRoute(): Promise<void> {
+        await this.deconnexionRoute.click();
     }
 
     async clickOnInscriptionRoute(): Promise<void> {

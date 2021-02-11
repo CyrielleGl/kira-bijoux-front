@@ -9,10 +9,5 @@ describe('workspace-project App', () => {
     page = new AppPage();
   });
 
-  it('should display welcome message', async () => {
-    await page.navigateTo();
-    expect(await page.getTitleText()).equal('kira-bijoux app is running!');
-  });
-
   afterEach(async () => {});
 });

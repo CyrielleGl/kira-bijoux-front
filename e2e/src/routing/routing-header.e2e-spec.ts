@@ -17,7 +17,7 @@ describe('routing test', () => {
   it('should load home page', async () => {
     await browser.get('/home');
     await browser.sleep(500);
-   });
+  });
 
   it('should open dropdown connexion/inscription', async () => {
     await browser.wait(ec.visibilityOf(element(by.id('connexion-dropdown'))));
@@ -29,7 +29,7 @@ describe('routing test', () => {
     const value = await element(by.id('connexion-link')).getAttribute('id');
     expect(value).to.eq(expected);
     await browser.sleep(500);
-   });
+  });
 
   it('should load connexion page', async () => {
     await browser.wait(ec.visibilityOf(element(by.id('connexion-link'))));
@@ -39,7 +39,7 @@ describe('routing test', () => {
     await browser.wait(ec.visibilityOf(element(by.id('connexion'))));
     const value = await element(by.id('connexion')).getAttribute('id');
     expect(value).to.eq(expected);
-   });
+  });
 
   it('should re-open dropdown connexion/inscription', async () => {
     await browser.wait(ec.visibilityOf(element(by.id('connexion-dropdown'))));
@@ -50,7 +50,7 @@ describe('routing test', () => {
     const value = await element(by.id('inscription-link')).getAttribute('id');
     expect(value).to.eq(expected);
     await browser.sleep(500);
-   });
+  });
 
   it('should load inscription page', async () => {
     await browser.wait(ec.visibilityOf(element(by.id('inscription-link'))));
@@ -60,8 +60,8 @@ describe('routing test', () => {
     await browser.wait(ec.visibilityOf(element(by.id('inscription'))));
     const value = await element(by.id('inscription')).getAttribute('id');
     expect(value).to.eq(expected);
-    await browser.sleep(1000);
-   });
+    await browser.sleep(500);
+  });
 
   it('should load panier page', async () => {
     await browser.wait(ec.visibilityOf(element(by.id('panier-link'))));
@@ -72,7 +72,7 @@ describe('routing test', () => {
     const value = await element(by.id('panier')).getAttribute('id');
     expect(value).to.eq(expected);
     await browser.sleep(500);
-   });
+  });
 
   after(async () => {
     browser.waitForAngularEnabled(true);
