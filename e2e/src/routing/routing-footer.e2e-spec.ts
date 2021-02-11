@@ -17,7 +17,7 @@ describe('routing test', () => {
   it('should load home page', async () => {
     await browser.get('/home');
     await browser.sleep(500);
-   });
+  });
 
   it('should load mentions-legales page', async () => {
     await browser.executeScript('window.scrollTo(0, document.body.scrollHeight);').then(async () => {
@@ -31,7 +31,7 @@ describe('routing test', () => {
     const value = await element(by.id('mentions-legales')).getAttribute('id');
     expect(value).to.eq(expected);
     await browser.sleep(500);
-   });
+  });
 
   it('should load livraison page', async () => {
     await browser.executeScript('window.scrollTo(0, document.body.scrollHeight);').then(async () => {
@@ -45,7 +45,7 @@ describe('routing test', () => {
     const value = await element(by.id('livraison')).getAttribute('id');
     expect(value).to.eq(expected);
     await browser.sleep(500);
-   });
+  });
 
   it('should load conditions de retour page', async () => {
     await browser.executeScript('window.scrollTo(0, document.body.scrollHeight);').then(async () => {
@@ -59,7 +59,7 @@ describe('routing test', () => {
     const value = await element(by.id('conditions-retour')).getAttribute('id');
     expect(value).to.eq(expected);
     await browser.sleep(500);
-   });
+  });
 
   it('should load contact page', async () => {
     await browser.executeScript('window.scrollTo(0, document.body.scrollHeight);').then(async () => {
@@ -73,7 +73,7 @@ describe('routing test', () => {
     const value = await element(by.id('contact')).getAttribute('id');
     expect(value).to.eq(expected);
     await browser.sleep(500);
-   });
+  });
 
   it('should load Instagram page', async () => {
     await browser.executeScript('window.scrollTo(0, document.body.scrollHeight);').then(async () => {

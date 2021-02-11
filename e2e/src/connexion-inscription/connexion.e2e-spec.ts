@@ -1,17 +1,20 @@
 import { browser, element, by, ExpectedConditions as ec } from 'protractor';
 
 import chai = require('chai');
-import { RoutingPageObjects } from './routing-page-objects';
+import { RoutingPageObjects } from '../routing/routing-page-objects';
+import { ConnexionPageObjects } from './connexion-page-objects';
 const expect = chai.expect;
 
 describe('routing test', () => {
 
   let routingPageObjects: RoutingPageObjects;
+  let connexionPageObjects: ConnexionPageObjects;
 
   before( async () => {
     await browser.get('/');
     browser.waitForAngularEnabled(false);
     routingPageObjects = new RoutingPageObjects();
+    connexionPageObjects = new ConnexionPageObjects();
   });
 
   it('should load home page', async () => {
@@ -41,37 +44,38 @@ describe('routing test', () => {
     expect(value).to.eq(expected);
   });
 
-  it('should re-open dropdown connexion/inscription', async () => {
-    await browser.wait(ec.visibilityOf(element(by.id('connexion-dropdown'))));
-    await routingPageObjects.clickOnDropdownConnexion();
+  it('should set bad user data to check badUserData', async () => {
+    await connexionPageObjects.autoSignInUser('badmail@test.com', 'badpassword');
+    await connexionPageObjects.login();
     await browser.sleep(500);
-    const expected = 'inscription-link';
-    await browser.wait(ec.visibilityOf(element(by.id('inscription-link'))));
-    const value = await element(by.id('inscription-link')).getAttribute('id');
+    const expected = 'badUserData';
+    await browser.wait(ec.visibilityOf(element(by.id('badUserData'))));
+    const value = await element(by.id('badUserData')).getAttribute('id');
     expect(value).to.eq(expected);
     await browser.sleep(500);
+    await browser.navigate().refresh();
   });
 
-  it('should load inscription page', async () => {
-    await browser.wait(ec.visibilityOf(element(by.id('inscription-link'))));
-    await routingPageObjects.clickOnInscriptionRoute();
+  it('should set bad user data to check invalidMail', async () => {
+    await connexionPageObjects.autoSignInUser('test.com', 'test');
+    await connexionPageObjects.login();
     await browser.sleep(500);
-    const expected = 'inscription';
-    await browser.wait(ec.visibilityOf(element(by.id('inscription'))));
-    const value = await element(by.id('inscription')).getAttribute('id');
+    const expected = 'invalidMail';
+    await browser.wait(ec.visibilityOf(element(by.id('invalidMail'))));
+    const value = await element(by.id('invalidMail')).getAttribute('id');
     expect(value).to.eq(expected);
     await browser.sleep(500);
+    await browser.navigate().refresh();
   });
 
-  it('should load panier page', async () => {
-    await browser.wait(ec.visibilityOf(element(by.id('panier-link'))));
-    await routingPageObjects.clickOnPanierRoute();
+  it('should set good user data', async () => {
+    await connexionPageObjects.autoSignInUser('test@test.com', 'test');
+    await connexionPageObjects.login();
     await browser.sleep(500);
-    const expected = 'panier';
-    await browser.wait(ec.visibilityOf(element(by.id('panier'))));
-    const value = await element(by.id('panier')).getAttribute('id');
+    const expected = 'home';
+    await browser.wait(ec.visibilityOf(element(by.id('home'))));
+    const value = await element(by.id('home')).getAttribute('id');
     expect(value).to.eq(expected);
-    await browser.sleep(500);
   });
 
   after(async () => {

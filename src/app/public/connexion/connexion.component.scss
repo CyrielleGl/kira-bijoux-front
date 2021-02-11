@@ -1,0 +1,28 @@
+.form-signup, .form-login {
+    margin-left: auto;
+    margin-right: auto;
+    @media screen and (max-width: 500px) {
+        max-width: 100%;
+    }
+}
+
+.form-login {
+    max-width: 50%;
+}
+
+.form-signup {
+    max-width: 70%;
+}
+
+label {
+    margin-top: 0.5rem;
+}
+
+.submit {
+    margin-top: 1rem;
+    text-align: center;
+}
+
+input {
+    text-align: center;
+}

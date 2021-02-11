@@ -1,9 +1,19 @@
-import { NgModule } from '@angular/core';
-import { Route, RouterModule } from '@angular/router';
+import { Injectable, NgModule } from '@angular/core';
+import { ActivatedRouteSnapshot, Resolve, Route, RouterModule } from '@angular/router';
+import { Observable, of } from 'rxjs';
+import { ConnexionComponent } from './connexion.component';
 
-import { LoginFormComponent } from './login-form/login-form.component';
-import { SignupFormComponent } from './signup-form/signup-form.component';
-
+@Injectable({ providedIn: 'root' })
+export class KiraConnectKeyWordRouteResolve implements Resolve<string> {
+  constructor() {}
+  resolve(route: ActivatedRouteSnapshot): Observable<string> {
+    const keyWord: any = route.url[0].path;
+    if (keyWord) {
+      return keyWord;
+    }
+    return of('');
+  }
+}
 
 export const ConnexionInscriptionroute: Route = {
   path: 'connexion-inscription',
@@ -12,12 +22,18 @@ export const ConnexionInscriptionroute: Route = {
 
 export const InscriptionRoute: Route = {
   path: 'inscription',
-  component: SignupFormComponent
+  component: ConnexionComponent,
+  resolve: {
+    keyWord: KiraConnectKeyWordRouteResolve
+  }
 };
 
 export const ConnexionRoute: Route = {
   path: 'connexion',
-  component: LoginFormComponent
+  component: ConnexionComponent,
+  resolve: {
+    keyWord: KiraConnectKeyWordRouteResolve
+  }
 };
 
 @NgModule({
