@@ -78,9 +78,15 @@ describe('routing test', () => {
     await browser.wait(ec.visibilityOf(element(by.id('invalidGridCheck'))));
     const value = await element(by.id('invalidGridCheck')).getAttribute('id');
     expect(value).to.eq(expected);
+    await browser.sleep(500);
+    await browser.navigate().refresh();
   });
 
-  it('should set GOOD new user data', async () => {
+    //                                                        //
+   // DECOMMENT WHEN 'SELENIUM' USER IS DELETED / OR GET ERR //
+  //                                                        //
+
+/*   it('should set GOOD new user data', async () => {
     await connexionPageObjects.autoSignUpUser('selenium', 'e2e', 'selenium@selenium.com', 'selenium', 'selenium');
     await connexionPageObjects.checkBoxClick();
     await connexionPageObjects.login();
@@ -90,6 +96,16 @@ describe('routing test', () => {
     const value = await element(by.id('home')).getAttribute('id');
     expect(value).to.eq(expected);
   });
+
+  it('should deconnect user', async () => {
+    await browser.wait(ec.visibilityOf(element(by.id('deconnexion-link'))));
+    await routingPageObjects.clickOnDeconnexionRoute();
+    await browser.sleep(500);
+    const expected = 'home';
+    await browser.wait(ec.visibilityOf(element(by.id('home'))));
+    const value = await element(by.id('home')).getAttribute('id');
+    expect(value).to.eq(expected);
+  }); */
 
   after(async () => {
     browser.waitForAngularEnabled(true);

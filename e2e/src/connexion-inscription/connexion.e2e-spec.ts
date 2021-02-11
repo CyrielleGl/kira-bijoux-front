@@ -78,6 +78,28 @@ describe('routing test', () => {
     expect(value).to.eq(expected);
   });
 
+  it('should re-open dropdown connexion/inscription', async () => {
+    await browser.wait(ec.visibilityOf(element(by.id('connexion-dropdown'))));
+    await browser.sleep(500);
+    await routingPageObjects.clickOnDropdownConnexion();
+    await browser.sleep(500);
+    const expected = 'deconnexion-link';
+    await browser.wait(ec.visibilityOf(element(by.id('deconnexion-link'))));
+    const value = await element(by.id('deconnexion-link')).getAttribute('id');
+    expect(value).to.eq(expected);
+    await browser.sleep(500);
+  });
+
+  it('should deconnect user', async () => {
+    await browser.wait(ec.visibilityOf(element(by.id('deconnexion-link'))));
+    await routingPageObjects.clickOnDeconnexionRoute();
+    await browser.sleep(500);
+    const expected = 'home';
+    await browser.wait(ec.visibilityOf(element(by.id('home'))));
+    const value = await element(by.id('home')).getAttribute('id');
+    expect(value).to.eq(expected);
+  });
+
   after(async () => {
     browser.waitForAngularEnabled(true);
   });
