@@ -69,9 +69,10 @@
               <div *ngIf="submitted && matchingError" class="text-danger text-center w-100">
                 Les deux mots de passe ne correspondent pas !
               </div>
-              <div *ngIf="submitted && submitError" class="text-danger text-center w-100">
-                une erreur s'est produite lors de l'inscription veuillez réessayer
-              </div>
+            </div>
+
+            <div *ngIf="submitted && submitError" class="text-danger text-center w-100">
+              L'email existe déjà
             </div>
 
             <hr />
