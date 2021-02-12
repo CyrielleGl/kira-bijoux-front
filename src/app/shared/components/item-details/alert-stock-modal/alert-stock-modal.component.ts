@@ -3,7 +3,9 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { CookieService } from 'ngx-cookie-service';
+import { User } from 'src/app/shared/models/user.model';
 import { AuthService } from 'src/app/shared/services/api/auth/auth.service';
+import { LoginService } from 'src/app/shared/services/api/login/login.service';
 
 @Component({
   selector: 'app-alert-stock-modal',
@@ -27,9 +29,8 @@ export class AlertStockModalComponent implements OnInit {
   constructor(
     public activeModal: NgbActiveModal,
     private router: Router,
-    private authService: AuthService,
-    private cookieService: CookieService
-    ) { }
+    private loginService: LoginService,
+  ) { }
 
   ngOnInit(): void {
   }
@@ -46,17 +47,11 @@ export class AlertStockModalComponent implements OnInit {
       return;
     }
 
-    this.authService.connexion(this.Form.value).subscribe(
-      (data: string[]) => {
+    this.loginService.login(this.Form.value).subscribe(
+      (data: User | null) => {
         this.data = data;
         this.role = this.data.role.role;
         this.idUser = this.data.id;
-        if (this.role === 'user') {
-          this.cookieService.set('kira-bijoux-cookie', 'user', 365);
-        } else if (this.role === 'admin') {
-          this.cookieService.set('kira-bijoux-cookie', 'admin', 365);
-        }
-        this.cookieService.set('kira-bijoux-id', `${this.idUser}`, 365);
         this.router.navigateByUrl('/home', { skipLocationChange: false }).then(() => {
           this.router.navigate(['home']);
           document.location.reload();

@@ -2,8 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
+import { flatMap } from 'rxjs/operators';
 import { LOG_IN_KEYWORD, SIGN_UP_KEYWORD } from 'src/app/shared/app-constants';
+import { User } from 'src/app/shared/models/user.model';
 import { AuthService } from 'src/app/shared/services/api/auth/auth.service';
+import { LoginService } from 'src/app/shared/services/api/login/login.service';
+import { UsersService } from 'src/app/shared/services/api/users/users.service';
 
 @Component({
   selector: 'app-connexion',
@@ -28,7 +32,9 @@ export class ConnexionComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private authService: AuthService,
     private router: Router,
-    private cookieService: CookieService
+    private cookieService: CookieService,
+    private usersService: UsersService,
+    private loginService: LoginService
   ) { }
 
   ngOnInit(): void {
@@ -100,19 +106,11 @@ export class ConnexionComponent implements OnInit {
       return;
     }
 
-    this.authService.connexion(this.Form.value).subscribe(
-      (data: string[]) => {
+    this.loginService.login(this.Form.value).subscribe(
+      (data: User | null) => {
         this.currentUser = data;
         this.role = this.currentUser.role.role;
         this.idUser = this.currentUser.id;
-
-        if (this.role === 'user') {
-          this.cookieService.set('kira-bijoux-cookie', 'user', 365);
-        } else if (this.role === 'admin') {
-          this.cookieService.set('kira-bijoux-cookie', 'admin', 365);
-        }
-
-        this.cookieService.set('kira-bijoux-id', `${this.idUser}`, 365);
         this.router.navigateByUrl('/home', { skipLocationChange: false }).then(() => {
           this.router.navigate(['home']);
           document.location.reload();
