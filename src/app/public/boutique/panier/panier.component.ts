@@ -43,9 +43,9 @@ export class PanierComponent implements OnInit {
     );
   }
 
-  putItemToShoppingCart(itemId: number, quantity: number): void {
+  putItemToShoppingCart(itemId: number, quantity: string): void {
     const formData = {
-      quantity: quantity
+      quantity: parseInt(quantity)
     };
     this.shopService.putItemToShoppingCart(itemId, formData).subscribe(
       () => { document.location.reload(); }
