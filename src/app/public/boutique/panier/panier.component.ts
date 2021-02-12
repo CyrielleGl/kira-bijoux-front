@@ -26,24 +26,24 @@ export class PanierComponent implements OnInit {
   }
 
   getShoppingCartByUser(): void {
-    this.idUser = parseInt(this.cookieService.get('kira-bijoux-id'));
+    this.idUser = parseInt(this.cookieService.get('kira-bijoux-id'), 2);
     this.shopService.getShoppingCartByUser(this.idUser).subscribe(
       (data: any[]) => {
         this.shoppingCart = data;
         this.shoppingCart.map((res: any) => {
-          if (res.quantity == 1) {
+          if (res.quantity === 1) {
             this.subTotalPrice += res.item.price;
           }
           else if (res.quantity > 1) {
             this.subTotalPrice += res.item.price * res.quantity;
           }
-        })
+        });
         this.totalPrice = this.subTotalPrice + 6.90;
       }
     );
   }
 
-  putItemToShoppingCart(itemId: number, quantity: string): void {
+  putItemToShoppingCart(itemId: any, quantity: any): void {
     const formData = {
       quantity: parseInt(quantity)
     };
@@ -66,6 +66,6 @@ export class PanierComponent implements OnInit {
   }
 
   onSubmitValidation(totalPrice: number): void {
-    alert(`Vous me devez ${totalPrice} €`)
+    alert(`Vous me devez ${totalPrice} €`);
   }
 }
