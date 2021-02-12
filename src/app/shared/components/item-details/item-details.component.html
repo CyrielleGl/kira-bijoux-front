@@ -47,8 +47,12 @@
             </div>
 
             <div class="item-body">
-                <!-- <span class="description">{{ this.currentItem?.subtitle }}</span> -->
-                <span class="description">{{ this.currentItem?.description }}</span>
+                <div class="subtitle">
+                    <span>{{ this.currentItem?.subtitle }}</span>
+                </div>
+                <div class="description">
+                    <span [innerHtml]="this.currentItem?.description"></span>
+                </div>
             </div>
         </div>
     </div>
