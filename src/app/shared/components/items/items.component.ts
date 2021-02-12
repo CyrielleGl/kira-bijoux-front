@@ -1,7 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
 import { BOUTIQUE_BO_KEYWORD, BOUTIQUE_BRACELETS_KEYWORD, BOUTIQUE_COLLIERS_KEYWORD, BOUTIQUE_NOUVEAUTES_KEYWORD } from '../../app-constants';
 import { ItemsService } from '../../services/api/items/items.service';
+import { ShopService } from '../../services/api/shop/shop.service';
 
 @Component({
   selector: 'app-items',
@@ -24,7 +26,9 @@ export class ItemsComponent implements OnInit {
   constructor(
     private router: Router,
     private activatedRoute: ActivatedRoute,
-    private itemsService: ItemsService
+    private itemsService: ItemsService,
+    private shopService: ShopService,
+    private cookieService: CookieService
     ) { }
 
   ngOnInit(): void {
@@ -78,8 +82,16 @@ export class ItemsComponent implements OnInit {
     this.router.navigateByUrl('boutique/' + this.keyWord + '/' + item.name).then();
   }
 
-  addToBasket(): void {
-    // TODO: add to Basket
+  addToBasket(itemId: string, quantity: string): void {
+    const formData = {
+      item_id: parseInt(itemId),
+      user_id: parseInt(this.cookieService.get('kira-bijoux-id')),
+      quantity: parseInt(quantity),
+    };
+
+    this.shopService.postItemToShoppingCart(formData).subscribe(
+      () => { document.location.reload(); }
+    );
   }
 
 }

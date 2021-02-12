@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { CookieService } from 'ngx-cookie-service';
 import { BOUTIQUE_BO_KEYWORD, BOUTIQUE_BRACELETS_KEYWORD, BOUTIQUE_COLLIERS_KEYWORD, BOUTIQUE_NOUVEAUTES_KEYWORD } from '../../app-constants';
+import { ShopService } from '../../services/api/shop/shop.service';
 import { ItemsService } from './../../services/api/items/items.service';
 import { AlertStockModalComponent } from './alert-stock-modal/alert-stock-modal.component';
 
@@ -25,7 +27,9 @@ export class ItemDetailsComponent implements OnInit {
   constructor(
     private activatedRoute: ActivatedRoute,
     private itemsService: ItemsService,
-    private modalService: NgbModal
+    private modalService: NgbModal,
+    private shopService: ShopService,
+    private cookieService: CookieService
     ) { }
 
   ngOnInit(): void {
@@ -76,6 +80,18 @@ export class ItemDetailsComponent implements OnInit {
       () => {
         // Left blank intentionally, nothing to do here
       }
+    );
+  }
+
+  addToBasket(itemId: string, quantity: string): void {
+    const formData = {
+      item_id: parseInt(itemId),
+      user_id: parseInt(this.cookieService.get('kira-bijoux-id')),
+      quantity: parseInt(quantity),
+    };
+
+    this.shopService.postItemToShoppingCart(formData).subscribe(
+      () => { document.location.reload(); }
     );
   }
 

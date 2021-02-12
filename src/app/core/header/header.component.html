@@ -28,7 +28,7 @@
     <div *ngIf="!roleAdmin" class="panier" placement="bottom" ngbTooltip="Voir mon panier">
       <a routerLink="/boutique/panier" id="panier-link">
         <i class="fas fa-shopping-basket"></i>
-        <span class="number-of-products"> (2)</span>
+        <span class="number-of-products"> ({{ this.shoppingCartLength }})</span>
       </a>
     </div>
     <!-- Affichage pour l'admin -->
