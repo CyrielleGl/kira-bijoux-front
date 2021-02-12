@@ -17,7 +17,7 @@
       </div>
       <!-- Affichage pour l'utilisateur connecté ou l'admin -->
       <div *ngIf="roleUser || roleAdmin">
-        <div class="connexion" id="connexion-dropdown" ngbDropdownToggle>Bonjour</div>
+        <div class="connexion" id="connexion-dropdown" ngbDropdownToggle style="font-weight: bold;">Bonjour {{ user?.firstname | titlecase }}</div>
         <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
           <button ngbDropdownItem class="dropdown-item" id="account-link">Mon compte</button>
           <button ngbDropdownItem class="dropdown-item" id="deconnexion-link" (click)="logout()">Me déconnecter</button>
