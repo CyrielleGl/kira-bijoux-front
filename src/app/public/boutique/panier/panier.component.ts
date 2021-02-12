@@ -26,7 +26,7 @@ export class PanierComponent implements OnInit {
   }
 
   getShoppingCartByUser(): void {
-    this.idUser = parseInt(this.cookieService.get('kira-bijoux-id'), 2);
+    this.idUser = parseInt(this.cookieService.get('kira-bijoux-id'), 10);
     this.shopService.getShoppingCartByUser(this.idUser).subscribe(
       (data: any[]) => {
         this.shoppingCart = data;
@@ -43,9 +43,9 @@ export class PanierComponent implements OnInit {
     );
   }
 
-  putItemToShoppingCart(itemId: any, quantity: any): void {
+  putItemToShoppingCart(itemId: number, quantity: string): void {
     const formData = {
-      quantity,
+      quantity: parseInt(quantity, 10)
     };
     this.shopService.putItemToShoppingCart(itemId, formData).subscribe(
       () => { document.location.reload(); }

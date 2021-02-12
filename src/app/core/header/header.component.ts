@@ -20,7 +20,9 @@ export class HeaderComponent implements OnInit {
   @Input()
   urlLogoHeader: string | undefined;
 
-  constructor(private cookieService: CookieService, private shopService: ShopService, 
+  constructor(
+    private cookieService: CookieService,
+    private shopService: ShopService,
     private router: Router) { }
 
   ngOnInit(): void {
@@ -40,13 +42,13 @@ export class HeaderComponent implements OnInit {
   }
 
   getShoppingCartByUser(): void {
-    this.idUser = parseInt(this.cookieService.get('kira-bijoux-id'));
+    this.idUser = parseInt(this.cookieService.get('kira-bijoux-id'), 10);
     this.shopService.getShoppingCartByUser(this.idUser).subscribe(
       (data: any[]) => {
         this.shoppingCart = data;
         this.shoppingCartLength = this.shoppingCart.length;
       }
-    )
+    );
   }
 
   logout(): void {
