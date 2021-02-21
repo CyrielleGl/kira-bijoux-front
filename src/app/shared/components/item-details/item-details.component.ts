@@ -95,7 +95,6 @@ export class ItemDetailsComponent implements OnInit {
     this.shopService.postItemToShoppingCart(formData).subscribe(
       (data: any[]) => { document.location.reload(); },
       err => { 
-        console.log(err.status);
         if (err.status == 500) {
           this.submitError500 = true; 
         } else if (err.status == 404) {
