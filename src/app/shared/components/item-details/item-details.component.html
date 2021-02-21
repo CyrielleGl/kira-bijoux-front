@@ -29,7 +29,11 @@
                 </div>
             </div>
 
-            <div *ngIf="submitError" class="text-danger">
+            <div *ngIf="submitError500" class="text-danger">
+              L'item est déjà présent dans le panier
+            </div>
+
+            <div *ngIf="submitError404" class="text-danger">
               La quantité saisi est incorrecte
             </div>
 
