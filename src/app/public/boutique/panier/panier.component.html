@@ -72,7 +72,11 @@
                             </tbody>
                         </table>
                     </div>
-
+                    
+                <div *ngIf="submitError" class="text-danger text-center w-100 mb-3">
+                  La quantité saisi est incorrecte
+                </div>
+                
                 <!-- Buttons action -->
                 <div class="col mb-2">
                     <div class="row">

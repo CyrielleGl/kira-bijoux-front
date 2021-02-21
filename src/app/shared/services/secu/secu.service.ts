@@ -18,4 +18,13 @@ export class SecuService {
       });
     }
   }
+
+  redirectAdminAccess(): void {
+    if (this.cookie === 'admin') {
+      this.router.navigateByUrl('/home', { skipLocationChange: false }).then(() => {
+        this.router.navigate(['home']);
+        document.location.reload();
+      });
+    }
+  }
 }
