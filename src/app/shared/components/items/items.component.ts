@@ -92,7 +92,7 @@ export class ItemsComponent implements OnInit {
     this.shopService.postItemToShoppingCart(formData).subscribe(
       (data: any[]) => { document.location.reload(); },
       err => { 
-        alert('L\'item est déjà présent dans le panier'); 
+        alert('La quantité saisi est incorrecte'); 
       }
     );
   }

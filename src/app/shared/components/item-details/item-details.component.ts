@@ -14,8 +14,7 @@ import { AlertStockModalComponent } from './alert-stock-modal/alert-stock-modal.
 })
 export class ItemDetailsComponent implements OnInit {
 
-  submitError500 = false;
-  submitError404 = false;
+  submitError = false;
   currentItem: any;
   stockVisibility = false;
   noMoreStock = false;
@@ -95,11 +94,7 @@ export class ItemDetailsComponent implements OnInit {
     this.shopService.postItemToShoppingCart(formData).subscribe(
       (data: any[]) => { document.location.reload(); },
       err => { 
-        if (err.status == 500) {
-          this.submitError500 = true; 
-        } else if (err.status == 404) {
-          this.submitError404 = true; 
-        }
+        this.submitError = true; 
       }
     );
   }
