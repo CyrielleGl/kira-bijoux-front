@@ -51,14 +51,14 @@ export class PanierComponent implements OnInit {
     const formData = {
       quantity: parseInt(quantity, 10)
     };
-    this.shopService.putItemToShoppingCart(itemId, formData).subscribe(
+    this.shopService.putItemToShoppingCart(itemId, this.idUser, formData).subscribe(
       (data: any[]) => { document.location.reload(); },
       err => { this.submitError = true; }
     );
   }
 
   deleteItemToShoppingCart(itemId: number): void {
-    this.shopService.deleteItemToShoppingCart(itemId).subscribe(
+    this.shopService.deleteItemToShoppingCart(itemId, this.idUser).subscribe(
       () => { document.location.reload(); }
     );
   }
