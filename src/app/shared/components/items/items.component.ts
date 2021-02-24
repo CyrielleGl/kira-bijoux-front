@@ -64,8 +64,7 @@ export class ItemsComponent implements OnInit {
       (data: string[]) => {
         this.item = data;
       }, err => {
-        console.clear();
-        return;
+        document.location.reload();
       }
     );
   }
