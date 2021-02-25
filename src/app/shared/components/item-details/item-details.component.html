@@ -29,6 +29,10 @@
                 </div>
             </div>
 
+            <div *ngIf="submitError" class="text-danger">
+              La quantité saisi est incorrecte
+            </div>
+
             <div class="add-item-basket" *ngIf="this.noMoreStock === true">
                 <div class="row">
                     <button class="btn btn-sm btn-primary">Ajouter aux favoris&nbsp;&nbsp;<i class="fa fa-heart"></i></button>

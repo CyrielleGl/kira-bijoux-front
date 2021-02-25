@@ -14,6 +14,7 @@ import { AlertStockModalComponent } from './alert-stock-modal/alert-stock-modal.
 })
 export class ItemDetailsComponent implements OnInit {
 
+  submitError = false;
   currentItem: any;
   stockVisibility = false;
   noMoreStock = false;
@@ -91,7 +92,10 @@ export class ItemDetailsComponent implements OnInit {
     };
 
     this.shopService.postItemToShoppingCart(formData).subscribe(
-      () => { document.location.reload(); }
+      (data: any[]) => { document.location.reload(); },
+      err => { 
+        this.submitError = true; 
+      }
     );
   }
 

@@ -64,8 +64,7 @@ export class ItemsComponent implements OnInit {
       (data: string[]) => {
         this.item = data;
       }, err => {
-        console.clear();
-        return;
+        document.location.reload();
       }
     );
   }
@@ -90,7 +89,10 @@ export class ItemsComponent implements OnInit {
     };
 
     this.shopService.postItemToShoppingCart(formData).subscribe(
-      () => { document.location.reload(); }
+      (data: any[]) => { document.location.reload(); },
+      err => { 
+        alert('La quantité saisi est incorrecte'); 
+      }
     );
   }
 

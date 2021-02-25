@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { ShopService } from 'src/app/shared/services/api/shop/shop.service';
+import { SecuService } from 'src/app/shared/services/secu/secu.service';
 
 @Component({
   selector: 'app-panier',
@@ -9,6 +10,7 @@ import { ShopService } from 'src/app/shared/services/api/shop/shop.service';
   styleUrls: ['./panier.component.scss']
 })
 export class PanierComponent implements OnInit {
+  submitError = false;
   shoppingCart: any;
   idUser = 0;
   arrayPrice: any = [];
@@ -18,10 +20,12 @@ export class PanierComponent implements OnInit {
   constructor(
     private shopService: ShopService,
     private cookieService: CookieService,
-    private router: Router
+    private router: Router,
+    private secuService: SecuService
   ) { }
 
   ngOnInit(): void {
+    this.secuService.redirectAdminAccess();
     this.getShoppingCartByUser();
   }
 
@@ -47,13 +51,14 @@ export class PanierComponent implements OnInit {
     const formData = {
       quantity: parseInt(quantity, 10)
     };
-    this.shopService.putItemToShoppingCart(itemId, formData).subscribe(
-      () => { document.location.reload(); }
+    this.shopService.putItemToShoppingCart(itemId, this.idUser, formData).subscribe(
+      (data: any[]) => { document.location.reload(); },
+      err => { this.submitError = true; }
     );
   }
 
   deleteItemToShoppingCart(itemId: number): void {
-    this.shopService.deleteItemToShoppingCart(itemId).subscribe(
+    this.shopService.deleteItemToShoppingCart(itemId, this.idUser).subscribe(
       () => { document.location.reload(); }
     );
   }

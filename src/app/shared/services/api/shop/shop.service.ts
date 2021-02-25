@@ -27,11 +27,11 @@ export class ShopService {
     return this.http.post<string[]>(`${ApiService.ApiUrlShop}`, formData);
   }
 
-  putItemToShoppingCart(itemId: number, formData: any): Observable<string[]> {
-    return this.http.put<string[]>(`${ApiService.ApiUrlShop}/` + itemId, formData);
+  putItemToShoppingCart(itemId: number, userId: number, formData: any): Observable<string[]> {
+    return this.http.put<string[]>(`${ApiService.ApiUrlShop}/${itemId}/${userId}`, formData);
   }
 
-  deleteItemToShoppingCart(itemId: number): Observable<string[]> {
-    return this.http.delete<string[]>(`${ApiService.ApiUrlShop}/` + itemId);
+  deleteItemToShoppingCart(itemId: number, userId: number): Observable<string[]> {
+    return this.http.delete<string[]>(`${ApiService.ApiUrlShop}/${itemId}/${userId}`);
   }
 }
