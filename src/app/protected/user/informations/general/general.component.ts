@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SecuService } from 'src/app/shared/services/secu/secu.service';
 
 @Component({
   selector: 'app-general',
@@ -7,9 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GeneralComponent implements OnInit {
 
-  constructor() { }
+  constructor(private cookieService: SecuService) { }
 
   ngOnInit(): void {
+    this.cookieService.verifyAccess('user');
   }
 
 }

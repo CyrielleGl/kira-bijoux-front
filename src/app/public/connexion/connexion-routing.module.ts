@@ -1,20 +1,43 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { Injectable, NgModule } from '@angular/core';
+import { ActivatedRouteSnapshot, Resolve, Route, RouterModule } from '@angular/router';
+import { Observable, of } from 'rxjs';
+import { ConnexionComponent } from './connexion.component';
 
-import { LoginFormComponent } from './login-form/login-form.component';
-import { SignupFormComponent } from './signup-form/signup-form.component';
+@Injectable({ providedIn: 'root' })
+export class KiraConnectKeyWordRouteResolve implements Resolve<string> {
+  constructor() {}
+  resolve(route: ActivatedRouteSnapshot): Observable<string> {
+    const keyWord: any = route.url[0].path;
+    if (keyWord) {
+      return keyWord;
+    }
+    return of('');
+  }
+}
 
-
-const routes: Routes = [
-  { path: 'connexion-inscription',
+export const ConnexionInscriptionroute: Route = {
+  path: 'connexion-inscription',
   loadChildren: () => import('../connexion/connexion.module').then(m => m.ConnexionModule)
-  },
-  { path: 'inscription', component: SignupFormComponent },
-  { path: 'connexion', component: LoginFormComponent },
-];
+};
+
+export const InscriptionRoute: Route = {
+  path: 'inscription',
+  component: ConnexionComponent,
+  resolve: {
+    keyWord: KiraConnectKeyWordRouteResolve
+  }
+};
+
+export const ConnexionRoute: Route = {
+  path: 'connexion',
+  component: ConnexionComponent,
+  resolve: {
+    keyWord: KiraConnectKeyWordRouteResolve
+  }
+};
 
 @NgModule({
-  imports: [RouterModule.forChild(routes)],
+  imports: [],
   exports: [RouterModule]
 })
 export class ConnexionRoutingModule { }

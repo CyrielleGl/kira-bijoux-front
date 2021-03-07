@@ -1,0 +1,81 @@
+<div id="alert-modal-header" class="modal-header">
+    <h4 class="modal-title" style="color: var(--primary)">{{ item.name }} <i class="far fa-bell" style="font-size: 1rem"></i></h4>
+
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+    (click)="cancel()">x
+    </button>
+</div>
+
+<div class="modal-body">
+    <div class="modal-subtitle" id="modal-subtitle">Recevoir une alerte de disponibilité</div>
+
+    <hr />
+
+    <div id="no-user" class="form-group">
+        <label class="label-title">Vous n'avez pas de compte ? Laissez-nous votre email !</label>
+        <div class="no-user-body">
+            <input type="text" class="form-control" formControlName="email" placeholder="exemple@exemple.com" />
+            <div *ngIf="submitted && Form.controls.mail.errors" class="text-danger">
+                <div *ngIf="Form.controls.mail.errors.required">
+                Le champ Email est obligatoire
+                </div>
+                <div *ngIf="Form.controls.mail.invalid && !Form.controls.mail.errors.required">
+                Veuillez saisir une adresse mail valide
+                </div>
+            </div>
+            <div class="redirect-signup" (click)="redirectToSignUp()"><i class="fa fa-sign-in-alt"></i> ou inscrivez-vous ici !</div>
+            <div class="row submit">
+                <div class="col-lg-4">
+                <button class="btn btn-primary" type="submit">Je souhaite être prévenu(e) !</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <hr />
+
+    <div id="user" class="form-group">
+        <label class="label-title">Vous êtes déjà inscrit ? Connectez-vous !</label>
+        <form (ngSubmit)="connexion()">
+            <div class="top-margin">
+              <input type="hidden" formControlName="id" />
+              <label>Email <span class="text-danger">*</span></label>
+              <input type="text" class="form-control" formControlName="mail" placeholder="exemple@exemple.com" />
+              <div *ngIf="submitted && Form.controls.mail.errors" class="text-danger">
+                <div *ngIf="Form.controls.mail.errors.required">
+                  le champ Email est obligatoire
+                </div>
+                <div *ngIf="Form.controls.mail.invalid && !Form.controls.mail.errors.required">
+                  veuillez saisir une adresse mail valide
+                </div>
+              </div>
+            </div>
+            <div class="top-margin">
+              <label>Mot de passe <span class="text-danger">*</span></label>
+              <input type="password" class="form-control" formControlName="password" placeholder="mot de passe" />
+              <div *ngIf="submitted && Form.controls.password.errors" class="text-danger">
+                <div *ngIf="Form.controls.password.errors.required">
+                  le champ Mot de passe est obligatoire
+                </div>
+              </div>
+            </div>
+    
+            <div *ngIf="submitted && submitError" class="text-danger text-center w-100">
+              email ou mot de passe incorrect
+            </div>
+            <div class="row submit">
+                <div class="col-lg-4">
+                  <button class="btn btn-primary" type="submit">Se connecter</button>
+                </div>
+            </div>
+
+          </form>
+    </div>
+
+</div>
+
+<div class="modal-footer" id="modal-footer">
+    <button id="close" type="close" class="btn btn-fourth col-3" data-dismiss="modal" (click)="cancel()">
+        <i class="fa fa-ban"></i><span> Fermer</span>
+    </button>
+</div>

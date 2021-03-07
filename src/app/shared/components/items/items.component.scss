@@ -1,0 +1,78 @@
+main {
+  max-width: 70rem;
+}
+
+.col {
+  margin-bottom: 30px;
+  @media screen and (max-width: 500px) {
+    justify-content: center;
+    display: flex;
+  }
+}
+
+a.btn-primary {
+  bottom: 15px;
+  padding: 0.3rem;
+  align-self: center;
+}
+
+a.btn-primary:hover {
+  background-color: #ffffff;
+  color: var(--primary);
+}
+
+::ng-deep .card-body {
+  padding: 0.5rem;
+}
+
+.img-overlay {
+  position: relative;
+  width: 100%;
+  border: 1px solid #f5f6f7
+}
+
+.img-overlay .image {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.img-caption {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgb(178, 184, 189);
+  opacity: 0;
+  transition: .8s ease-out;
+}
+
+.img-overlay:hover .img-caption {
+  opacity: 1;
+}
+
+.link {
+  padding-top: 10rem;
+  max-width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.title {
+  color: var(--primary);
+}
+
+.price {
+  color: #ebebeb;
+  font-size: 1.15rem;
+}
+
+.collection {
+  color: #cccccc;
+}
+
+.item-details-link {
+  color: var(--primary);
+  cursor: pointer;
+  text-decoration: none;
+}

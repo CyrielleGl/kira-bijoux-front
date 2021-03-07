@@ -1,0 +1,46 @@
+<main>
+
+  <div id="boutique-title">
+    <div class="title-body">
+      <h2 *ngIf="keyWord == BOUTIQUE_COLLIERS_KEYWORD" id="colliers">COLLIERS</h2>
+      <h2 *ngIf="keyWord == BOUTIQUE_BRACELETS_KEYWORD" id="bracelets">BRACELETS</h2>
+      <h2 *ngIf="keyWord == BOUTIQUE_BO_KEYWORD" id="bo">BOUCLES D'OREILLES</h2>
+    </div>
+  </div>
+
+<div class="input-group mb-5 justify-content-center">
+  <div class="form-outline">
+    <input type="search" class="form-control" #searchItem (keyup)="onSearchItems(searchItem.value)" />
+  </div>
+  <button type="button" class="btn btn-primary">
+    <i class="fas fa-search"></i>
+  </button>
+</div>
+
+<div class="row row-cols-1 row-cols-md-3">
+  <div class="col mb-4 sm-12" *ngFor="let item of item">
+    <div class="img-overlay" id="{{ item.name }}-box" style="width: 18rem; height: 18rem;">
+      <img class="image img-thumbnail" src="https://www.laliberte.ch/media/image/12/normal/apredart_0011.jpg" 
+      alt="card image cap" />
+      <div class="img-caption">
+        <div class="link" style="padding-top: 2rem;">
+          <h5 class="title" id="{{ item.name }}">{{ item.name }}</h5>
+          <span class="collection">{{ item.collection.name }}</span>
+          <br>
+          <span class="price">{{ item.price | currency:'EUR':'symbol':'1.2-2':'fr' }}</span>
+          <br><br>
+          <div class="item-details-link" id="{{ item.name }}-details-link">
+            <a (click)="redirectToDetails(item)"><span>-- Plus de détails --</span>
+            </a>
+          </div>
+          <br>
+          <a (click)="addToBasket(item.id, '1')" class="btn btn-primary justify-content-center 
+          {{ item.stock > 0 ? '' : 'disabled' }}">Ajouter au panier
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</main>

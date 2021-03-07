@@ -1,5 +1,5 @@
 <main>
-    <div class="panier">
+    <div class="panier" id="panier">
 
         <div class="title-body">
             <h2>MON PANIER</h2>
@@ -25,13 +25,24 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr> <!-- Row 2 --> <!-- TODO: create *ngFor with data (img, name, stock, prix) -->
-                                    <td><img src="https://dummyimage.com/50x50/55595c/fff" /></td>
-                                    <td>Kena</td>
-                                    <td>En stock</td>
-                                    <td><input class="form-control" type="text" value="1" /></td>
-                                    <td class="text-right">45 €</td>
-                                    <td class="text-right"><button class="btn btn-sm btn-danger"><i class="fa fa-trash"></i> </button> </td>
+                                <!-- Row 2 --> <!-- TODO: create *ngFor with data (img, name, stock, prix) --> 
+                                <!-- https://dummyimage.com/50x50/55595c/fff -->
+                                <tr *ngFor="let item of shoppingCart"> 
+                                    <td>
+                                      <img src="{{ item.item.item_pictures[0]?.name ? 
+                                        item.item.item_pictures[0].name : 
+                                        'https://dummyimage.com/50x50/55595c/fff' }}"
+                                        alt="{{ item.item.item_pictures[0]?.name }}"/>
+                                    </td>
+                                    <td>{{ item.item?.name }}</td>
+                                    <td>{{ item.item?.stock }} en stock</td>
+                                    <td>
+                                      <input #quantityItem (focusout)="putItemToShoppingCart(item.item?.id, quantityItem.value)"
+                                        class="form-control" type="text" value="{{ item?.quantity }}" /></td>
+                                    <td class="text-right">{{ item.item?.price | currency:'EUR':'symbol':'1.2-2':'fr' }}</td>
+                                    <td class="text-right">
+                                      <button (click)="deleteItemToShoppingCart(item.item?.id)" class="btn btn-sm btn-danger">
+                                        <i class="fa fa-trash"></i> </button> </td>
                                 </tr>
 
                                 <tr> <!-- Row 3 -->
@@ -40,7 +51,7 @@
                                     <td></td>
                                     <td></td>
                                     <td>Sous-Total</td>
-                                    <td class="text-right">45 €</td>
+                                    <td class="text-right">{{ this.subTotalPrice | currency:'EUR':'symbol':'1.2-2':'fr' }}</td>
                                 </tr>
                                 <tr> <!-- Row 4 -->
                                     <td></td>
@@ -56,20 +67,26 @@
                                     <td></td>
                                     <td></td>
                                     <td><strong>Total</strong></td>
-                                    <td class="text-right"><strong>51,90 €</strong></td>
+                                    <td class="text-right"><strong>{{ this.totalPrice | currency:'EUR':'symbol':'1.2-2':'fr' }}</strong></td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
-
+                    
+                <div *ngIf="submitError" class="text-danger text-center w-100 mb-3">
+                  La quantité saisi est incorrecte
+                </div>
+                
                 <!-- Buttons action -->
                 <div class="col mb-2">
                     <div class="row">
                         <div class="col-sm-12  col-md-6">
-                            <button class="btn btn-block btn-light">Je veux refaire un tour !</button>
+                            <button (click)="redirectToBoutique()" 
+                              class="btn btn-block btn-light">Je veux refaire un tour !</button>
                         </div>
                         <div class="col-sm-12 col-md-6 text-right">
-                            <button class="btn btn-lg btn-block btn-success text-uppercase">Je valide</button>
+                            <button (click)="onSubmitValidation(this.totalPrice)" 
+                              class="btn btn-lg btn-block btn-success text-uppercase">Je valide</button>
                         </div>
                     </div>
                 </div>

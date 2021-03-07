@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AppConstants } from './shared/app-constants';
+import { UsersService } from './shared/services/api/users/users.service';
 import { UtilsService } from './shared/services/utils/utils.service';
 
 @Component({
@@ -12,9 +13,13 @@ export class AppComponent implements OnInit {
   appTitle = AppConstants.appTitle;
   urlLogoHeader = AppConstants.urlLogoHeader;
 
-  constructor(private utilsService: UtilsService) {}
+  constructor(
+    private utilsService: UtilsService,
+    private usersService: UsersService
+  ) {}
 
   ngOnInit(): void {
     this.utilsService.initFaIcons();
+    this.usersService.identity().subscribe();
   }
 }
