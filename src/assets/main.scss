@@ -88,11 +88,37 @@ main {
     color: var(--primary);
   }
 
+  h6 {
+    font-size: 1rem;
+    font-family: "Open-sans-italic";
+    color: var(--primary);
+    padding-bottom: 1rem;
+    margin-bottom: 0rem;
+  }
+
   .title-body {
     border-bottom: solid 1px;
     border-color: var(--primary);
     margin-bottom: 2.2rem;
   }
+
+/*------------------------*/
+/*----- NAV & TABS ------*/
+/*----------------------*/
+
+.nav-tabs .nav-item {
+  margin-bottom: -1px;
+  margin-right: 1rem;
+  margin-left: 1rem;
+}
+
+.nav-tabs {
+  margin-bottom: 2rem;
+}
+
+.tab-link {
+  width: 15rem;
+}
 
 /*------------------------*/
 /*---- Media Queries ----*/

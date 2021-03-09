@@ -1,7 +1,29 @@
 <main>
 
-  <div class="title-body">
-      <h2>BIENVENUE <!--{{ user.prenom }}--> !</h2>
+  <div class="title">
+      <h6>Bienvenue sur votre espace personnel</h6>
   </div>
+
+<br/>
+
+<ul class="nav nav-tabs justify-content-center" id="myTab" role="tablist">
+  <li class="nav-item" role="presentation">
+    <button class="nav-link tab-link" routerLinkActive="active" [routerLink]="'commandes'" data-toggle="tab" type="button" role="tab" aria-selected="true">Mes commandes</button>
+  </li>
+  <li class="nav-item" role="presentation">
+    <button class="nav-link tab-link" routerLinkActive="active" [routerLink]="'favoris'" data-toggle="tab" type="button" role="tab" aria-selected="false">Mes favoris</button>
+  </li>
+  <li class="nav-item" role="presentation">
+    <button class="nav-link tab-link" routerLinkActive="active" [routerLink]="'informations'" data-toggle="tab"type="button" role="tab" aria-selected="false">Mes informations</button>
+  </li>
+</ul>
+
+<!-- <div class="tab-content" id="myTabContent">
+  <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">Toto</div>
+  <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">Titi</div>
+  <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">...</div>
+</div> -->
+<router-outlet></router-outlet>
+
 
 </main>

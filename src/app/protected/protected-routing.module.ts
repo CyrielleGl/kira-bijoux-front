@@ -5,8 +5,14 @@ import { RouterModule, Routes } from '@angular/router';
 
 
 const routes: Routes = [
-  { path: 'mon-compte', component: UserComponent },
-  { path: 'administration', component: AdminComponent }
+  {
+    path: 'mon-compte',
+    loadChildren: () => import('./user/user.module').then(m => m.UserModule)
+  },
+  {
+    path: 'administration',
+    loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule)
+  }
 ];
 
 @NgModule({

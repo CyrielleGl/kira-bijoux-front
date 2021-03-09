@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AdminComponent } from './admin.component';
 
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { GestionArticlesComponent } from './gestion-articles/gestion-articles.component';
@@ -10,16 +11,42 @@ import { GestionReductionsComponent } from './gestion-reductions/gestion-reducti
 
 
 const routes: Routes = [
-  { path: 'administration',
-  loadChildren: () => import('../admin/admin.module').then(m => m.AdminModule)
-  },
-  { path: 'administration/dashboard', component: DashboardComponent },
-  { path: 'administration/gestion-articles', component: GestionArticlesComponent },
-  { path: 'administration/gestion-commandes', component: GestionCommandesComponent },
-  { path: 'administration/gestion-newsletters', component: GestionNewslettersComponent },
-  { path: 'administration/gestion-produits', component: GestionProduitsComponent },
-  { path: 'administration/gestion-reductions', component: GestionReductionsComponent },
-  ];
+  {
+    path: '',
+    component: AdminComponent,
+    children: [
+      {
+        path: 'dashboard',
+        component: DashboardComponent
+      },
+      {
+        path: 'gestion-articles',
+        component: GestionArticlesComponent
+      },
+      {
+        path: 'gestion-commandes',
+        component: GestionCommandesComponent
+      },
+      {
+        path: 'gestion-newsletters',
+        component: GestionNewslettersComponent
+      },
+      {
+        path: 'gestion-produits',
+        component: GestionProduitsComponent
+      },
+      {
+        path: 'gestion-reductions',
+        component: GestionReductionsComponent
+      },
+      {
+        path: '',
+        redirectTo: 'dashboard',
+        pathMatch: 'full'
+      }
+    ]
+  }
+];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
