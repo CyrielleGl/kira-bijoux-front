@@ -1,0 +1,26 @@
+.card {
+  position: relative;
+  padding-bottom: 20px;
+}
+
+.button {
+  position: absolute;
+  bottom: 10px;
+  left: calc(50% - (1.25rem * 2));
+}
+
+@media screen and (max-width: 500px) {
+  .carousel-control-prev, .carousel-control-next {
+    display: none;
+  }
+
+  .card-img-top {
+    width: 15rem;
+    margin: 0 auto;
+    height: 10rem;
+  }
+  
+  .card-body {
+    padding-top: 0;
+  }
+}
