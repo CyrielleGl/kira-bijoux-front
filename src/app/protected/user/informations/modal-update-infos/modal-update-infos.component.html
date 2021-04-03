@@ -1,0 +1,144 @@
+<div id="alert-modal-header" class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+    (click)="cancel()">x
+    </button>
+</div>
+
+<div class="modal-body">
+
+    <!-- UPDATE FORM -->
+
+    <form [formGroup]="Form" novalidate (ngSubmit)="save(Form.value)">
+
+      <h4 *ngIf="idCard === 'idInfo'" class="modal-title" style="color: var(--primary)" id="edit-heading">
+          Modifier mes informations</h4>
+      <h4 *ngIf="idCard === 'idAdress'" class="modal-title" style="color: var(--primary)" id="edit-heading">
+          Modifier mes adresses</h4>
+      <h4 *ngIf="idCard === 'idSecu'" class="modal-title" style="color: var(--primary)" id="edit-heading">
+          Modifier ma sécurité et mes options</h4>
+      <hr />
+
+      <!-- INFOS -->
+      <div *ngIf="idCard === 'idInfo' && user">
+        <div class="form-group">
+          <label class="form-control-label" for="field_firstname">Prénom</label>
+          <input type="text" class="form-control" name="firstname" id="field_firstname"
+          formControlName="firstname"/>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_lastname">Nom</label>
+            <input type="text" class="form-control" name="lastname" id="field_lastname"
+            formControlName="lastname"/>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_mail">Mail</label>
+            <input type="text" class="form-control" name="mail" id="field_mail"
+            formControlName="mail"/>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_phone">Téléphone</label>
+            <input type="text" class="form-control" name="phone" id="field_phone"
+            formControlName="phone"/>
+        </div>
+      </div>
+
+      <!-- ADRESSES -->
+
+      <div formArrayName="addresses" style="border-radius: 10%;" *ngIf="idCard === 'idAdress'">
+        <div *ngFor="let adress of addresses().controls; let adressIndex=index" [formGroup]="Form.get('addresses').controls[adressIndex]" style="border: 0.5rem solid var(--primary); border-radius: 10%; color: var(--primary); padding: 2rem; margin-bottom: 1rem;">
+          <div id="alert-modal-adresse" class="modal-adresse">
+            <h4 class="modal-title" style="color: var(--primary)" id="edit-heading">
+              Adresse {{ adressIndex+1 }}</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true" style="color: var(--primary); margin-top: -0.3rem;" placement="bottom" ngbTooltip="Supprimer l'adresse"
+            (click)="removeAdress(adressIndex)">x
+            </button>
+          </div>
+          <div class="form-group">
+            <label class="form-control-label" for="field_adressName">Nom de l'adresse</label>
+            <input class="form-control" type="text" formControlName="adressName"/>
+          </div>
+          <div class="form-group">
+            <label class="form-control-label" for="field_recipient">Destinataire</label>
+            <input class="form-control" type="text" formControlName="recipient"/>
+          </div>
+          <div class="form-group">
+            <label class="form-control-label" for="field_firstLine">N° et voie</label>
+            <input class="form-control" type="text" formControlName="firstLine"/>
+          </div>
+          <div class="form-group">
+            <label class="form-control-label" for="field_secondLine">Complément d'adresse</label>
+            <input class="form-control" type="text" formControlName="secondLine"/>
+          </div>
+          <div class="form-group">
+            <label class="form-control-label" for="field_postCode">Code postal</label>
+            <input class="form-control" type="text" formControlName="postCode"/>
+          </div>
+          <div class="form-group">
+            <label class="form-control-label" for="field_town">Ville</label>
+            <input class="form-control" type="text" formControlName="town"/>
+          </div>
+        </div>
+      </div>
+
+      <!-- PASSWORD -->
+      <div *ngIf="idCard === 'idSecu'">
+        <div class="form-group">
+          <label class="form-control-label" for="field_oldPassword">Ancien mot de passe</label>
+          <input type="text" class="form-control" name="oldPassword" id="field_oldPassword" placeholder="Ancien mot de passe"
+          formControlName="oldPassword"/>
+          <div *ngIf="submitted" class="text-danger">
+            <div *ngIf="Form.controls.oldPassword.errors?.required">
+              Merci d'indiquer votre ancien mot de passe
+            </div>
+            <div *ngIf="matchingErrorOldPassword">
+              Ne correspond pas à votre ancien mot de passe
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Nouveau mot de passe <span class="text-danger">*</span></label>
+          <input type="text" class="form-control" name="newPassword" id="field_newPassword" placeholder="Nouveau mot de passe"
+          formControlName="newPassword"/>
+          <div *ngIf="submitted && Form.controls.newPassword.errors" class="text-danger">
+            <div *ngIf="Form.controls.newPassword.errors?.required">
+              Merci d'indiquer un nouveau mot de passe
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-control-label" for="field_confirmPassword">Confirmer le nouveau mot de passe</label>
+          <input type="text" class="form-control" name="confirmPassword" id="field_confirmPassword" placeholder="Confirmer nouveau mot de passe"
+          formControlName="confirmPassword"/>
+          <div *ngIf="submitted && Form.controls.confirmPassword.errors" class="text-danger">
+            <div *ngIf="Form.controls.confirmPassword.errors?.required">
+              Merci de confirmer le mot de passe
+            </div>
+          </div>
+        </div>
+
+        <div *ngIf="submitted && matchingErrorNewPassword" id="passwordMatchingError" class="text-danger text-center w-100">
+          Les deux mots de passe ne correspondent pas !
+        </div>
+      </div>
+
+      <br/>
+
+      <p *ngIf="idCard === 'idAdress'">
+        <button type="button" class="btn btn-primary-ligth" (click)="addAdress()">Add Adress</button>
+      </p>
+
+      <div class="modal-footer" id="modal-footer">
+        <button id="close" type="close" class="btn btn-fourth col-3" data-dismiss="modal" (click)="cancel()">
+          <i class="fa fa-ban"></i><span> Fermer</span>
+        </button>
+        <button id="save" type="submit" class="btn btn-primary col-3" data-dismiss="modal">
+            <i class="fa fa-save"></i><span> Valider</span>
+        </button>
+      </div>
+
+    </form>
+
+</div>
+
+

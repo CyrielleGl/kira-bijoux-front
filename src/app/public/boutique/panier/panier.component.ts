@@ -12,7 +12,6 @@ import { SecuService } from 'src/app/shared/services/secu/secu.service';
 export class PanierComponent implements OnInit {
   submitError = false;
   shoppingCart: any;
-  idUser = 0;
   arrayPrice: any = [];
   subTotalPrice: any = 0;
   totalPrice: any = 0;
@@ -30,8 +29,7 @@ export class PanierComponent implements OnInit {
   }
 
   getShoppingCartByUser(): void {
-    this.idUser = parseInt(this.cookieService.get('kira-bijoux-id'), 10);
-    this.shopService.getShoppingCartByUser(this.idUser).subscribe(
+      this.shopService.getShoppingCartByUser(this.getIdCookiesStorage()).subscribe(
       (data: any[]) => {
         this.shoppingCart = data;
         this.shoppingCart.map((res: any) => {
@@ -51,14 +49,14 @@ export class PanierComponent implements OnInit {
     const formData = {
       quantity: parseInt(quantity, 10)
     };
-    this.shopService.putItemToShoppingCart(itemId, this.idUser, formData).subscribe(
+    this.shopService.putItemToShoppingCart(itemId, this.getIdCookiesStorage(), formData).subscribe(
       (data: any[]) => { document.location.reload(); },
       err => { this.submitError = true; }
     );
   }
 
   deleteItemToShoppingCart(itemId: number): void {
-    this.shopService.deleteItemToShoppingCart(itemId, this.idUser).subscribe(
+    this.shopService.deleteItemToShoppingCart(itemId, this.getIdCookiesStorage()).subscribe(
       () => { document.location.reload(); }
     );
   }
@@ -73,4 +71,9 @@ export class PanierComponent implements OnInit {
   onSubmitValidation(totalPrice: number): void {
     alert(`Vous me devez ${totalPrice} €`);
   }
+
+  getIdCookiesStorage(): number {
+    return parseInt(this.cookieService.get('kira-bijoux-id'), 10);
+  }
+
 }

@@ -4,6 +4,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { NgbDropdown, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CookieService } from 'ngx-cookie-service';
 import { AlertStockModalComponent } from './components/item-details/alert-stock-modal/alert-stock-modal.component';
+import { Ng2SmartTableModule } from 'ng2-smart-table';
 
 @NgModule({
   declarations: [AlertStockModalComponent],
@@ -11,6 +12,7 @@ import { AlertStockModalComponent } from './components/item-details/alert-stock-
     CommonModule,
     NgbModule,
     FontAwesomeModule,
+    Ng2SmartTableModule
   ],
   exports : [
     CommonModule,

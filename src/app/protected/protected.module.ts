@@ -5,8 +5,6 @@ import { ProtectedRoutingModule } from './protected-routing.module';
 import { AdminModule } from './admin/admin.module';
 import { UserModule } from './user/user.module';
 
-
-
 @NgModule({
   declarations: [],
   imports: [

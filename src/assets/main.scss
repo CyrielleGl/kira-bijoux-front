@@ -3,12 +3,6 @@ html {
   min-height: 100vh;
 }
 
-body {
-  background-color: white;
-  margin: 0;
-  padding: 0;
-}
-
 /* Fonts */
 
 @font-face {
@@ -54,57 +48,94 @@ main {
     font-family: "Open-sans-regular";
   }
 
-  a {
-    text-decoration: none !important;
-  }
+body {
+  background-color: white;
+  margin: 0;
+  padding: 0;
+}
 
-  h2 {
-    font-size: 1.6rem;
-    font-family: "Cinzel";
-    color: var(--primary);
-    padding-bottom: 1.6rem;
-    margin-bottom: 0rem;
-  }
-  
-  h3 {
-    font-size: 1.2rem;
-    font-family: "Open-sans-light";
-    color: var(--primary);
-    padding-bottom: 1rem;
-    margin-bottom: 0rem;
-  }
+a {
+  text-decoration: none !important;
+  cursor: pointer;
+}
 
-  h4 {
-    font-size: 1rem;
-    font-family: "Open-sans-light";
-    text-transform: uppercase;
-    color: var(--primary);
-    padding-bottom: 1rem;
-    margin-bottom: 0rem;
-  }
+.visible-link {
+  text-decoration: underline dotted !important;
+  font-style: italic;
+}
 
-  h5 {
-    font-size: 1.5rem;
-    color: var(--primary);
-  }
+h2 {
+  font-size: 1.6rem;
+  font-family: "Cinzel";
+  color: var(--primary);
+  padding-bottom: 1.6rem;
+  margin-bottom: 0rem;
+}
 
-  h6 {
-    font-size: 1rem;
-    font-family: "Open-sans-italic";
-    color: var(--primary);
-    padding-bottom: 1rem;
-    margin-bottom: 0rem;
-  }
+h3 {
+  font-size: 1.2rem;
+  font-family: "Open-sans-light";
+  color: var(--primary);
+  padding-bottom: 1rem;
+  margin-bottom: 0rem;
+}
 
-  .title-body {
-    border-bottom: solid 1px;
-    border-color: var(--primary);
-    margin-bottom: 2.2rem;
-  }
+h4 {
+  font-size: 1rem;
+  font-family: "Open-sans-light";
+  text-transform: uppercase;
+  color: var(--primary);
+  padding-bottom: 1rem;
+  margin-bottom: 0rem;
+}
+
+h5 {
+  font-size: 1.5rem;
+  color: var(--primary);
+}
+
+h6 {
+  font-size: 1rem;
+  font-family: "Open-sans-italic";
+  color: var(--primary);
+  padding-bottom: 1rem;
+  margin-bottom: 0rem;
+}
+
+.title-body {
+  border-bottom: solid 1px;
+  border-color: var(--primary);
+  margin-bottom: 2.2rem;
+}
+
+.inline-block i,
+.inline-block p {
+  display: inline-block;
+}
+
+.top-margin {
+  margin-top: 1rem;
+}
 
 /*------------------------*/
 /*----- NAV & TABS ------*/
 /*----------------------*/
+
+.main-tab {
+  padding-top: 0rem !important;
+  padding-left: 0rem !important;
+  padding-right: 0rem !important;
+}
+
+.title-tab {
+  font-size: 1.2rem;
+  font-family: "Open-sans-light";
+  color: var(--secondary);
+  background-color: var(--primary);
+  padding-bottom: 0.5rem;
+  padding-top: 0.5rem;
+  margin-bottom: 2rem;
+}
 
 .nav-tabs .nav-item {
   margin-bottom: -1px;
@@ -121,6 +152,59 @@ main {
 }
 
 /*------------------------*/
+/*-------- CARDS --------*/
+/*----------------------*/
+
+.card {
+  width: 100%;
+  margin-bottom: 1.5rem;
+}
+
+.card-title {
+  font-size: 1.2rem !important;
+  margin-bottom: 2rem;
+}
+
+.card-body {
+  padding-top: 0rem;
+}
+
+.card-content {
+  text-align: left !important;
+}
+
+.card-line {
+  margin-top: 0;
+  margin-bottom: 0rem;
+  font-size: 0.9rem;
+}
+
+.update-card {
+  margin-left: 90%;
+  margin-top: 1rem;
+  font-size: 0.8rem;
+  color: var(--primary);
+}
+
+.update-card:hover {
+  cursor: pointer;
+}
+
+.card-password:hover {
+  cursor: pointer;
+}
+
+.modal-adresse {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 1rem 1rem;
+  border-bottom: 1px solid #dee2e6;
+  border-top-left-radius: calc(0.3rem - 1px);
+  border-top-right-radius: calc(0.3rem - 1px);
+}
+
+/*------------------------*/
 /*---- Media Queries ----*/
 /*----------------------*/
   
@@ -132,6 +216,9 @@ main {
       padding-left: 1rem;
       padding-bottom: 1rem;
     }
+    .nav-tabs .nav-item {
+      border-top: #fff 1px solid;
+    }
   }
   
   /* tablet screens */
@@ -142,6 +229,9 @@ main {
       padding-right: 2.5rem;
       padding-left: 2.5rem;
       padding-bottom: 3rem;
+    }
+    .nav-tabs .nav-item {
+      border-top: #fff 1px solid;
     }
   }
   
