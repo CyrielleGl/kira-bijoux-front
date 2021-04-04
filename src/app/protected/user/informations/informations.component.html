@@ -8,7 +8,7 @@
         <div class="row">
             <div class="col-sm-6">
                 <div class="card">
-                    <i class="fas fa-pencil-alt update-card" (click)="openUpdateInfosModal(idInfo)"></i>
+                    <i class="fas fa-pencil-alt update-card" (click)="openUpdateInfosModal(idInfo)" placement="bottom" ngbTooltip="Modifier mes informations"></i>
                     <div class="card-body">
                         <h5 class="card-title">Informations personnelles</h5>
                         <div class="card-content">
@@ -26,8 +26,8 @@
             </div>
             <div class="col-sm-6">
                 <div class="card">
-                    <i class="fas fa-pencil-alt update-card" (click)="openUpdateInfosModal(idAdress)"></i>
-                    <div class="card-body" *ngIf="adresses.length > 0">
+                    <i class="fas fa-pencil-alt update-card" (click)="openUpdateInfosModal(idAdress)" placement="bottom" ngbTooltip="Modifier mes adresses"></i>
+                    <div class="card-body" *ngIf="adresses?.length > 0">
                         <h5 class="card-title">Adresses</h5>
                         <div class="card-content" *ngFor="let adress of adresses; let i = index">
                             <span class="adress-title text-muted">"{{ adress?.name }}" (Adresse {{i+1}})</span>
@@ -38,7 +38,7 @@
                             <p></p>
                         </div>
                     </div>
-                    <div class="card-body" *ngIf="adresses.length === 0">
+                    <div class="card-body" *ngIf="adresses?.length === 0">
                         <h5 class="card-title">Adresses</h5>
                         <div class="card-content" (click)="openUpdateInfosModal(idAdress)">
                             <p class="card-line">Enregistrez votre première adresse !</p>
@@ -52,7 +52,7 @@
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title" style="padding-top: 1.8rem;">Sécurité et options</h5>
-                        <div class="inline-block" style="text-align: right;" (click)="openUpdateInfosModal(idSecu)">
+                        <div class="inline-block" style="text-align: right;" (click)="openUpdateInfosModal(idSecu)" placement="bottom" ngbTooltip="Modifier mon mot de passe">
                             <i class="fas fa-pencil-alt update-card" style="padding: 0rem; margin: 0rem;"></i>&nbsp;
                             <p class="card-password">Modifier mon mot de passe</p>
                         </div>

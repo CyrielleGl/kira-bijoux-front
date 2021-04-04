@@ -19,7 +19,6 @@ export class ModalUpdateInfosComponent implements OnInit {
   idCard: string | any;
   Form: FormGroup | any;
   matchingErrorNewPassword = false;
-  matchingErrorOldPassword = false;
   addAdressFormVisible = false;
   submitted = false;
 
@@ -30,7 +29,6 @@ export class ModalUpdateInfosComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.idCard === 'idInfo') {
-      console.warn(this.user);
       this.Form = new FormGroup({
         id: new FormControl(this.user.id),
         firstname: new FormControl(this.user.firstname, [Validators.required]),
@@ -46,10 +44,8 @@ export class ModalUpdateInfosComponent implements OnInit {
         this.existingAdress();
       }
      } else if (this.idCard === 'idSecu') {
-      // this.matchingErrorNewPassword = false;
       this.Form = new FormGroup({
         id: new FormControl(null),
-        oldPassword: new FormControl('', [Validators.required]),
         newPassword: new FormControl('', [Validators.required]),
         confirmPassword: new FormControl('', [Validators.required])
       });
@@ -74,9 +70,7 @@ export class ModalUpdateInfosComponent implements OnInit {
   }
 
   addAdress(): void {
-    console.warn('before', this.addresses());
     this.addresses().push(this.newAdress());
-    console.warn('add', this.addresses());
     this.addAdressFormVisible = true;
   }
 
@@ -101,24 +95,21 @@ export class ModalUpdateInfosComponent implements OnInit {
   }
 
   save(form: FormGroup): void {
-    console.warn(form);
     this.submitted = true;
-    if (this.idCard === 'idInfo' && this.user !== undefined) {
+    if (this.idCard === 'idInfo' && this.user !== undefined) { // MODIFIER INFOS
       const user = Object.assign(this.user, {
         firstname: this.Form.controls.firstname.value,
         lastname: this.Form.controls.lastname.value,
         mail: this.Form.controls.mail.value,
         phone: this.Form.controls.phone.value
       });
-      console.warn(user);
     // tslint:disable-next-line: deprecation
       this.usersService.putUser(this.user.id, user).subscribe(
       (data: User | null) => {
         this.user = data;
     });
       this.activeModal.close(this.user);
-  } else if (this.idCard === 'idAdress' && this.addresses().length > 0) {
-    console.warn(this.adresses().value);
+  } else if (this.idCard === 'idAdress' && this.addresses().length > 0) { // MODIFIER ADRESSES
     // tslint:disable-next-line: deprecation
     this.usersService.putAdress(this.user.id, this.addresses().value).subscribe(
     (data: Address | null) => {
@@ -126,20 +117,19 @@ export class ModalUpdateInfosComponent implements OnInit {
     });
     this.activeModal.close(this.adresses);
   } else if (this.idCard === 'idSecu') {   // MODIFIER PASSWORD
-    if (this.Form.value.oldPassword !== '') {
-      console.warn('old', this.Form.value.oldPassword);
-      console.warn('pass', this.user.password);
-      if (this.Form.value.oldPassword !== this.user.password) {
-        this.matchingErrorOldPassword = true;
-        return;
-      }
-    } else if (this.Form.value.newPassword !== this.Form.value.confirmPassword) {
+    if (this.Form.value.newPassword !== this.Form.value.confirmPassword) {
       this.matchingErrorNewPassword = true;
       return;
     }
     const user = Object.assign(this.user, {
       password: this.Form.controls.confirmPassword.value
     });
+    // tslint:disable-next-line: deprecation
+    this.usersService.putUser(this.user.id, user).subscribe(
+      (data: User | null) => {
+        this.user = data;
+    });
+    this.activeModal.close(this.user);
     }
   }
 

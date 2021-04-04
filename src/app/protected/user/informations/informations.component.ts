@@ -31,7 +31,6 @@ export class InformationsComponent implements OnInit {
       this.usersService.getUserState().subscribe(user => {
         this.user = user;
         this.adresses = this.user?.addresses;
-        console.warn('adresses', this.adresses);
       });
     }
   }
@@ -41,7 +40,6 @@ export class InformationsComponent implements OnInit {
   }
 
   openUpdateInfosModal(idCard: string): void {
-    console.warn('idCard', idCard);
     const modalRef = this.modalService.open(ModalUpdateInfosComponent, {
       size: 'lg',
       backdrop: 'static'
@@ -50,10 +48,7 @@ export class InformationsComponent implements OnInit {
     modalRef.componentInstance.adresses = this.adresses;
     modalRef.componentInstance.idCard = idCard;
     modalRef.result.then(
-      (result) => {
-        if (result) {
-          console.warn(result);
-        }
+      () => {
         // Left blank intentionally, nothing to do here
       },
       () => {

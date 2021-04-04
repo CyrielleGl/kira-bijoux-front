@@ -19,7 +19,7 @@
       <hr />
 
       <!-- INFOS -->
-      <div *ngIf="idCard === 'idInfo' && user">
+      <div *ngIf="idCard === 'idInfo' && user" class="my_infos">
         <div class="form-group">
           <label class="form-control-label" for="field_firstname">Prénom</label>
           <input type="text" class="form-control" name="firstname" id="field_firstname"
@@ -83,22 +83,8 @@
       <!-- PASSWORD -->
       <div *ngIf="idCard === 'idSecu'">
         <div class="form-group">
-          <label class="form-control-label" for="field_oldPassword">Ancien mot de passe</label>
-          <input type="text" class="form-control" name="oldPassword" id="field_oldPassword" placeholder="Ancien mot de passe"
-          formControlName="oldPassword"/>
-          <div *ngIf="submitted" class="text-danger">
-            <div *ngIf="Form.controls.oldPassword.errors?.required">
-              Merci d'indiquer votre ancien mot de passe
-            </div>
-            <div *ngIf="matchingErrorOldPassword">
-              Ne correspond pas à votre ancien mot de passe
-            </div>
-          </div>
-        </div>
-
-        <div class="form-group">
           <label>Nouveau mot de passe <span class="text-danger">*</span></label>
-          <input type="text" class="form-control" name="newPassword" id="field_newPassword" placeholder="Nouveau mot de passe"
+          <input type="password" class="form-control" name="newPassword" id="field_newPassword" placeholder="Nouveau mot de passe"
           formControlName="newPassword"/>
           <div *ngIf="submitted && Form.controls.newPassword.errors" class="text-danger">
             <div *ngIf="Form.controls.newPassword.errors?.required">
@@ -108,7 +94,7 @@
         </div>
         <div class="form-group">
           <label class="form-control-label" for="field_confirmPassword">Confirmer le nouveau mot de passe</label>
-          <input type="text" class="form-control" name="confirmPassword" id="field_confirmPassword" placeholder="Confirmer nouveau mot de passe"
+          <input type="password" class="form-control" name="confirmPassword" id="field_confirmPassword" placeholder="Confirmer nouveau mot de passe"
           formControlName="confirmPassword"/>
           <div *ngIf="submitted && Form.controls.confirmPassword.errors" class="text-danger">
             <div *ngIf="Form.controls.confirmPassword.errors?.required">
