@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from 'src/app/shared/models/user.model';
+import { ShopService } from 'src/app/shared/services/api/shop/shop.service';
 import { UsersService } from 'src/app/shared/services/api/users/users.service';
 import { SecuService } from 'src/app/shared/services/secu/secu.service';
 
@@ -14,7 +15,8 @@ export class UserComponent implements OnInit {
 
   constructor(
     private cookieService: SecuService,
-    private usersService: UsersService
+    private usersService: UsersService,
+    private shopService: ShopService
     ) { }
 
   ngOnInit(): void {

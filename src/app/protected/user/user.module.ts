@@ -6,8 +6,8 @@ import { InformationsComponent } from './informations/informations.component';
 import { CommandesComponent } from './commandes/commandes.component';
 import { FavorisComponent } from './favoris/favoris.component';
 import { UserComponent } from './user.component';
-import { InformationsModule } from './informations/informations.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ModalUpdateInfosComponent } from './informations/modal-update-infos/modal-update-infos.component';
 
 @NgModule({
   declarations: [
@@ -15,12 +15,12 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     CommandesComponent,
     FavorisComponent,
     UserComponent,
+    ModalUpdateInfosComponent,
   ],
 
   imports: [
     SharedModule,
     UserRoutingModule,
-    InformationsModule,
     FormsModule,
     ReactiveFormsModule,
   ],
