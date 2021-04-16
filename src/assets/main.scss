@@ -204,6 +204,10 @@ h6 {
   border-top-right-radius: calc(0.3rem - 1px);
 }
 
+.card-columns {
+  column-count: 2 !important;
+}
+
 /*------------------------*/
 /*---- Media Queries ----*/
 /*----------------------*/
@@ -233,9 +237,6 @@ h6 {
     .nav-tabs .nav-item {
       border-top: #fff 1px solid;
     }
-    .col-sm-6 {
-      max-height: 15rem !important;
-    }
   }
   
   /* tablet landscape & desktop screens */
@@ -246,9 +247,6 @@ h6 {
       padding-left: 4rem;
       padding-bottom: 4rem;
     }
-    .col-sm-6 {
-      max-height: 15rem !important;
-    }
   }
   
   /* large screens */
@@ -258,9 +256,6 @@ h6 {
       max-width: 62rem;
       padding-right: 5rem;
       padding-left: 5rem;
-    }
-    .col-sm-6 {
-      max-height: 15rem !important;
     }
   }
   
