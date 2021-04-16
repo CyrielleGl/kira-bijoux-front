@@ -24,6 +24,8 @@ export class ModalUpdateInfosComponent implements OnInit {
   closeResult = '';
   updateOk = false;
   deleteOk = false;
+  addOk = false;
+  adressArrayToRefresh = document.getElementById('adressesArray');
 
   constructor(
     public activeModal: NgbActiveModal,
@@ -63,11 +65,11 @@ export class ModalUpdateInfosComponent implements OnInit {
   newAdress(): FormGroup {
     return new FormGroup({
       id: new FormControl(null),
-      adressName: new FormControl('', [Validators.required]),
+      name: new FormControl('', [Validators.required]),
       recipient: new FormControl('', [Validators.required]),
-      firstLine: new FormControl('', [Validators.required]),
-      secondLine: new FormControl('', [Validators.required]),
-      postCode: new FormControl('', [Validators.required]),
+      first_line: new FormControl('', [Validators.required]),
+      second_line: new FormControl('', [Validators.required]),
+      post_code: new FormControl('', [Validators.required]),
       town: new FormControl('', [Validators.required]),
       country: new FormControl('', [Validators.required])
     });
@@ -76,6 +78,10 @@ export class ModalUpdateInfosComponent implements OnInit {
   addAdress(): void {
     this.addresses().push(this.newAdress());
     this.addAdressFormVisible = true;
+  }
+
+  removeAdress(adressIndex: number): void {
+    this.addresses().removeAt(adressIndex);
   }
 
   saveAdress(adress: any): void {
@@ -88,11 +94,21 @@ export class ModalUpdateInfosComponent implements OnInit {
       town: adress.value.town,
       country: adress.value.country,
     });
-    this.usersService.putAdress(this.user.id, adress.value.id, adressForm).subscribe((data) => {
-      if (data) {
-        this.updateOk = true;
-      }
-    });
+    if (adress.value.id) {
+      this.usersService.putAdress(this.user.id, adress.value.id, adressForm).subscribe((data) => {
+        if (data) {
+          this.updateOk = true;
+        }
+      });
+    } else {
+      this.usersService.postAdress(this.user.id, adressForm).subscribe((data) => {
+        if (data) {
+          this.addOk = true;
+          this.ngOnInit();
+        }
+      })
+    }
+
   }
 
   deleteAdress(adress: any, content: any, adressIndex: any): void {

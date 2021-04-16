@@ -81,6 +81,10 @@ export class UsersService {
     return this.http.put<any>(`${ApiService.ApiUrlUsers}/address/` + idUser + `/` + idAdress, formData);
   }
 
+  postAdress(idUser: number, formData: any): Observable<any> {
+    return this.http.post<any>(`${ApiService.ApiUrlUsers}/address/` + idUser, formData);
+  }
+
   deleteAdress(id: number): Observable<string[]> {
     return this.http.delete<string[]>(`${ApiService.ApiUrlUsers}/address/` + id);
   }

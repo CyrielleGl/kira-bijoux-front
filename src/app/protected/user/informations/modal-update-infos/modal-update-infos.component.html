@@ -44,11 +44,14 @@
 
       <!-- ADRESSES -->
 
-      <div formArrayName="addresses" style="border-radius: 10%;" *ngIf="idCard === 'idAdress'">
+      <div formArrayName="addresses" style="border-radius: 10%;" *ngIf="idCard === 'idAdress'" id="adressesArray">
         <div *ngFor="let adress of addresses().controls; let adressIndex=index" [formGroup]="Form.get('addresses').controls[adressIndex]" style="border: 0.5rem solid var(--primary); border-radius: 10%; color: var(--primary); padding: 2rem; margin-bottom: 1rem;">
           <div id="alert-modal-adresse" class="modal-adresse">
             <h4 class="modal-title" style="color: var(--primary); margin-left: auto; margin-right: auto" id="edit-heading">
               Adresse {{ adressIndex+1 }} : {{ adress?.value.name }}</h4>
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true" style="color: var(--primary); margin-top: -0.3rem;" placement="bottom" ngbTooltip="Supprimer l'adresse" *ngIf="!adress.value.id"
+              (click)="removeAdress(adressIndex)">x
+              </button>
           </div>
           <div class="form-group">
             <label class="form-control-label" for="field_name">Nom de l'adresse</label>
@@ -79,7 +82,7 @@
             <input class="form-control" type="text" formControlName="country"/>
           </div>
           <p *ngIf="idCard === 'idAdress'" style="text-align: center;">
-            <button type="button" class="btn btn-fourth col-3" (click)="deleteAdress(adress, content, adressIndex)" style="margin-right: 1rem;">
+            <button type="button" class="btn btn-fourth col-3" (click)="deleteAdress(adress, content, adressIndex)" style="margin-right: 1rem;" *ngIf="adress.value.id">
               <i class="fa fa-trash-alt"></i> Supprimer</button>
             <button type="button" class="btn btn-primary-ligth col-3" (click)="saveAdress(adress)">
               <i class="fa fa-save"></i> Sauvegarder</button>
@@ -87,9 +90,21 @@
         </div>
         <div class="alert alert-success" role="alert" *ngIf="updateOk">
           Adresse mise à jour !
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="alert alert-success" role="alert" *ngIf="addOk">
+          Adresse ajoutée !
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
         </div>
         <div class="alert alert-success" role="alert" *ngIf="deleteOk">
           Adresse supprimée !
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
         </div>
       </div>
 
@@ -123,7 +138,7 @@
 
       <br/>
 
-      <p *ngIf="idCard === 'idAdress'">
+      <p *ngIf="idCard === 'idAdress'" style="text-align: center;">
         <button type="button" class="btn btn-primary-ligth" (click)="addAdress()">Add Adress</button>
       </p>
 
