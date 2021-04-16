@@ -43,7 +43,6 @@
       </div>
 
       <!-- ADRESSES -->
-
       <div formArrayName="addresses" style="border-radius: 10%;" *ngIf="idCard === 'idAdress'" id="adressesArray">
         <div *ngFor="let adress of addresses().controls; let adressIndex=index" [formGroup]="Form.get('addresses').controls[adressIndex]" style="border: 0.5rem solid var(--primary); border-radius: 10%; color: var(--primary); padding: 2rem; margin-bottom: 1rem;">
           <div id="alert-modal-adresse" class="modal-adresse">
@@ -153,7 +152,6 @@
       </div>
 
     </form>
-
 </div>
 
 <!-- Confirm delete adress modal -->
@@ -172,5 +170,3 @@
     <button type="button" class="btn btn-fourth col-3" (click)="modal.close('validate')"><i class="fa fa-trash-alt"></i> Supprimer</button>
   </div>
 </ng-template>
-
-

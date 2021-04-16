@@ -5,6 +5,7 @@ import { IAddress, IUser, User, Address } from 'src/app/shared/models/user.model
 import { UsersService } from 'src/app/shared/services/api/users/users.service';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 
+
 @Component({
   selector: 'app-modal-update-infos',
   templateUrl: './modal-update-infos.component.html',
@@ -25,7 +26,6 @@ export class ModalUpdateInfosComponent implements OnInit {
   updateOk = false;
   deleteOk = false;
   addOk = false;
-  adressArrayToRefresh = document.getElementById('adressesArray');
 
   constructor(
     public activeModal: NgbActiveModal,
@@ -108,7 +108,6 @@ export class ModalUpdateInfosComponent implements OnInit {
         }
       })
     }
-
   }
 
   deleteAdress(adress: any, content: any, adressIndex: any): void {
@@ -166,7 +165,7 @@ export class ModalUpdateInfosComponent implements OnInit {
         (data: User | null) => {
           this.user = data;
       });
-      this.activeModal.close(this.user);
+      this.activeModal.close();
     }
   }
 
