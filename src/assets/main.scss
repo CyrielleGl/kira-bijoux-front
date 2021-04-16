@@ -223,6 +223,12 @@ h6 {
     .nav-tabs .nav-item {
       border-top: #fff 1px solid;
     }
+    .card-columns {
+      column-count: 1 !important;
+    }
+    li {
+      display: block !important;
+    }
   }
   
   /* tablet screens */
@@ -235,6 +241,9 @@ h6 {
     }
     .nav-tabs .nav-item {
       border-top: #fff 1px solid;
+    }
+    .card-columns {
+      column-count: 1 !important;
     }
   }
   
