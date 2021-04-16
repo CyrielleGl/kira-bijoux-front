@@ -22,6 +22,8 @@ export class ModalUpdateInfosComponent implements OnInit {
   addAdressFormVisible = false;
   submitted = false;
   closeResult = '';
+  updateOk = false;
+  deleteOk = false;
 
   constructor(
     public activeModal: NgbActiveModal,
@@ -86,15 +88,21 @@ export class ModalUpdateInfosComponent implements OnInit {
       town: adress.value.town,
       country: adress.value.country,
     });
-    this.usersService.putAdress(adress.value.id, adressForm);
+    this.usersService.putAdress(this.user.id, adress.value.id, adressForm).subscribe((data) => {
+      if (data) {
+        this.updateOk = true;
+      }
+    });
   }
 
-  deleteAdress(adress: any, content: any): void {
+  deleteAdress(adress: any, content: any, adressIndex: any): void {
     this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then(
       (result) => {
-        console.warn(result);
         if (result) {
-          // this.usersService.deleteAdress(adress.value.id).subscribe();
+          this.usersService.deleteAdress(adress.value.id).subscribe(() => {
+            this.deleteOk = true;
+            this.addresses().removeAt(adressIndex);
+          });
         }
       }, 
       () => {});
