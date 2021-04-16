@@ -1,9 +1,9 @@
-import { HttpResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { IAddress, IUser, User, Address } from 'src/app/shared/models/user.model';
 import { UsersService } from 'src/app/shared/services/api/users/users.service';
+import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-modal-update-infos',
@@ -21,10 +21,12 @@ export class ModalUpdateInfosComponent implements OnInit {
   matchingErrorNewPassword = false;
   addAdressFormVisible = false;
   submitted = false;
+  closeResult = '';
 
   constructor(
     public activeModal: NgbActiveModal,
     private usersService: UsersService,
+    private modalService: NgbModal
   ) {}
 
   ngOnInit(): void {
@@ -87,8 +89,15 @@ export class ModalUpdateInfosComponent implements OnInit {
     this.usersService.putAdress(adress.value.id, adressForm);
   }
 
-  deleteAdress(adress: any): void {
-      this.usersService.deleteAdress(adress.value.id).subscribe();
+  deleteAdress(adress: any, content: any): void {
+    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then(
+      (result) => {
+        console.warn(result);
+        if (result) {
+          // this.usersService.deleteAdress(adress.value.id).subscribe();
+        }
+      }, 
+      () => {});
   }
 
   existingAdress(): void {
