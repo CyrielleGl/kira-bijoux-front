@@ -5,8 +5,8 @@
     </div>
 
     <div class="body-tab">
-        <div class="row">
-            <div class="col-sm-6">
+        <div class="card-columns">
+
                 <div class="card">
                     <i class="fas fa-pencil-alt update-card" (click)="openUpdateInfosModal(idInfo)" placement="bottom" ngbTooltip="Modifier mes informations"></i>
                     <div class="card-body">
@@ -23,8 +23,17 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-sm-6">
+
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title" style="padding-top: 1.8rem;">Sécurité et options</h5>
+                        <div class="inline-block" style="text-align: right;" (click)="openUpdateInfosModal(idSecu)" placement="bottom" ngbTooltip="Modifier mon mot de passe">
+                            <i class="fas fa-pencil-alt update-card" style="padding: 0rem; margin: 0rem;"></i>&nbsp;
+                            <p class="card-password">Modifier mon mot de passe</p>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="card">
                     <i class="fas fa-pencil-alt update-card" (click)="openUpdateInfosModal(idAdress)" placement="bottom" ngbTooltip="Modifier mes adresses"></i>
                     <div class="card-body" *ngIf="adresses?.length > 0">
@@ -47,18 +56,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-sm-6">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title" style="padding-top: 1.8rem;">Sécurité et options</h5>
-                        <div class="inline-block" style="text-align: right;" (click)="openUpdateInfosModal(idSecu)" placement="bottom" ngbTooltip="Modifier mon mot de passe">
-                            <i class="fas fa-pencil-alt update-card" style="padding: 0rem; margin: 0rem;"></i>&nbsp;
-                            <p class="card-password">Modifier mon mot de passe</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+          
         </div>
     </div>
 

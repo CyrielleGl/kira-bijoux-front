@@ -49,7 +49,7 @@ export class InformationsComponent implements OnInit {
     modalRef.componentInstance.idCard = idCard;
     modalRef.result.then(
       () => {
-        // Left blank intentionally, nothing to do here
+        window.location.reload();
       },
       () => {
         // Left blank intentionally, nothing to do here
