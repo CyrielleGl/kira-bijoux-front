@@ -8,7 +8,7 @@
 
     <!-- UPDATE FORM -->
 
-    <form [formGroup]="Form" novalidate (ngSubmit)="save(Form.value)">
+    <form [formGroup]="Form" novalidate (ngSubmit)="save()">
 
       <h4 *ngIf="idCard === 'idInfo'" class="modal-title" style="color: var(--primary)" id="edit-heading">
           Modifier mes informations</h4>
@@ -47,36 +47,42 @@
       <div formArrayName="addresses" style="border-radius: 10%;" *ngIf="idCard === 'idAdress'">
         <div *ngFor="let adress of addresses().controls; let adressIndex=index" [formGroup]="Form.get('addresses').controls[adressIndex]" style="border: 0.5rem solid var(--primary); border-radius: 10%; color: var(--primary); padding: 2rem; margin-bottom: 1rem;">
           <div id="alert-modal-adresse" class="modal-adresse">
-            <h4 class="modal-title" style="color: var(--primary)" id="edit-heading">
-              Adresse {{ adressIndex+1 }}</h4>
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true" style="color: var(--primary); margin-top: -0.3rem;" placement="bottom" ngbTooltip="Supprimer l'adresse"
+            <h4 class="modal-title" style="color: var(--primary); margin-left: auto; margin-right: auto" id="edit-heading">
+              Adresse {{ adressIndex+1 }} : {{ adress?.value.name }}</h4>
+<!--             <button type="button" class="close" data-dismiss="modal" aria-hidden="true" style="color: var(--primary); margin-top: -0.3rem;" placement="bottom" ngbTooltip="Supprimer l'adresse"
             (click)="removeAdress(adressIndex)">x
-            </button>
+            </button> -->
           </div>
           <div class="form-group">
-            <label class="form-control-label" for="field_adressName">Nom de l'adresse</label>
-            <input class="form-control" type="text" formControlName="adressName"/>
+            <label class="form-control-label" for="field_name">Nom de l'adresse</label>
+            <input class="form-control" type="text" formControlName="name"/>
           </div>
           <div class="form-group">
             <label class="form-control-label" for="field_recipient">Destinataire</label>
             <input class="form-control" type="text" formControlName="recipient"/>
           </div>
           <div class="form-group">
-            <label class="form-control-label" for="field_firstLine">N° et voie</label>
-            <input class="form-control" type="text" formControlName="firstLine"/>
+            <label class="form-control-label" for="field_first_line">N° et voie</label>
+            <input class="form-control" type="text" formControlName="first_line"/>
           </div>
           <div class="form-group">
-            <label class="form-control-label" for="field_secondLine">Complément d'adresse</label>
-            <input class="form-control" type="text" formControlName="secondLine"/>
+            <label class="form-control-label" for="field_second_line">Complément d'adresse</label>
+            <input class="form-control" type="text" formControlName="second_line"/>
           </div>
           <div class="form-group">
-            <label class="form-control-label" for="field_postCode">Code postal</label>
-            <input class="form-control" type="text" formControlName="postCode"/>
+            <label class="form-control-label" for="field_post_code">Code postal</label>
+            <input class="form-control" type="text" formControlName="post_code"/>
           </div>
           <div class="form-group">
             <label class="form-control-label" for="field_town">Ville</label>
             <input class="form-control" type="text" formControlName="town"/>
           </div>
+          <p *ngIf="idCard === 'idAdress'" style="text-align: center;">
+            <button type="button" class="btn btn-fourth col-3" (click)="deleteAdress(adress)" style="margin-right: 1rem;">
+              <i class="fa fa-trash-alt"></i> Supprimer</button>
+            <button type="button" class="btn btn-primary-ligth col-3" (click)="saveAdress(adress)">
+              <i class="fa fa-save"></i> Sauvegarder</button>
+          </p>
         </div>
       </div>
 
@@ -118,7 +124,7 @@
         <button id="close" type="close" class="btn btn-fourth col-3" data-dismiss="modal" (click)="cancel()">
           <i class="fa fa-ban"></i><span> Fermer</span>
         </button>
-        <button id="save" type="submit" class="btn btn-primary col-3" data-dismiss="modal">
+        <button id="save" type="submit" class="btn btn-primary col-3" data-dismiss="modal" *ngIf="idCard !== 'idAdress'">
             <i class="fa fa-save"></i><span> Valider</span>
         </button>
       </div>

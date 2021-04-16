@@ -77,8 +77,12 @@ export class UsersService {
     return this.http.put<User>(`${ApiService.ApiUrlUsers}/` + id, formData);
   }
 
-  putAdress(id: number, formData: FormArray): Observable<Address> {
-    return this.http.put<Address>(`${ApiService.ApiUrlUsers}/address` + id, formData);
+  putAdress(id: number, formData: Address): Observable<Address> {
+    return this.http.put<Address>(`${ApiService.ApiUrlUsers}/address/` + id, formData);
+  }
+
+  deleteAdress(id: number): Observable<string[]> {
+    return this.http.delete<string[]>(`${ApiService.ApiUrlUsers}/address/` + id);
   }
 
   deleteUser(id: number): Observable<string[]> {

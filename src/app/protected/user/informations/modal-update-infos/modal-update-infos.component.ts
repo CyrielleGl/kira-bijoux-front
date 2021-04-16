@@ -4,7 +4,6 @@ import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@ang
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { IAddress, IUser, User, Address } from 'src/app/shared/models/user.model';
 import { UsersService } from 'src/app/shared/services/api/users/users.service';
-import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-modal-update-infos',
@@ -16,6 +15,7 @@ export class ModalUpdateInfosComponent implements OnInit {
   user: IUser | any;
   newUser: IUser | any;
   adresses: IAddress[] | any = null;
+  adress = {};
   idCard: string | any;
   Form: FormGroup | any;
   matchingErrorNewPassword = false;
@@ -74,19 +74,32 @@ export class ModalUpdateInfosComponent implements OnInit {
     this.addAdressFormVisible = true;
   }
 
-  removeAdress(adressIndex: number): void {
-    this.addresses().removeAt(adressIndex);
+  saveAdress(adress: any): void {
+    const adressForm = Object.assign(this.adress, {
+      name: adress.value.name,
+      recipient: adress.value.recipient,
+      first_line: adress.value.first_line,
+      second_line: adress.value.second_line,
+      post_code: adress.value.post_code,
+      town: adress.value.town,
+      country: adress.value.country,
+    });
+    this.usersService.putAdress(adress.value.id, adressForm);
+  }
+
+  deleteAdress(adress: any): void {
+      this.usersService.deleteAdress(adress.value.id).subscribe();
   }
 
   existingAdress(): void {
     this.adresses.forEach((adress: any) => {
       const group = new FormGroup({
-        id: new FormControl(null),
-        adressName: new FormControl(adress.name, [Validators.required]),
+        id: new FormControl(adress.id),
+        name: new FormControl(adress.name, [Validators.required]),
         recipient: new FormControl(adress.recipient, [Validators.required]),
-        firstLine: new FormControl(adress.first_line, [Validators.required]),
-        secondLine: new FormControl(adress.second_line, [Validators.required]),
-        postCode: new FormControl(adress.post_code, [Validators.required]),
+        first_line: new FormControl(adress.first_line, [Validators.required]),
+        second_line: new FormControl(adress.second_line, [Validators.required]),
+        post_code: new FormControl(adress.post_code, [Validators.required]),
         town: new FormControl(adress.town, [Validators.required]),
         country: new FormControl(adress.country, [Validators.required])
       });
@@ -94,7 +107,7 @@ export class ModalUpdateInfosComponent implements OnInit {
     });
   }
 
-  save(form: FormGroup): void {
+  save(): void {
     this.submitted = true;
     if (this.idCard === 'idInfo' && this.user !== undefined) { // MODIFIER INFOS
       const user = Object.assign(this.user, {
@@ -103,33 +116,24 @@ export class ModalUpdateInfosComponent implements OnInit {
         mail: this.Form.controls.mail.value,
         phone: this.Form.controls.phone.value
       });
-    // tslint:disable-next-line: deprecation
       this.usersService.putUser(this.user.id, user).subscribe(
       (data: User | null) => {
         this.user = data;
-    });
+      });
+        this.activeModal.close(this.user);
+    } else if (this.idCard === 'idSecu') {   // MODIFIER PASSWORD
+      if (this.Form.value.newPassword !== this.Form.value.confirmPassword) {
+        this.matchingErrorNewPassword = true;
+        return;
+      }
+      const user = Object.assign(this.user, {
+        password: this.Form.controls.confirmPassword.value
+      });
+      this.usersService.putUser(this.user.id, user).subscribe(
+        (data: User | null) => {
+          this.user = data;
+      });
       this.activeModal.close(this.user);
-  } else if (this.idCard === 'idAdress' && this.addresses().length > 0) { // MODIFIER ADRESSES
-    // tslint:disable-next-line: deprecation
-    this.usersService.putAdress(this.user.id, this.addresses().value).subscribe(
-    (data: Address | null) => {
-      this.adresses = data;
-    });
-    this.activeModal.close(this.adresses);
-  } else if (this.idCard === 'idSecu') {   // MODIFIER PASSWORD
-    if (this.Form.value.newPassword !== this.Form.value.confirmPassword) {
-      this.matchingErrorNewPassword = true;
-      return;
-    }
-    const user = Object.assign(this.user, {
-      password: this.Form.controls.confirmPassword.value
-    });
-    // tslint:disable-next-line: deprecation
-    this.usersService.putUser(this.user.id, user).subscribe(
-      (data: User | null) => {
-        this.user = data;
-    });
-    this.activeModal.close(this.user);
     }
   }
 
