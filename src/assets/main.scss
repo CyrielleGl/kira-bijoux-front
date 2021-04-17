@@ -208,10 +208,18 @@ h6 {
   column-count: 2 !important;
 }
 
+/*----------------------------*/
+/*----- NG2-SMART-TABLE -----*/
+/*--------------------------*/
+
 .class-btn-details {
   color: var(--primary);
   font-weight: bold;
   cursor: pointer;
+}
+
+a.ng2-smart-sort-link {
+  color: var(--primary) !important;
 }
 
 /*------------------------*/

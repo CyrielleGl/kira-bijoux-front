@@ -2,10 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { faEye } from '@fortawesome/free-regular-svg-icons';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ButtonViewComponent } from 'src/app/shared/components/button-view/button-view.component';
+import { Order } from 'src/app/shared/models/order.model';
 import { User } from 'src/app/shared/models/user.model';
 import { UsersService } from 'src/app/shared/services/api/users/users.service';
 import { SecuService } from 'src/app/shared/services/secu/secu.service';
 import { OrderCardDialogComponent } from './order-card-dialog/order-card-dialog.component';
+import { formatDateToWeb } from 'src/app/shared/services/utils/utils.service';
 
 @Component({
   selector: 'app-commandes',
@@ -16,18 +18,11 @@ export class CommandesComponent implements OnInit {
 
   settings: any;
 
-  source = [
-    {
-      commande: '270400',
-      date: '17/04/2021',
-      dateEnvoi: '19/04/2021',
-      statut: 'En transit',
-      reception: '',
-    },
-  ];
+  source: any;
 
   user: User | null = null;
   shoppingCart: string[] | null = null;
+  orders: Order[] | any = null;
 
   constructor(
     private cookieService: SecuService,
@@ -41,6 +36,7 @@ export class CommandesComponent implements OnInit {
       // tslint:disable-next-line: deprecation
       this.usersService.getUserState().subscribe(user => {
         this.user = user;
+        this.initDataSource(this.user);
       });
       this.initTableSettings();
     }
@@ -82,8 +78,8 @@ export class CommandesComponent implements OnInit {
           filter: false,
           sort: true
         },
-        reception: {
-          title: 'Reçu le',
+        prix: {
+          title: 'Prix',
           filter: false,
           sort: true
         },
@@ -104,11 +100,33 @@ export class CommandesComponent implements OnInit {
           onComponentInitFunction: (instance: any) => {
             instance.view.subscribe((row: any) => {
               this.openOrderCardDialog(row);
-            })
+            });
           }
         }
       }
     };
+  }
+
+  initDataSource(user: any): void {
+    // tslint:disable-next-line: deprecation
+    this.usersService.getOrders(user.id).subscribe((data: any) => {
+      this.orders = data;
+      console.warn(this.orders);
+      if (this.orders.length > 0) {
+        this.orders.forEach((order: Order) => {
+          this.source = [
+            {
+              commande: order.id,
+              date: formatDateToWeb(order.inserted_at, 'dd/MM/yyyy'),
+              dateEnvoi: formatDateToWeb(order.send_at, 'dd/MM/yyyy'),
+              statut: order.status?.name,
+              prix: order.price + ' €'
+            },
+          ];
+        });
+        console.warn('source', this.source);
+      }
+    });
   }
 
   openOrderCardDialog(row: any): void {

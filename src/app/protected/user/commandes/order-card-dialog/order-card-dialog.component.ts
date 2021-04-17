@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-order-card-dialog',
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class OrderCardDialogComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    public activeModal: NgbActiveModal
+  ) { }
 
   ngOnInit(): void {
+  }
+
+  cancel(): void {
+    this.activeModal.close();
   }
 
 }

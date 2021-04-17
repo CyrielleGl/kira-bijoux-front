@@ -1,1 +1,17 @@
-<p>order-card-dialog works!</p>
+<div id="alert-modal-header" class="modal-header">
+    <h4 class="modal-title" style="color: var(--primary)" id="edit-heading">
+        Détail de la commande</h4>
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+    (click)="cancel()">x
+    </button>
+</div>
+
+<div class="modal-body">
+
+</div>
+
+<div class="modal-footer" id="modal-footer">
+    <button id="close" type="close" class="btn btn-fourth col-3" data-dismiss="modal" (click)="cancel()">
+      <i class="fa fa-ban"></i><span> Fermer</span>
+    </button>
+  </div>

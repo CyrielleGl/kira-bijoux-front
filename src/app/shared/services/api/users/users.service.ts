@@ -6,7 +6,6 @@ import { shareReplay, tap, catchError } from 'rxjs/operators';
 import { User, Address } from 'src/app/shared/models/user.model';
 import { CookieService } from 'ngx-cookie-service';
 import { Router } from '@angular/router';
-import { FormGroup, FormArray } from '@angular/forms';
 
 @Injectable({
   providedIn: 'root',
@@ -65,6 +64,8 @@ export class UsersService {
     return this.http.get<string[]>(`${ApiService.ApiUrlUsers}`);
   }
 
+  // USER //
+
   getUser(id: number): Observable<User> {
     return this.http.get<User>(`${ApiService.ApiUrlUsers}/` + id);
   }
@@ -77,19 +78,28 @@ export class UsersService {
     return this.http.put<User>(`${ApiService.ApiUrlUsers}/` + id, formData);
   }
 
-  putAdress(idUser: number, idAdress: number, formData: any): Observable<any> {
-    return this.http.put<any>(`${ApiService.ApiUrlUsers}/address/` + idUser + `/` + idAdress, formData);
+  deleteUser(id: number): Observable<string[]> {
+    return this.http.delete<string[]>(`${ApiService.ApiUrlUsers}/` + id);
   }
+
+  // ADRESSES //
 
   postAdress(idUser: number, formData: any): Observable<any> {
     return this.http.post<any>(`${ApiService.ApiUrlUsers}/address/` + idUser, formData);
+  }
+
+  putAdress(idUser: number, idAdress: number, formData: any): Observable<any> {
+    return this.http.put<any>(`${ApiService.ApiUrlUsers}/address/` + idUser + `/` + idAdress, formData);
   }
 
   deleteAdress(id: number): Observable<string[]> {
     return this.http.delete<string[]>(`${ApiService.ApiUrlUsers}/address/` + id);
   }
 
-  deleteUser(id: number): Observable<string[]> {
-    return this.http.delete<string[]>(`${ApiService.ApiUrlUsers}/` + id);
+  // COMMANDES //
+
+  getOrders(idUser: number): Observable<any> {
+    return this.http.get<any>(`${ApiService.ApiUrlOrders}/user/` + idUser);
   }
+
 }
