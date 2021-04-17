@@ -5,7 +5,7 @@ export interface IOrder {
     id?: any;
     status?: IOrderStatus;
     user_address?: IAddress[];
-    paiement_type_id?: bigint;
+    paiement_type?: IPaymentTypes;
     price?: number;
     inserted_at?: Date;
     updated_at?: Date;
@@ -18,7 +18,7 @@ export class Order implements IOrder {
         public id?: any,
         public status?: IOrderStatus,
         public user_address?: IAddress[],
-        public paiement_type_id?: bigint,
+        public paiement_type?: IPaymentTypes,
         public price?: number,
         public inserted_at?: Date,
         public updated_at?: Date,
@@ -58,6 +58,22 @@ export class OrderItems implements IOrderItems {
         public order?: IOrder,
         public item?: IItems,
         public quantity?: number,
+        public inserted_at?: Date,
+        public updated_at?: Date
+    ) {}
+}
+
+export interface IPaymentTypes {
+    id?: any;
+    name?: string;
+    inserted_at?: Date;
+    updated_at?: Date;
+}
+
+export class PaymentTypes implements IPaymentTypes {
+    constructor(
+        public id?: any,
+        public name?: string,
         public inserted_at?: Date,
         public updated_at?: Date
     ) {}
