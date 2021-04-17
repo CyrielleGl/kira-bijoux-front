@@ -102,4 +102,8 @@ export class UsersService {
     return this.http.get<any>(`${ApiService.ApiUrlOrders}/user/` + idUser);
   }
 
+  getOrderItems(idOrder: number): Observable<any> {
+    return this.http.get<any>(`${ApiService.ApiUrlOrderItems}/` + idOrder);
+  }
+
 }
