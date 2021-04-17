@@ -1,3 +1,4 @@
+import { IItems } from './item.model';
 import { IAddress } from './user.model';
 
 export interface IOrder {
@@ -44,8 +45,8 @@ export class OrderStatus implements IOrderStatus {
 
 export interface IOrderItems {
     id?: any;
-    order_id?: bigint;
-    item_id?: bigint;
+    order?: IOrder;
+    item?: IItems;
     quantity?: number;
     inserted_at?: Date;
     updated_at?: Date;
@@ -54,8 +55,8 @@ export interface IOrderItems {
 export class OrderItems implements IOrderItems {
     constructor(
         public id?: any,
-        public order_id?: bigint,
-        public item_id?: bigint,
+        public order?: IOrder,
+        public item?: IItems,
         public quantity?: number,
         public inserted_at?: Date,
         public updated_at?: Date
