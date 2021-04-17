@@ -106,7 +106,7 @@ export class ModalUpdateInfosComponent implements OnInit {
           this.addOk = true;
           this.ngOnInit();
         }
-      })
+      });
     }
   }
 
@@ -119,7 +119,7 @@ export class ModalUpdateInfosComponent implements OnInit {
             this.addresses().removeAt(adressIndex);
           });
         }
-      }, 
+      },
       () => {});
   }
 
@@ -152,7 +152,7 @@ export class ModalUpdateInfosComponent implements OnInit {
       (data: User | null) => {
         this.user = data;
       });
-        this.activeModal.close(this.user);
+      this.activeModal.close(this.user);
     } else if (this.idCard === 'idSecu') {   // MODIFIER PASSWORD
       if (this.Form.value.newPassword !== this.Form.value.confirmPassword) {
         this.matchingErrorNewPassword = true;
