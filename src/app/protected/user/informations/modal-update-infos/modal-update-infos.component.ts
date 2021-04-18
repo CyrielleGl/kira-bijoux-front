@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { IAddress, IUser, User, Address } from 'src/app/shared/models/user.model';
+import { IUser, User } from 'src/app/shared/models/user.model';
 import { UsersService } from 'src/app/shared/services/api/users/users.service';
-import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { AddressService } from 'src/app/shared/services/api/address/address.service';
+import { IAddress } from 'src/app/shared/models/address.model';
+import { addConsoleHandler } from 'selenium-webdriver/lib/logging';
 
 
 @Component({
@@ -30,6 +33,7 @@ export class ModalUpdateInfosComponent implements OnInit {
   constructor(
     public activeModal: NgbActiveModal,
     private usersService: UsersService,
+    private addressService: AddressService,
     private modalService: NgbModal
   ) {}
 
@@ -43,6 +47,9 @@ export class ModalUpdateInfosComponent implements OnInit {
         phone: new FormControl(this.user.phone, [Validators.required, Validators.pattern('[- +()0-9]+')])
       });
     } else if (this.idCard === 'idAdress') {
+      this.usersService.getUserState().subscribe(user => {
+        this.adresses = user?.addresses;
+      });
       this.Form = new FormGroup({
         addresses: new FormArray([])
       });
@@ -95,16 +102,29 @@ export class ModalUpdateInfosComponent implements OnInit {
       country: adress.value.country,
     });
     if (adress.value.id) {
-      this.usersService.putAdress(this.user.id, adress.value.id, adressForm).subscribe((data) => {
+      // tslint:disable-next-line: deprecation
+      this.addressService.putAdress(this.user.id, adress.value.id, adressForm).subscribe(
+        (data) => {
         if (data) {
           this.updateOk = true;
         }
       });
     } else {
-      this.usersService.postAdress(this.user.id, adressForm).subscribe((data) => {
+      // tslint:disable-next-line: deprecation
+      this.addressService.postAdress(this.user.id, adressForm).subscribe((data) => {
         if (data) {
           this.addOk = true;
-          this.ngOnInit();
+          window.location.reload();
+/*           this.addresses().clear();
+          this.usersService.getUserState().subscribe(user => {
+            this.adresses = user?.addresses;
+            this.Form = new FormGroup({
+              addresses: new FormArray([])
+            });
+            if (this.adresses.length > 0) {
+              this.existingAdress();
+            }
+          }); */
         }
       });
     }
@@ -114,7 +134,7 @@ export class ModalUpdateInfosComponent implements OnInit {
     this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then(
       (result) => {
         if (result) {
-          this.usersService.deleteAdress(adress.value.id).subscribe(() => {
+          this.addressService.deleteAdress(adress.value.id).subscribe(() => {
             this.deleteOk = true;
             this.addresses().removeAt(adressIndex);
           });
@@ -167,6 +187,10 @@ export class ModalUpdateInfosComponent implements OnInit {
       });
       this.activeModal.close();
     }
+  }
+
+  clearAlertAdd(): void {
+    this.addOk = false;
   }
 
   cancel(): void {

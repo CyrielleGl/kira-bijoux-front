@@ -12,14 +12,12 @@ export class OrdersService {
     private http: HttpClient
   ) { }
 
-    // COMMANDES //
+  getOrders(idUser: number): Observable<any> {
+    return this.http.get<any>(`${ApiService.ApiUrlOrders}/user/` + idUser);
+  }
 
-    getOrders(idUser: number): Observable<any> {
-      return this.http.get<any>(`${ApiService.ApiUrlOrders}/user/` + idUser);
-    }
-
-    getOrderItems(idOrder: number): Observable<any> {
-      return this.http.get<any>(`${ApiService.ApiUrlOrderItems}/` + idOrder);
-    }
+  getOrderItems(idOrder: number): Observable<any> {
+    return this.http.get<any>(`${ApiService.ApiUrlOrderItems}/` + idOrder);
+  }
 
 }

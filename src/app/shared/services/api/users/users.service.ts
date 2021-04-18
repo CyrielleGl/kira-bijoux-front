@@ -64,8 +64,6 @@ export class UsersService {
     return this.http.get<string[]>(`${ApiService.ApiUrlUsers}`);
   }
 
-  // USER //
-
   getUser(id: number): Observable<User> {
     return this.http.get<User>(`${ApiService.ApiUrlUsers}/` + id);
   }
@@ -80,20 +78,6 @@ export class UsersService {
 
   deleteUser(id: number): Observable<string[]> {
     return this.http.delete<string[]>(`${ApiService.ApiUrlUsers}/` + id);
-  }
-
-  // ADRESSES //
-
-  postAdress(idUser: number, formData: any): Observable<any> {
-    return this.http.post<any>(`${ApiService.ApiUrlUsers}/address/` + idUser, formData);
-  }
-
-  putAdress(idUser: number, idAdress: number, formData: any): Observable<any> {
-    return this.http.put<any>(`${ApiService.ApiUrlUsers}/address/` + idUser + `/` + idAdress, formData);
-  }
-
-  deleteAdress(id: number): Observable<string[]> {
-    return this.http.delete<string[]>(`${ApiService.ApiUrlUsers}/address/` + id);
   }
 
 }

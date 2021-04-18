@@ -1,5 +1,5 @@
 import { IItems } from './item.model';
-import { IAddress } from './user.model';
+import { IAddress } from './address.model';
 
 export interface IOrder {
     id?: any;
