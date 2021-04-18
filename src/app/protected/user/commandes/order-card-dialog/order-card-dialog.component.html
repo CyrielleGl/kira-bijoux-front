@@ -7,6 +7,10 @@
 </div>
 
 <div class="modal-body">
+  <div>Commande n° : {{ commande.commande }}</div>
+  <div>passée le {{ commande.date }}</div>
+
+  <ng2-smart-table [settings]="settings" [source]="source"></ng2-smart-table>
 
 </div>
 

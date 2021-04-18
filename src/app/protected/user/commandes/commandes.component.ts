@@ -117,6 +117,7 @@ export class CommandesComponent implements OnInit {
         this.orders.forEach((order: Order) => {
           this.source = [
             {
+              order,
               commande: order.id,
               date: formatDateToWeb(order.inserted_at, 'dd/MM/yyyy'),
               dateEnvoi: formatDateToWeb(order.send_at, 'dd/MM/yyyy'),
