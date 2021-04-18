@@ -47,7 +47,7 @@
         <div *ngFor="let adress of addresses().controls; let adressIndex=index" [formGroup]="Form.get('addresses').controls[adressIndex]" style="border: 0.5rem solid var(--primary); border-radius: 10%; color: var(--primary); padding: 2rem; margin-bottom: 1rem;">
           <div id="alert-modal-adresse" class="modal-adresse">
             <h4 class="modal-title" style="color: var(--primary); margin-left: auto; margin-right: auto" id="edit-heading">
-              Adresse {{ adressIndex+1 }} : {{ adress?.value.name }}</h4>
+              Adresse : {{ adress?.value.name }}</h4>
               <button type="button" class="close" data-dismiss="modal" aria-hidden="true" style="color: var(--primary); margin-top: -0.3rem;" placement="bottom" ngbTooltip="Supprimer l'adresse" *ngIf="!adress.value.id"
               (click)="removeAdress(adressIndex)">x
               </button>

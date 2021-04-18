@@ -39,12 +39,13 @@
                     <div class="card-body" *ngIf="adresses?.length > 0">
                         <h5 class="card-title">Adresses</h5>
                         <div class="card-content" *ngFor="let adress of adresses; let i = index">
-                            <span class="adress-title text-muted">"{{ adress?.name }}" (Adresse {{i+1}})</span>
+                            <span class="adress-title text-muted">"{{ adress?.name }}"</span>
                             <p class="card-line"><b>N° et voie : </b>{{ adress?.first_line }}</p>
                             <p class="card-line" *ngIf="adress.second_line !== ''"><b>Complément d'adresse : </b>{{ adress?.second_line }}</p>
                             <p class="card-line"><b>Code postal : </b>{{ adress?.post_code }}</p>
                             <p class="card-line"><b>Ville : </b>{{ adress?.town }}</p>
                             <p></p>
+                            <hr/>
                         </div>
                     </div>
                     <div class="card-body" *ngIf="adresses?.length === 0">
