@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ApiService } from '../api.service';
 import { Observable, of, ReplaySubject } from 'rxjs';
 import { shareReplay, tap, catchError } from 'rxjs/operators';
-import { User, Address } from 'src/app/shared/models/user.model';
+import { User } from 'src/app/shared/models/user.model';
 import { CookieService } from 'ngx-cookie-service';
 import { Router } from '@angular/router';
 
@@ -94,16 +94,6 @@ export class UsersService {
 
   deleteAdress(id: number): Observable<string[]> {
     return this.http.delete<string[]>(`${ApiService.ApiUrlUsers}/address/` + id);
-  }
-
-  // COMMANDES //
-
-  getOrders(idUser: number): Observable<any> {
-    return this.http.get<any>(`${ApiService.ApiUrlOrders}/user/` + idUser);
-  }
-
-  getOrderItems(idOrder: number): Observable<any> {
-    return this.http.get<any>(`${ApiService.ApiUrlOrderItems}/` + idOrder);
   }
 
 }

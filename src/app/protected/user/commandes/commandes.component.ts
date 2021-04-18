@@ -8,6 +8,7 @@ import { UsersService } from 'src/app/shared/services/api/users/users.service';
 import { SecuService } from 'src/app/shared/services/secu/secu.service';
 import { OrderCardDialogComponent } from './order-card-dialog/order-card-dialog.component';
 import { formatDateToWeb } from 'src/app/shared/services/utils/utils.service';
+import { OrdersService } from 'src/app/shared/services/api/orders/orders.service';
 
 @Component({
   selector: 'app-commandes',
@@ -27,7 +28,8 @@ export class CommandesComponent implements OnInit {
   constructor(
     private cookieService: SecuService,
     private usersService: UsersService,
-    private modalService: NgbModal
+    private modalService: NgbModal,
+    private ordersService: OrdersService
     ) { }
 
   ngOnInit(): void {
@@ -109,9 +111,8 @@ export class CommandesComponent implements OnInit {
 
   initDataSource(user: any): void {
     // tslint:disable-next-line: deprecation
-    this.usersService.getOrders(user.id).subscribe((data: any) => {
+    this.ordersService.getOrders(user.id).subscribe((data: any) => {
       this.orders = data;
-      console.warn(this.orders);
       if (this.orders.length > 0) {
         this.orders.forEach((order: Order) => {
           this.source = [
@@ -124,7 +125,6 @@ export class CommandesComponent implements OnInit {
             },
           ];
         });
-        console.warn('source', this.source);
       }
     });
   }
