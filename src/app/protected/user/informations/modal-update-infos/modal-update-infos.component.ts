@@ -107,6 +107,7 @@ export class ModalUpdateInfosComponent implements OnInit {
         (data) => {
         if (data) {
           this.updateOk = true;
+          setTimeout(() => { this.updateOk = false; }, 3000);
         }
       });
     } else {
@@ -114,17 +115,7 @@ export class ModalUpdateInfosComponent implements OnInit {
       this.addressService.postAdress(this.user.id, adressForm).subscribe((data) => {
         if (data) {
           this.addOk = true;
-          window.location.reload();
-/*           this.addresses().clear();
-          this.usersService.getUserState().subscribe(user => {
-            this.adresses = user?.addresses;
-            this.Form = new FormGroup({
-              addresses: new FormArray([])
-            });
-            if (this.adresses.length > 0) {
-              this.existingAdress();
-            }
-          }); */
+          setTimeout(() => {  window.location.reload(); }, 500);
         }
       });
     }
@@ -134,9 +125,11 @@ export class ModalUpdateInfosComponent implements OnInit {
     this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then(
       (result) => {
         if (result) {
+          // tslint:disable-next-line: deprecation
           this.addressService.deleteAdress(adress.value.id).subscribe(() => {
             this.deleteOk = true;
             this.addresses().removeAt(adressIndex);
+            setTimeout(() => { this.deleteOk = false; }, 3000);
           });
         }
       },
@@ -187,10 +180,6 @@ export class ModalUpdateInfosComponent implements OnInit {
       });
       this.activeModal.close();
     }
-  }
-
-  clearAlertAdd(): void {
-    this.addOk = false;
   }
 
   cancel(): void {
