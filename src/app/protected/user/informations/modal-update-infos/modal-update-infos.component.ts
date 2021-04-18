@@ -4,6 +4,7 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { IAddress, IUser, User, Address } from 'src/app/shared/models/user.model';
 import { UsersService } from 'src/app/shared/services/api/users/users.service';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { AddressService } from 'src/app/shared/services/api/address/address.service';
 
 
 @Component({
@@ -30,6 +31,7 @@ export class ModalUpdateInfosComponent implements OnInit {
   constructor(
     public activeModal: NgbActiveModal,
     private usersService: UsersService,
+    private addressService: AddressService,
     private modalService: NgbModal
   ) {}
 
@@ -95,13 +97,13 @@ export class ModalUpdateInfosComponent implements OnInit {
       country: adress.value.country,
     });
     if (adress.value.id) {
-      this.usersService.putAdress(this.user.id, adress.value.id, adressForm).subscribe((data) => {
+      this.addressService.putAdress(this.user.id, adress.value.id, adressForm).subscribe((data) => {
         if (data) {
           this.updateOk = true;
         }
       });
     } else {
-      this.usersService.postAdress(this.user.id, adressForm).subscribe((data) => {
+      this.addressService.postAdress(this.user.id, adressForm).subscribe((data) => {
         if (data) {
           this.addOk = true;
           this.ngOnInit();
@@ -114,7 +116,7 @@ export class ModalUpdateInfosComponent implements OnInit {
     this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then(
       (result) => {
         if (result) {
-          this.usersService.deleteAdress(adress.value.id).subscribe(() => {
+          this.addressService.deleteAdress(adress.value.id).subscribe(() => {
             this.deleteOk = true;
             this.addresses().removeAt(adressIndex);
           });
