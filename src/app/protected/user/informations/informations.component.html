@@ -8,7 +8,7 @@
         <div class="card-columns">
 
                 <div class="card">
-                    <i class="fas fa-pencil-alt update-card" (click)="openUpdateInfosModal(idInfo)" placement="bottom" ngbTooltip="Modifier mes informations"></i>
+                    <i class="fas fa-pencil-alt update-card" (click)="openUpdateInfosModal(idInfo, null)" placement="bottom" ngbTooltip="Modifier mes informations"></i>
                     <div class="card-body">
                         <h5 class="card-title">Informations personnelles</h5>
                         <div class="card-content">
@@ -18,7 +18,7 @@
                             <p class="card-line"><b>Adresse email : </b>{{ user?.mail }}</p>
                             <p class="card-line"><b>Téléphone : </b>
                                 <span *ngIf="user?.phone">{{ user?.phone }}</span>
-                                <span *ngIf="!user?.phone"><a class="visible-link" (click)="openUpdateInfosModal(idInfo)">renseignez votre numéro !</a></span>
+                                <span *ngIf="!user?.phone"><a class="visible-link" (click)="openUpdateInfosModal(idInfo, null)">renseignez votre numéro !</a></span>
                             </p>
                         </div>
                     </div>
@@ -27,7 +27,7 @@
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title" style="padding-top: 1.8rem;">Sécurité et options</h5>
-                        <div class="inline-block" style="text-align: right;" (click)="openUpdateInfosModal(idSecu)" placement="bottom" ngbTooltip="Modifier mon mot de passe">
+                        <div class="inline-block" style="text-align: right;" (click)="openUpdateInfosModal(idSecu, null)" placement="bottom" ngbTooltip="Modifier mon mot de passe">
                             <i class="fas fa-pencil-alt update-card" style="padding: 0rem; margin: 0rem;"></i>&nbsp;
                             <p class="card-password">Modifier mon mot de passe</p>
                         </div>
@@ -35,10 +35,11 @@
                 </div>
 
                 <div class="card">
-                    <i class="fas fa-pencil-alt update-card" (click)="openUpdateInfosModal(idAdress)" placement="bottom" ngbTooltip="Modifier mes adresses"></i>
+                    <i class="fas fa-plus update-card" (click)="openUpdateInfosModal(idAddAdress, null)" placement="bottom" ngbTooltip="Ajouter une adresse"></i>
                     <div class="card-body" *ngIf="adresses?.length > 0">
                         <h5 class="card-title">Adresses</h5>
                         <div class="card-content" *ngFor="let adress of adresses; let i = index">
+                            <i class="fas fa-pencil-alt update-card" (click)="openUpdateInfosModal(idAdress, adress)" placement="bottom" ngbTooltip="Modifier mes adresses"></i>
                             <span class="adress-title text-muted">"{{ adress?.name }}"</span>
                             <p class="card-line"><b>N° et voie : </b>{{ adress?.first_line }}</p>
                             <p class="card-line" *ngIf="adress.second_line !== ''"><b>Complément d'adresse : </b>{{ adress?.second_line }}</p>
@@ -50,7 +51,7 @@
                     </div>
                     <div class="card-body" *ngIf="adresses?.length === 0">
                         <h5 class="card-title">Adresses</h5>
-                        <div class="card-content" (click)="openUpdateInfosModal(idAdress)">
+                        <div class="card-content" (click)="openUpdateInfosModal(idAddAdress, null)">
                             <p class="card-line">Enregistrez votre première adresse !</p>
                             <p class="card-line">Nous en aurons besoin pour vous envoyer vos bijoux !</p>
                             <p></p>

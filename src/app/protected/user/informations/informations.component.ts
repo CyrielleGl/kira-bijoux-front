@@ -18,12 +18,12 @@ export class InformationsComponent implements OnInit {
   adresses: IAddress[] | any = null;
   idInfo = 'idInfo';
   idAdress = 'idAdress';
+  idAddAdress = 'idAddAdress';
   idSecu = 'idSecu';
 
   constructor(
     private cookieService: SecuService,
     private usersService: UsersService,
-    private addressService: AddressService,
     private modalService: NgbModal
     ) { }
 
@@ -42,16 +42,17 @@ export class InformationsComponent implements OnInit {
     return this.usersService.isAuthenticated();
   }
 
-  openUpdateInfosModal(idCard: string): void {
+  openUpdateInfosModal(idCard: string, adress: any): void {
     const modalRef = this.modalService.open(ModalUpdateInfosComponent, {
       size: 'lg',
       backdrop: 'static'
     });
     modalRef.componentInstance.user = this.user;
+    modalRef.componentInstance.adress = adress;
     modalRef.componentInstance.idCard = idCard;
     modalRef.result.then(
       () => {
-        window.location.reload();
+        // Left blank intentionally, nothing to do here
       },
       () => {
         // Left blank intentionally, nothing to do here
