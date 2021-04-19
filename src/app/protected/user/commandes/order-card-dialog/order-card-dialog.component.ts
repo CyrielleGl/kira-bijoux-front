@@ -15,9 +15,12 @@ export class OrderCardDialogComponent implements OnInit {
   commande: any = {};
   settings: any;
   source: any[] = [];
-  // orderId = 0;
+  orderId = 0;
   orderItems: OrderItems[] | any = [];
-  order: IOrder | any = null;
+  order: Order | null = null;
+  itemPrice: number | any;
+  itemTva: number | any;
+  load = false;
 
   constructor(
     public activeModal: NgbActiveModal,
@@ -26,13 +29,10 @@ export class OrderCardDialogComponent implements OnInit {
 
   ngOnInit(): void {
     this.initSettings();
-    this.getOrderItems();
     if (this.commande) {
-      this.order = this.commande.order;
-      console.warn('commande', this.commande);
-      console.warn('order', this.order);
+      this.orderId = this.commande.order.id;
+      this.getOrderById();
     }
-
   }
 
   initSettings(): void {
@@ -76,22 +76,30 @@ export class OrderCardDialogComponent implements OnInit {
     };
   }
 
-  getOrderItems(): void {
-    // tslint:disable-next-line: deprecation
-    this.ordersService.getOrderItems(this.order?.id).subscribe((data: any) => {
+  getOrderById(): void {
+    this.ordersService.getOrderById(this.orderId).subscribe((data: Order) => {
+      this.order = data;
+      this.getOrderItems(this.order.id);
+    });
+  }
+
+  getOrderItems(orderId: number): void {
+    this.ordersService.getOrderItems(orderId).subscribe((data: any) => {
       this.orderItems = data;
-      console.warn('orderItems', this.orderItems);
       if (this.orderItems.length > 0) {
-         this.orderItems.map((orderItem: any) => {
+         this.orderItems.map((i: OrderItems) => {
+          this.itemPrice = i.item?.price;
+          this.itemTva = i.item?.tva;
           const obj =
             {
-              description: orderItem.item?.name,
-              totalHt: Math.round(orderItem.item?.price - (orderItem.item?.price * orderItem.item?.tva)) + ' €',
-              quantity: orderItem.quantity,
-              tva: Math.round(orderItem.item?.tva * 100) + ' %',
-              totalTtc: orderItem.item?.price + ' €'
+              description: i.item?.name,
+              totalHt: Math.round(this.itemPrice - (this.itemPrice * this.itemTva)) + ' €',
+              quantity: i.quantity,
+              tva: Math.round(this.itemTva * 100) + ' %',
+              totalTtc: i.item?.price + ' €'
             };
           this.source.push(obj);
+          this.load = true;
         });
       }
     });
