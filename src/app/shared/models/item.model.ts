@@ -4,6 +4,7 @@ export interface IItems {
     subtitle?: string;
     description?: string;
     length?: string;
+    name?: string;
     price?: number;
     stock?: number;
     visibility?: boolean;
@@ -19,6 +20,7 @@ export class Items implements IItems {
         public subtitle?: string,
         public description?: string,
         public length?: string,
+        public name?: string,
         public price?: number,
         public stock?: number,
         public visibility?: boolean,

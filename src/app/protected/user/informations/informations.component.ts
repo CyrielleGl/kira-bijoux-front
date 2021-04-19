@@ -5,7 +5,6 @@ import { UsersService } from 'src/app/shared/services/api/users/users.service';
 import { SecuService } from 'src/app/shared/services/secu/secu.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ModalUpdateInfosComponent } from './modal-update-infos/modal-update-infos.component';
-import { AddressService } from 'src/app/shared/services/api/address/address.service';
 
 @Component({
   selector: 'app-informations',

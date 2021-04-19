@@ -45,7 +45,7 @@ export class OrderStatus implements IOrderStatus {
 
 export interface IOrderItems {
     id?: any;
-    order?: IOrder;
+    // order?: IOrder;
     item?: IItems;
     quantity?: number;
     inserted_at?: Date;
@@ -55,7 +55,7 @@ export interface IOrderItems {
 export class OrderItems implements IOrderItems {
     constructor(
         public id?: any,
-        public order?: IOrder,
+        // public order?: IOrder,
         public item?: IItems,
         public quantity?: number,
         public inserted_at?: Date,

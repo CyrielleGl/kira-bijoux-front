@@ -17,8 +17,8 @@ export class OrdersService {
     return this.http.get<any>(`${ApiService.ApiUrlOrders}/user/` + idUser);
   }
 
-  getOrderItems(idOrder: number): Observable<IOrderItems[]> {
-    return this.http.get<IOrderItems[]>(`${ApiService.ApiUrlOrderItems}/` + idOrder);
+  getOrderItems(idOrder: number): Observable<any> {
+    return this.http.get<any>(`${ApiService.ApiUrlOrderItems}/order/` + idOrder);
   }
 
 }

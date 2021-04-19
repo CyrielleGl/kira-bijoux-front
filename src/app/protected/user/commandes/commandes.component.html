@@ -5,7 +5,8 @@
     </div>
 
     <div class="body-tab">
-        <ng2-smart-table [settings]="settings" [source]="source"></ng2-smart-table>
+        <ng2-smart-table [settings]="settings" [source]="source" *ngIf="orders"></ng2-smart-table>
+        <p *ngIf="!orders" style="color: var(--primary); margin-top: 2rem">Vous n'avez pas (encore) passé de commande !</p> 
     </div>
 
 </main>

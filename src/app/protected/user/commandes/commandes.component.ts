@@ -19,7 +19,7 @@ export class CommandesComponent implements OnInit {
 
   settings: any;
 
-  source: any;
+  source: any[] = [];
 
   user: User | null = null;
   shoppingCart: string[] | null = null;
@@ -114,8 +114,8 @@ export class CommandesComponent implements OnInit {
     this.ordersService.getOrders(user.id).subscribe((data: any) => {
       this.orders = data;
       if (this.orders.length > 0) {
-        this.orders.forEach((order: Order) => {
-          this.source = [
+        this.orders.map((order: Order) => {
+          const obj =
             {
               order,
               commande: order.id,
@@ -123,8 +123,8 @@ export class CommandesComponent implements OnInit {
               dateEnvoi: formatDateToWeb(order.send_at, 'dd/MM/yyyy'),
               statut: order.status?.name,
               prix: order.price + ' €'
-            },
-          ];
+            };
+          this.source.push(obj);
         });
       }
     });

@@ -12,10 +12,12 @@ import { formatDateToWeb } from 'src/app/shared/services/utils/utils.service';
 })
 export class OrderCardDialogComponent implements OnInit {
 
-  commande: any;
+  commande: any = {};
   settings: any;
-  source: any;
-  orderItems: OrderItems[] = [];
+  source: any[] = [];
+  // orderId = 0;
+  orderItems: OrderItems[] | any = [];
+  order: IOrder | any = null;
 
   constructor(
     public activeModal: NgbActiveModal,
@@ -25,6 +27,12 @@ export class OrderCardDialogComponent implements OnInit {
   ngOnInit(): void {
     this.initSettings();
     this.getOrderItems();
+    if (this.commande) {
+      this.order = this.commande.order;
+      console.warn('commande', this.commande);
+      console.warn('order', this.order);
+    }
+
   }
 
   initSettings(): void {
@@ -70,20 +78,20 @@ export class OrderCardDialogComponent implements OnInit {
 
   getOrderItems(): void {
     // tslint:disable-next-line: deprecation
-    this.ordersService.getOrderItems(this.commande.order.id).subscribe((data: IOrderItems[]) => {
+    this.ordersService.getOrderItems(this.order?.id).subscribe((data: any) => {
       this.orderItems = data;
-      console.warn(this.orderItems);
+      console.warn('orderItems', this.orderItems);
       if (this.orderItems.length > 0) {
-        this.orderItems.forEach((item: any) => {
-          this.source = [
+         this.orderItems.map((orderItem: any) => {
+          const obj =
             {
-              description: '',
-              totalHt: '',
-              quantity: '',
-              tva: '',
-              totalTtc: ''
-            },
-          ];
+              description: orderItem.item?.name,
+              totalHt: Math.round(orderItem.item?.price - (orderItem.item?.price * orderItem.item?.tva)) + ' €',
+              quantity: orderItem.quantity,
+              tva: Math.round(orderItem.item?.tva * 100) + ' %',
+              totalTtc: orderItem.item?.price + ' €'
+            };
+          this.source.push(obj);
         });
       }
     });
