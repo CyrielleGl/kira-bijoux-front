@@ -45,15 +45,21 @@
                             <p class="card-line" *ngIf="adress.second_line !== ''"><b>Complément d'adresse : </b>{{ adress?.second_line }}</p>
                             <p class="card-line"><b>Code postal : </b>{{ adress?.post_code }}</p>
                             <p class="card-line"><b>Ville : </b>{{ adress?.town }}</p>
-                            <p></p>
+                            <p class="card-line"><b>Pays : </b>{{ adress?.country }}</p>
                             <hr/>
+                        </div>
+                        <div class="inline-block add-adress" (click)="openUpdateInfosModal(idAddAdress, null)" placement="bottom" ngbTooltip="Ajouter une adresse">
+                            <i class="fas fa-plus"></i>&nbsp;
+                            <p class="card-line">Ajouter une adresse</p>
                         </div>
                     </div>
                     <div class="card-body" *ngIf="adresses?.length === 0">
                         <h5 class="card-title">Adresses</h5>
-                        <div class="card-content" (click)="openUpdateInfosModal(idAddAdress, null)">
+                        <div class="inline-block add-adress" (click)="openUpdateInfosModal(idAddAdress, null)">
+                            <i class="fas fa-folder-plus"></i>&nbsp;
                             <p class="card-line">Enregistrez votre première adresse !</p>
-                            <p class="card-line">Nous en aurons besoin pour vous envoyer vos bijoux !</p>
+                            <p class="card-line" style="font-size: 0.7rem; margin-right: 0.2rem;">Nous en aurons besoin pour vous envoyer vos bijoux</p>
+                            <i class="far fa-grin-alt" style="font-size: 0.7rem;"></i>
                             <p></p>
                         </div>
                     </div>
