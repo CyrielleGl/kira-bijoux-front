@@ -11,6 +11,7 @@ export interface IOrder {
     updated_at?: Date;
     send_at?: Date;
     received_at?: Date;
+    reference?: string;
 }
 
 export class Order implements IOrder {
@@ -23,7 +24,8 @@ export class Order implements IOrder {
         public inserted_at?: Date,
         public updated_at?: Date,
         public send_at?: Date,
-        public received_at?: Date
+        public received_at?: Date,
+        public reference?: string
     ) {}
 }
 

@@ -10,7 +10,9 @@
   <div>Commande n° : {{ commande.commande }}</div>
   <div>passée le {{ commande.date }}</div>
 
-  <ng2-smart-table [settings]="settings" [source]="source" *ngIf="load"></ng2-smart-table>
+  <div style="margin-top: 1rem">
+    <ng2-smart-table [settings]="settings" [source]="source" *ngIf="load"></ng2-smart-table>
+  </div>
 
 </div>
 

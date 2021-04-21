@@ -48,7 +48,7 @@ export class OrderCardDialogComponent implements OnInit {
       },
       columns: {
         description: {
-          title: 'Description',
+          title: 'Bijoux',
           filter: false,
           sort: true
         },

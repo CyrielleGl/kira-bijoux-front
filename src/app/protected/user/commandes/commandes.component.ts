@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { faEye } from '@fortawesome/free-regular-svg-icons';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ButtonViewComponent } from 'src/app/shared/components/button-view/button-view.component';
-import { Order } from 'src/app/shared/models/order.model';
+import { IOrder, Order } from 'src/app/shared/models/order.model';
 import { User } from 'src/app/shared/models/user.model';
 import { UsersService } from 'src/app/shared/services/api/users/users.service';
 import { SecuService } from 'src/app/shared/services/secu/secu.service';
@@ -23,7 +23,7 @@ export class CommandesComponent implements OnInit {
 
   user: User | null = null;
   shoppingCart: string[] | null = null;
-  orders: Order[] | any = null;
+  orders: IOrder[] | any = null;
 
   constructor(
     private cookieService: SecuService,
@@ -66,12 +66,12 @@ export class CommandesComponent implements OnInit {
           sort: true
         },
         date: {
-          title: 'Date',
+          title: 'Passée le',
           filter: false,
           sort: true
         },
         dateEnvoi: {
-          title: 'Envoyé le',
+          title: 'Envoyée le',
           filter: false,
           sort: true
         },
@@ -111,8 +111,9 @@ export class CommandesComponent implements OnInit {
 
   initDataSource(user: any): void {
     // tslint:disable-next-line: deprecation
-    this.ordersService.getOrders(user.id).subscribe((data: any) => {
+    this.ordersService.getOrders(user.id).subscribe((data: IOrder[]) => {
       this.orders = data;
+      console.warn(this.orders);
       if (this.orders.length > 0) {
         this.orders.map((order: Order) => {
           const obj =
