@@ -18,7 +18,6 @@ import { OrdersService } from 'src/app/shared/services/api/orders/orders.service
 export class CommandesComponent implements OnInit {
 
   settings: any;
-
   source: any[] = [];
 
   user: User | null = null;

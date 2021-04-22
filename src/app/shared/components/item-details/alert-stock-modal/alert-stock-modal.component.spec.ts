@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { AlertStockModalComponent } from './alert-stock-modal.component';
 
 describe('AlertStockModalComponent', () => {
