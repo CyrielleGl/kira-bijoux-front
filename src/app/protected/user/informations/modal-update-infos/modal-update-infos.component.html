@@ -13,7 +13,9 @@
       <h4 *ngIf="idCard === 'idInfo'" class="modal-title" style="color: var(--primary)" id="edit-heading">
           Modifier mes informations</h4>
       <h4 *ngIf="idCard === 'idAdress'" class="modal-title" style="color: var(--primary)" id="edit-heading">
-          Modifier mes adresses</h4>
+          Modifier mon adresse</h4>
+      <h4 *ngIf="idCard === 'idAddAdress'" class="modal-title" style="color: var(--primary)" id="edit-heading">
+          Ajouter une adresse</h4>
       <h4 *ngIf="idCard === 'idSecu'" class="modal-title" style="color: var(--primary)" id="edit-heading">
           Modifier ma sécurité et mes options</h4>
       <hr />
@@ -42,15 +44,11 @@
         </div>
       </div>
 
-      <!-- ADRESSES -->
-      <div formArrayName="addresses" style="border-radius: 10%;" *ngIf="idCard === 'idAdress'" id="adressesArray">
-        <div *ngFor="let adress of addresses().controls; let adressIndex=index" [formGroup]="Form.get('addresses').controls[adressIndex]" style="border: 0.5rem solid var(--primary); border-radius: 10%; color: var(--primary); padding: 2rem; margin-bottom: 1rem;">
+      <!-- ADRESSE -->
+      <div *ngIf="idCard === 'idAdress'">
           <div id="alert-modal-adresse" class="modal-adresse">
             <h4 class="modal-title" style="color: var(--primary); margin-left: auto; margin-right: auto" id="edit-heading">
-              Adresse {{ adressIndex+1 }} : {{ adress?.value.name }}</h4>
-              <button type="button" class="close" data-dismiss="modal" aria-hidden="true" style="color: var(--primary); margin-top: -0.3rem;" placement="bottom" ngbTooltip="Supprimer l'adresse" *ngIf="!adress.value.id"
-              (click)="removeAdress(adressIndex)">x
-              </button>
+              {{ adress?.name }}</h4>
           </div>
           <div class="form-group">
             <label class="form-control-label" for="field_name">Nom de l'adresse</label>
@@ -81,31 +79,69 @@
             <input class="form-control" type="text" formControlName="country"/>
           </div>
           <p *ngIf="idCard === 'idAdress'" style="text-align: center;">
-            <button type="button" class="btn btn-fourth col-3" (click)="deleteAdress(adress, content, adressIndex)" style="margin-right: 1rem;" *ngIf="adress.value.id">
+            <button type="button" class="btn btn-fourth col-3" (click)="deleteAdress(Form, content)" style="margin-right: 1rem;">
               <i class="fa fa-trash-alt"></i> Supprimer</button>
-            <button type="button" class="btn btn-primary-ligth col-3" (click)="saveAdress(adress)">
-              <i class="fa fa-save"></i> Sauvegarder</button>
           </p>
-        </div>
-        <div class="alert alert-success" role="alert" *ngIf="updateOk">
+
+        <div class="alert alert-success" id="alert-success" role="alert" *ngIf="updateOk">
           Adresse mise à jour !
           <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <div class="alert alert-success" role="alert" *ngIf="addOk">
-          Adresse ajoutée !
-          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="alert alert-success" role="alert" *ngIf="deleteOk">
+        <div class="alert alert-success" id="alert-success" role="alert" *ngIf="deleteOk">
           Adresse supprimée !
           <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
       </div>
+
+      <!-- ADD ADRESSE -->
+      <div *ngIf="idCard === 'idAddAdress'">
+        <div id="alert-modal-adresse" class="modal-adresse">
+          <h4 class="modal-title" style="color: var(--primary); margin-left: auto; margin-right: auto" id="edit-heading">
+            Nouvelle adresse</h4>
+        </div>
+        <div class="form-group">
+          <label class="form-control-label" for="field_name">Nom de l'adresse</label>
+          <input class="form-control" type="text" formControlName="name"/>
+        </div>
+        <div class="form-group">
+          <label class="form-control-label" for="field_recipient">Destinataire</label>
+          <input class="form-control" type="text" formControlName="recipient"/>
+        </div>
+        <div class="form-group">
+          <label class="form-control-label" for="field_first_line">N° et voie</label>
+          <input class="form-control" type="text" formControlName="first_line"/>
+        </div>
+        <div class="form-group">
+          <label class="form-control-label" for="field_second_line">Complément d'adresse</label>
+          <input class="form-control" type="text" formControlName="second_line"/>
+        </div>
+        <div class="form-group">
+          <label class="form-control-label" for="field_post_code">Code postal</label>
+          <input class="form-control" type="text" formControlName="post_code"/>
+        </div>
+        <div class="form-group">
+          <label class="form-control-label" for="field_town">Ville</label>
+          <input class="form-control" type="text" formControlName="town"/>
+        </div>
+        <div class="form-group">
+          <label class="form-control-label" for="field_country">Pays</label>
+          <input class="form-control" type="text" formControlName="country"/>
+        </div>
+        <p *ngIf="idCard === 'idAddAdress'" style="text-align: center;">
+          <button type="button" class="btn btn-primary-ligth col-3" (click)="saveAdress(Form)">
+            <i class="fa fa-save"></i> Sauvegarder</button>
+        </p>
+        <div class="alert alert-success" id="alert-success" role="alert" *ngIf="addOk">
+        Adresse ajoutée !
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+    </div>
 
       <!-- PASSWORD -->
       <div *ngIf="idCard === 'idSecu'">
@@ -137,16 +173,12 @@
 
       <br/>
 
-      <p *ngIf="idCard === 'idAdress'" style="text-align: center;">
-        <button type="button" class="btn btn-primary-ligth" (click)="addAdress()">Add Adress</button>
-      </p>
-
       <!-- Modal Footer -->
       <div class="modal-footer" id="modal-footer">
         <button id="close" type="close" class="btn btn-fourth col-3" data-dismiss="modal" (click)="cancel()">
           <i class="fa fa-ban"></i><span> Fermer</span>
         </button>
-        <button id="save" type="submit" class="btn btn-primary col-3" data-dismiss="modal" *ngIf="idCard !== 'idAdress'">
+        <button id="save" type="submit" class="btn btn-primary col-3" data-dismiss="modal" *ngIf="idCard !== 'idAddAdress'">
             <i class="fa fa-save"></i><span> Valider</span>
         </button>
       </div>

@@ -3,10 +3,9 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ApiService } from '../api.service';
 import { Observable, of, ReplaySubject } from 'rxjs';
 import { shareReplay, tap, catchError } from 'rxjs/operators';
-import { User, Address } from 'src/app/shared/models/user.model';
+import { User } from 'src/app/shared/models/user.model';
 import { CookieService } from 'ngx-cookie-service';
 import { Router } from '@angular/router';
-import { FormGroup, FormArray } from '@angular/forms';
 
 @Injectable({
   providedIn: 'root',
@@ -75,18 +74,6 @@ export class UsersService {
 
   putUser(id: number, formData: User): Observable<User> {
     return this.http.put<User>(`${ApiService.ApiUrlUsers}/` + id, formData);
-  }
-
-  putAdress(idUser: number, idAdress: number, formData: any): Observable<any> {
-    return this.http.put<any>(`${ApiService.ApiUrlUsers}/address/` + idUser + `/` + idAdress, formData);
-  }
-
-  postAdress(idUser: number, formData: any): Observable<any> {
-    return this.http.post<any>(`${ApiService.ApiUrlUsers}/address/` + idUser, formData);
-  }
-
-  deleteAdress(id: number): Observable<string[]> {
-    return this.http.delete<string[]>(`${ApiService.ApiUrlUsers}/address/` + id);
   }
 
   deleteUser(id: number): Observable<string[]> {

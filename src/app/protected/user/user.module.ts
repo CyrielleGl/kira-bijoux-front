@@ -8,6 +8,7 @@ import { FavorisComponent } from './favoris/favoris.component';
 import { UserComponent } from './user.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ModalUpdateInfosComponent } from './informations/modal-update-infos/modal-update-infos.component';
+import { OrderCardDialogComponent } from './commandes/order-card-dialog/order-card-dialog.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { ModalUpdateInfosComponent } from './informations/modal-update-infos/mod
     FavorisComponent,
     UserComponent,
     ModalUpdateInfosComponent,
+    OrderCardDialogComponent,
   ],
 
   imports: [

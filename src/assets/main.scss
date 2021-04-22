@@ -208,6 +208,25 @@ h6 {
   column-count: 2 !important;
 }
 
+.add-adress {
+  color: var(--primary);
+  cursor: pointer;
+}
+
+/*----------------------------*/
+/*----- NG2-SMART-TABLE -----*/
+/*--------------------------*/
+
+.class-btn-details {
+  color: var(--primary);
+  font-weight: bold;
+  cursor: pointer;
+}
+
+a.ng2-smart-sort-link {
+  color: var(--primary) !important;
+}
+
 /*------------------------*/
 /*---- Media Queries ----*/
 /*----------------------*/

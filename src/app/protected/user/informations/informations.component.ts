@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { IAddress, User } from 'src/app/shared/models/user.model';
+import { User } from 'src/app/shared/models/user.model';
+import { IAddress } from 'src/app/shared/models/address.model';
 import { UsersService } from 'src/app/shared/services/api/users/users.service';
 import { SecuService } from 'src/app/shared/services/secu/secu.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -16,6 +17,7 @@ export class InformationsComponent implements OnInit {
   adresses: IAddress[] | any = null;
   idInfo = 'idInfo';
   idAdress = 'idAdress';
+  idAddAdress = 'idAddAdress';
   idSecu = 'idSecu';
 
   constructor(
@@ -30,7 +32,7 @@ export class InformationsComponent implements OnInit {
       // tslint:disable-next-line: deprecation
       this.usersService.getUserState().subscribe(user => {
         this.user = user;
-        this.adresses = this.user?.addresses;
+        this.adresses = user?.addresses;
       });
     }
   }
@@ -39,13 +41,13 @@ export class InformationsComponent implements OnInit {
     return this.usersService.isAuthenticated();
   }
 
-  openUpdateInfosModal(idCard: string): void {
+  openUpdateInfosModal(idCard: string, adress: any): void {
     const modalRef = this.modalService.open(ModalUpdateInfosComponent, {
       size: 'lg',
       backdrop: 'static'
     });
     modalRef.componentInstance.user = this.user;
-    modalRef.componentInstance.adresses = this.adresses;
+    modalRef.componentInstance.adress = adress;
     modalRef.componentInstance.idCard = idCard;
     modalRef.result.then(
       () => {

@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { IAddress, IUser, User, Address } from 'src/app/shared/models/user.model';
+import { IUser, User } from 'src/app/shared/models/user.model';
 import { UsersService } from 'src/app/shared/services/api/users/users.service';
-import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
-
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { AddressService } from 'src/app/shared/services/api/address/address.service';
+import { IAddress, Address } from 'src/app/shared/models/address.model';
 
 @Component({
   selector: 'app-modal-update-infos',
@@ -15,14 +16,11 @@ import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 export class ModalUpdateInfosComponent implements OnInit {
   user: IUser | any;
   newUser: IUser | any;
-  adresses: IAddress[] | any = null;
-  adress = {};
+  adress: IAddress | any = {};
   idCard: string | any;
   Form: FormGroup | any;
   matchingErrorNewPassword = false;
-  addAdressFormVisible = false;
   submitted = false;
-  closeResult = '';
   updateOk = false;
   deleteOk = false;
   addOk = false;
@@ -30,6 +28,7 @@ export class ModalUpdateInfosComponent implements OnInit {
   constructor(
     public activeModal: NgbActiveModal,
     private usersService: UsersService,
+    private addressService: AddressService,
     private modalService: NgbModal
   ) {}
 
@@ -44,11 +43,26 @@ export class ModalUpdateInfosComponent implements OnInit {
       });
     } else if (this.idCard === 'idAdress') {
       this.Form = new FormGroup({
-        addresses: new FormArray([])
+        id: new FormControl(this.adress.id),
+        name: new FormControl(this.adress.name, [Validators.required]),
+        recipient: new FormControl(this.adress.recipient, [Validators.required]),
+        first_line: new FormControl(this.adress.first_line, [Validators.required]),
+        second_line: new FormControl(this.adress.second_line, [Validators.required]),
+        post_code: new FormControl(this.adress.post_code, [Validators.required]),
+        town: new FormControl(this.adress.town, [Validators.required]),
+        country: new FormControl(this.adress.country, [Validators.required])
       });
-      if (this.adresses.length > 0) {
-        this.existingAdress();
-      }
+     } else if (this.idCard === 'idAddAdress') {
+      this.Form = new FormGroup({
+        id: new FormControl(null),
+        name: new FormControl('', [Validators.required]),
+        recipient: new FormControl('', [Validators.required]),
+        first_line: new FormControl('', [Validators.required]),
+        second_line: new FormControl('', [Validators.required]),
+        post_code: new FormControl('', [Validators.required]),
+        town: new FormControl('', [Validators.required]),
+        country: new FormControl('', [Validators.required])
+      });
      } else if (this.idCard === 'idSecu') {
       this.Form = new FormGroup({
         id: new FormControl(null),
@@ -58,34 +72,8 @@ export class ModalUpdateInfosComponent implements OnInit {
     }
   }
 
-  addresses(): FormArray {
-    return this.Form.get('addresses') as FormArray;
-  }
-
-  newAdress(): FormGroup {
-    return new FormGroup({
-      id: new FormControl(null),
-      name: new FormControl('', [Validators.required]),
-      recipient: new FormControl('', [Validators.required]),
-      first_line: new FormControl('', [Validators.required]),
-      second_line: new FormControl('', [Validators.required]),
-      post_code: new FormControl('', [Validators.required]),
-      town: new FormControl('', [Validators.required]),
-      country: new FormControl('', [Validators.required])
-    });
-  }
-
-  addAdress(): void {
-    this.addresses().push(this.newAdress());
-    this.addAdressFormVisible = true;
-  }
-
-  removeAdress(adressIndex: number): void {
-    this.addresses().removeAt(adressIndex);
-  }
-
   saveAdress(adress: any): void {
-    const adressForm = Object.assign(this.adress, {
+    const adressForm = {
       name: adress.value.name,
       recipient: adress.value.recipient,
       first_line: adress.value.first_line,
@@ -93,50 +81,26 @@ export class ModalUpdateInfosComponent implements OnInit {
       post_code: adress.value.post_code,
       town: adress.value.town,
       country: adress.value.country,
-    });
-    if (adress.value.id) {
-      this.usersService.putAdress(this.user.id, adress.value.id, adressForm).subscribe((data) => {
-        if (data) {
-          this.updateOk = true;
-        }
-      });
-    } else {
-      this.usersService.postAdress(this.user.id, adressForm).subscribe((data) => {
+    };
+    this.addressService.postAdress(this.user.id, adressForm).subscribe((data) => {
         if (data) {
           this.addOk = true;
-          this.ngOnInit();
+          setTimeout(() => {  window.location.reload(); }, 500);
         }
-      })
-    }
+      });
   }
 
-  deleteAdress(adress: any, content: any, adressIndex: any): void {
+  deleteAdress(adress: any, content: any): void {
     this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then(
       (result) => {
         if (result) {
-          this.usersService.deleteAdress(adress.value.id).subscribe(() => {
+          this.addressService.deleteAdress(adress.value.id).subscribe(() => {
             this.deleteOk = true;
-            this.addresses().removeAt(adressIndex);
+            setTimeout(() => {  window.location.reload(); }, 500);
           });
         }
-      }, 
+      },
       () => {});
-  }
-
-  existingAdress(): void {
-    this.adresses.forEach((adress: any) => {
-      const group = new FormGroup({
-        id: new FormControl(adress.id),
-        name: new FormControl(adress.name, [Validators.required]),
-        recipient: new FormControl(adress.recipient, [Validators.required]),
-        first_line: new FormControl(adress.first_line, [Validators.required]),
-        second_line: new FormControl(adress.second_line, [Validators.required]),
-        post_code: new FormControl(adress.post_code, [Validators.required]),
-        town: new FormControl(adress.town, [Validators.required]),
-        country: new FormControl(adress.country, [Validators.required])
-      });
-      this.addresses().push(group);
-    });
   }
 
   save(): void {
@@ -152,7 +116,23 @@ export class ModalUpdateInfosComponent implements OnInit {
       (data: User | null) => {
         this.user = data;
       });
-        this.activeModal.close(this.user);
+      this.activeModal.close(this.user);
+    } else if (this.idCard === 'idAdress') {   // MODIFIER ADRESSE
+      const adress = Object.assign(this.adress, {
+        name: this.Form.controls.name.value,
+        recipient: this.Form.controls.recipient.value,
+        first_line: this.Form.controls.first_line.value,
+        second_line: this.Form.controls.second_line.value,
+        post_code: this.Form.controls.post_code.value,
+        town: this.Form.controls.town.value,
+        country: this.Form.controls.country.value
+      });
+      this.addressService.putAdress(this.user.id, this.adress.id, adress).subscribe(
+        (data: Address | null) => {
+          this.adress = data;
+          this.updateOk = true;
+          setTimeout(() => {  window.location.reload(); }, 500);
+      });
     } else if (this.idCard === 'idSecu') {   // MODIFIER PASSWORD
       if (this.Form.value.newPassword !== this.Form.value.confirmPassword) {
         this.matchingErrorNewPassword = true;

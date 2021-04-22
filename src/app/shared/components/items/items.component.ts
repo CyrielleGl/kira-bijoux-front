@@ -90,8 +90,8 @@ export class ItemsComponent implements OnInit {
 
     this.shopService.postItemToShoppingCart(formData).subscribe(
       (data: any[]) => { document.location.reload(); },
-      err => { 
-        alert('La quantité saisi est incorrecte'); 
+      err => {
+        alert('La quantité saisi est incorrecte');
       }
     );
   }

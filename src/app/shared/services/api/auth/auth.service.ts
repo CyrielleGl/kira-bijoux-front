@@ -3,7 +3,6 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ApiService } from '../api.service';
 import { Observable } from 'rxjs';
 import { User } from 'src/app/shared/models/user.model';
-import { UsersService } from '../users/users.service';
 import { CookieService } from 'ngx-cookie-service';
 import { map } from 'rxjs/operators';
 
