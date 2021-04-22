@@ -79,5 +79,4 @@ export class UsersService {
   deleteUser(id: number): Observable<string[]> {
     return this.http.delete<string[]>(`${ApiService.ApiUrlUsers}/` + id);
   }
-
 }
