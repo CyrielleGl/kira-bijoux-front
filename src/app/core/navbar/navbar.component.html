@@ -1,4 +1,4 @@
-<nav class="navbar navbar-dark navbar-expand-sm bg-primary" id="navbar" #stickyMenu [class.sticky] = "sticky">
+<nav *ngIf="!roleAdmin" class="navbar navbar-dark navbar-expand-sm bg-primary" id="navbar" #stickyMenu [class.sticky] = "sticky">
 
     <!-- BUTTON NAVBAR MOBILE -->
 
@@ -43,4 +43,37 @@
       </div>
   
   </nav>
+
+<nav *ngIf="roleAdmin" class="navbar navbar-dark navbar-expand-sm bg-primary" id="navbar_admin" #stickyMenu [class.sticky] = "sticky">
+
+  <!-- BUTTON NAVBAR MOBILE -->
+
+  <button class="navbar-toggler custom-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <!-- NAVBAR -->
+
+  <div class="collapse navbar-collapse" id="collapsibleNavbar">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="['administration/dashboard']" [routerLinkActive]="['active']" id="dashboard-link">Dashboard</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="['gestion-produits']" [routerLinkActive]="['active']" id="boutique-link">Boutique</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="['gestion-newsletters']" [routerLinkActive]="['active']" id="newsletters-link">Newsletters</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="['gestion-commandes']" [routerLinkActive]="['active']" id="commandes-link">Commandes</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" (click)="logout()" [routerLinkActive]="['active']" id="commandes-link">Déconnexion</a>
+      </li>
+    </ul>
+    
+    </div>
+
+</nav>
   

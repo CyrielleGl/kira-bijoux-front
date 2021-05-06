@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-footer',
@@ -13,9 +14,28 @@ export class FooterComponent implements OnInit {
   @Input()
   appTitle: string | undefined;
 
-  constructor() { }
+  private roleAccess = '';
+  roleUser = false;
+  roleAdmin = false;
+  roleNotLogged = false;
+
+  constructor(
+    private cookieService: CookieService
+  ) { }
 
   ngOnInit(): void {
+    this.roleAccess = this.cookieService.get('kira-bijoux-cookie');
+    this.displayByAccessRole(this.roleAccess);
+  }
+
+  private displayByAccessRole(roleAccess: string): void {
+    if (this.roleAccess === 'user') {
+      this.roleUser = true;
+    } else if (this.roleAccess === 'admin') {
+      this.roleAdmin = true;
+    } else if (this.roleAccess === '') {
+      this.roleNotLogged = true;
+    }
   }
 
 }

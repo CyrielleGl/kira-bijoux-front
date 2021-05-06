@@ -1,4 +1,4 @@
-<div class="header">
+<div class="header" *ngIf="!roleAdmin">
 
   <!-- First line : connexion & basket -->
 
@@ -16,7 +16,7 @@
         </div>
       </div>
       <!-- Affichage pour l'utilisateur connecté ou l'admin -->
-      <div *ngIf="roleUser || roleAdmin">
+      <div *ngIf="roleUser">
         <div class="connexion" id="connexion-dropdown" ngbDropdownToggle style="font-weight: bold;">Bonjour {{ user?.firstname | titlecase }}</div>
         <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
           <button ngbDropdownItem class="dropdown-item" id="account-link" [routerLink]="['mon-compte']"
@@ -26,17 +26,10 @@
       </div>
     </div>
     <!-- Affichage pour l'utilisateur connecté ou non -->
-    <div *ngIf="!roleAdmin" class="panier" placement="bottom" ngbTooltip="Voir mon panier">
+    <div class="panier" placement="bottom" ngbTooltip="Voir mon panier">
       <a routerLink="/boutique/panier" id="panier-link">
         <i class="fas fa-shopping-basket"></i>
         <span class="number-of-products"> ({{ this.shoppingCartLength }})</span>
-      </a>
-    </div>
-    <!-- Affichage pour l'admin -->
-    <div *ngIf="roleAdmin" class="panier" id="admin-link" placement="bottom" ngbTooltip="Voir le CRM">
-      <a routerLink="/administration">
-        <i class="fa fa-user-secret"></i>
-        <span class="number-of-notifications"> (1)</span>
       </a>
     </div>
   </div>
