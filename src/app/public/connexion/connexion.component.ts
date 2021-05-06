@@ -111,10 +111,17 @@ export class ConnexionComponent implements OnInit {
         this.currentUser = data;
         this.role = this.currentUser.role.role;
         this.idUser = this.currentUser.id;
-        this.router.navigateByUrl('/home', { skipLocationChange: false }).then(() => {
-          this.router.navigate(['home']);
-          document.location.reload();
-        });
+        if (this.role === 'user') {
+          this.router.navigateByUrl('/home', { skipLocationChange: false }).then(() => {
+            this.router.navigate(['home']);
+            document.location.reload();
+          });
+        } else if (this.role === 'admin') {
+          this.router.navigateByUrl('/administration', { skipLocationChange: false }).then(() => {
+            this.router.navigate(['administration']);
+            document.location.reload();
+          });
+        }
       }, () => {
         this.submitError = true;
       }

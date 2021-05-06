@@ -1,12 +1,13 @@
 import { NgModule } from '@angular/core';
 import { SharedModule } from 'src/app/shared/shared.module';
-import { AdminRoutingComponent } from './admin-routing.module';
+import { AdminRoutingModule } from './admin-routing.module';
 
 import { AdminComponent } from './admin.component';
 import { GestionCommandesComponent } from './gestion-commandes/gestion-commandes.component';
 import { GestionProduitsComponent } from './gestion-produits/gestion-produits.component';
 import { GestionArticlesComponent } from './gestion-articles/gestion-articles.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
   ],
   imports: [
     SharedModule,
-    AdminRoutingComponent
+    AdminRoutingModule,
+    RouterModule
   ]
 })
 export class AdminModule { }

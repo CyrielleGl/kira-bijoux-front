@@ -1,4 +1,4 @@
-<footer class="footer">
+<footer class="footer" *ngIf="!roleAdmin" >
 
   <!-- link to Instagram -->
 
@@ -30,6 +30,17 @@
     &copy;
     <span [innerText]="yearNow"></span>&nbsp;<span [innerText]="appTitle"></span>&nbsp;
     <span>-&nbsp; <a routerLink="/mentions-legales" id="mentions-legales-link">Mentions légales</a></span>
+  </div>
+
+</footer>
+
+<footer class="footer_admin" *ngIf="roleAdmin" >
+
+  <!-- copyright -->
+
+  <div class="copyright_admin">
+    &copy;
+    <span>Copyright </span><span [innerText]="yearNow"></span>&nbsp;<span [innerText]="appTitle"></span>&nbsp;
   </div>
 
 </footer>
