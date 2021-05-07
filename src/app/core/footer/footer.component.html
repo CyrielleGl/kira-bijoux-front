@@ -1,5 +1,9 @@
 <footer class="footer" *ngIf="!roleAdmin" >
 
+  <div *ngIf="!isActivateCookies" class="cookie-banner">
+    <p>En continuant votre navigation, vous acceptez l'utilisation des cookies.<a (click)="activateCookies()">OK</a></p>
+  </div>
+
   <!-- link to Instagram -->
 
   <div class="instagram" id="instagram-link" placement="bottom" ngbTooltip="Suivez-nous sur Instagram">

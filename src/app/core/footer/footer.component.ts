@@ -15,6 +15,7 @@ export class FooterComponent implements OnInit {
   appTitle: string | undefined;
 
   private roleAccess = '';
+  isActivateCookies = false;
   roleUser = false;
   roleAdmin = false;
   roleNotLogged = false;
@@ -24,8 +25,17 @@ export class FooterComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    if (this.cookieService.get('kira-bijoux-cdd') == 'true') {
+      this.isActivateCookies = true;
+    }
+    
     this.roleAccess = this.cookieService.get('kira-bijoux-cookie');
     this.displayByAccessRole(this.roleAccess);
+  }
+  
+  activateCookies(): void {
+    this.cookieService.set('kira-bijoux-cdd', 'true', 365);
+    location.reload();
   }
 
   private displayByAccessRole(roleAccess: string): void {
