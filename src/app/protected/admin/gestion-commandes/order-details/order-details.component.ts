@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { Address } from 'src/app/shared/models/address.model';
-import { Order, OrderItems } from 'src/app/shared/models/order.model';
+import { Address, IAddress } from 'src/app/shared/models/address.model';
+import { IOrder, Order, OrderItems } from 'src/app/shared/models/order.model';
+import { User } from 'src/app/shared/models/user.model';
 import { OrdersService } from 'src/app/shared/services/api/orders/orders.service';
 
 @Component({
@@ -20,7 +21,8 @@ export class OrderDetailsComponent implements OnInit {
   itemPrice: number | any;
   itemTva: number | any;
   load = false;
-  orderAddress: Address | null = null;
+  orderAddress: Address | any = null;
+  user: User | any = null;
 
   constructor(
     public activeModal: NgbActiveModal,
@@ -32,7 +34,6 @@ export class OrderDetailsComponent implements OnInit {
     if (this.commande) {
       this.orderId = this.commande.order.id;
       this.getOrderByOrderId();
-      this.orderAddress = this.commande.order?.address;
     }
   }
 
@@ -68,9 +69,13 @@ export class OrderDetailsComponent implements OnInit {
   }
 
   getOrderByOrderId(): void {
-    this.ordersService.getOrderByOrderId(this.orderId).subscribe((data: Order) => {
+    this.ordersService.getOrderByOrderId(this.orderId).subscribe((data: IOrder) => {
       this.order = data;
       this.getOrderItems(this.order.id);
+      this.orderAddress = this.order?.user_address;
+      this.user = this.orderAddress?.user;
+      console.warn(this.order);
+      console.warn(this.user);
     });
   }
 

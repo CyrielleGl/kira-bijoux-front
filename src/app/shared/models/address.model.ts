@@ -1,5 +1,8 @@
+import { IUser, User } from './user.model';
+
 export interface IAddress {
     id?: any;
+    user?: IUser;
     name?: string;
     recipient?: string;
     first_line?: string;
@@ -13,6 +16,7 @@ export interface IAddress {
 export class Address implements IAddress {
     constructor(
         public id?: any,
+        public user?: IUser,
         public name?: string,
         public recipient?: string,
         public first_line?: string,
