@@ -13,7 +13,8 @@
 
   <div><span style="font-weight: 600;">Adresse d'envoi : </span>
     {{ orderAddress?.recipient }} - {{ orderAddress?.first_line }} {{ orderAddress?.second_line }} {{ orderAddress?.post_code }} {{ orderAddress?.town }}</div>
-  <div><span style="font-weight: 600;">Contact client : </span></div>
+  <div><span style="font-weight: 600;">Contact client : </span>
+    {{ user?.firstname | titlecase }} {{ user?.firstname | titlecase }} - {{ user?.mail }} - {{ user?.phone }} </div>
 
   <br/>
 

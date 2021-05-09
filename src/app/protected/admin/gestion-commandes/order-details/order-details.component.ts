@@ -4,6 +4,7 @@ import { Address, IAddress } from 'src/app/shared/models/address.model';
 import { IOrder, Order, OrderItems } from 'src/app/shared/models/order.model';
 import { User } from 'src/app/shared/models/user.model';
 import { OrdersService } from 'src/app/shared/services/api/orders/orders.service';
+import { UsersService } from 'src/app/shared/services/api/users/users.service';
 
 @Component({
   selector: 'app-order-details',
@@ -17,23 +18,26 @@ export class OrderDetailsComponent implements OnInit {
   source: any[] = [];
   orderId = 0;
   orderItems: OrderItems[] | any = [];
-  order: Order | null = null;
+  order: Order | any = null;
   itemPrice: number | any;
   itemTva: number | any;
   load = false;
   orderAddress: Address | any = null;
+  orderAddressId = 0;
   user: User | any = null;
+  userid = 0;
 
   constructor(
     public activeModal: NgbActiveModal,
-    private ordersService: OrdersService
+    private ordersService: OrdersService,
+    private usersService: UsersService
   ) { }
 
   ngOnInit(): void {
     this.initSettings();
     if (this.commande) {
       this.orderId = this.commande.order.id;
-      this.getOrderByOrderId();
+      this.getOrderByOrderId(this.orderId);
     }
   }
 
@@ -46,7 +50,7 @@ export class OrderDetailsComponent implements OnInit {
         position: 'right'
       },
       pager: {
-        perPage: 10
+        perPage: 20
       },
       columns: {
         description: {
@@ -68,19 +72,18 @@ export class OrderDetailsComponent implements OnInit {
     };
   }
 
-  getOrderByOrderId(): void {
-    this.ordersService.getOrderByOrderId(this.orderId).subscribe((data: IOrder) => {
+  getOrderByOrderId(orderId: number): void {
+    this.ordersService.getOrderByOrderId(orderId).subscribe((data: Order) => {
       this.order = data;
       this.getOrderItems(this.order.id);
-      this.orderAddress = this.order?.user_address;
-      this.user = this.orderAddress?.user;
-      console.warn(this.order);
-      console.warn(this.user);
+      this.orderAddress = this.order?.address;
+      this.userid = this.orderAddress?.user;
+      this.getUserById();
     });
   }
 
   getOrderItems(orderId: number): void {
-    this.ordersService.getOrderItems(orderId).subscribe((data: any) => {
+    this.ordersService.getOrderItems(orderId).subscribe((data: OrderItems[]) => {
       this.orderItems = data;
       if (this.orderItems.length > 0) {
          this.orderItems.map((i: OrderItems) => {
@@ -94,6 +97,12 @@ export class OrderDetailsComponent implements OnInit {
           this.load = true;
         });
       }
+    });
+  }
+
+  getUserById(): void {
+    this.usersService.getUser(this.userid).subscribe((data: User) => {
+      this.user = data;
     });
   }
 
