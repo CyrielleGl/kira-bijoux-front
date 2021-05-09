@@ -13,11 +13,15 @@ export class OrdersService {
     private http: HttpClient
   ) { }
 
-  getOrders(idUser: number): Observable<IOrder[]> {
+  getAllOrders(): Observable<IOrder[]> {
+    return this.http.get<IOrder[]>(`${ApiService.ApiUrlOrders}`);
+  }
+
+  getOrdersByUserId(idUser: number): Observable<IOrder[]> {
     return this.http.get<IOrder[]>(`${ApiService.ApiUrlOrders}/user/` + idUser);
   }
 
-  getOrderById(idOrder: number): Observable<any> {
+  getOrderByOrderId(idOrder: number): Observable<any> {
     return this.http.get<any>(`${ApiService.ApiUrlOrders}/` + idOrder);
   }
 

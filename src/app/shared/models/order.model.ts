@@ -4,7 +4,7 @@ import { IAddress } from './address.model';
 export interface IOrder {
     id?: any;
     status?: IOrderStatus;
-    user_address?: IAddress[];
+    user_address?: IAddress;
     paiement_type?: IPaymentTypes;
     price?: number;
     inserted_at?: Date;
@@ -18,7 +18,7 @@ export class Order implements IOrder {
     constructor(
         public id?: any,
         public status?: IOrderStatus,
-        public user_address?: IAddress[],
+        public user_address?: IAddress,
         public paiement_type?: IPaymentTypes,
         public price?: number,
         public inserted_at?: Date,

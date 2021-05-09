@@ -1,0 +1,32 @@
+<div id="alert-modal-header" class="modal-header">
+    <h4 class="modal-title" style="color: var(--primary)" id="edit-heading">
+        Détail de la commande</h4>
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+    (click)="cancel()">x
+    </button>
+</div>
+
+<div class="modal-body">
+  <div><b>Commande n° {{ commande.commande }}</b> passée le {{ commande.date }}</div>
+
+  <br/>
+
+  <div><span style="font-weight: 600;">Adresse d'envoi : </span>
+    {{ orderAddress?.recipient }} - {{ orderAddress?.first_line }} {{ orderAddress?.second_line }} {{ orderAddress?.post_code }} {{ orderAddress?.town }}</div>
+  <div><span style="font-weight: 600;">Contact client : </span></div>
+
+  <br/>
+
+  <div style="font-weight: 600;">Détail de la commande :</div>
+
+  <div style="margin-top: 1rem">
+    <ng2-smart-table [settings]="settings" [source]="source" *ngIf="load"></ng2-smart-table>
+  </div>
+
+</div>
+
+<div class="modal-footer" id="modal-footer">
+    <button id="close" type="close" class="btn btn-fourth col-3" data-dismiss="modal" (click)="cancel()">
+      <i class="fa fa-ban"></i><span> Fermer</span>
+    </button>
+  </div>
