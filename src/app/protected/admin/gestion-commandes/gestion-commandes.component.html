@@ -1,1 +1,8 @@
-<p>gestion-commandes works!</p>
+<div id="title">
+    <div class="body">
+      <h2 id="commandes">Toutes les commandes</h2>
+      <p *ngIf="orders">Depuis la mise en ligne du site, <span style="font-weight: 600;">{{orders.length}} commandes</span> ont déjà été passées :</p>
+      <ng2-smart-table [settings]="settings" [source]="source" *ngIf="orders"></ng2-smart-table>
+      <p *ngIf="!orders" style="color: var(--primary); margin-top: 2rem">Aucune commande n'a été passée !</p> 
+    </div>
+</div>

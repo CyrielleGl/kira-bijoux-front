@@ -110,9 +110,8 @@ export class CommandesComponent implements OnInit {
 
   initDataSource(user: any): void {
     // tslint:disable-next-line: deprecation
-    this.ordersService.getOrders(user.id).subscribe((data: IOrder[]) => {
+    this.ordersService.getOrdersByUserId(user.id).subscribe((data: IOrder[]) => {
       this.orders = data;
-      console.warn(this.orders);
       if (this.orders.length > 0) {
         this.orders.map((order: Order) => {
           const obj =

@@ -8,6 +8,7 @@ import { GestionProduitsComponent } from './gestion-produits/gestion-produits.co
 import { GestionArticlesComponent } from './gestion-articles/gestion-articles.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { RouterModule } from '@angular/router';
+import { OrderDetailsComponent } from './gestion-commandes/order-details/order-details.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { RouterModule } from '@angular/router';
     GestionCommandesComponent,
     GestionProduitsComponent,
     GestionArticlesComponent,
-    GestionProduitsComponent
+    GestionProduitsComponent,
+    OrderDetailsComponent
   ],
   imports: [
     SharedModule,
