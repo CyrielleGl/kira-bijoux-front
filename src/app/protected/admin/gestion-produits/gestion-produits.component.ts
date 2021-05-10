@@ -1,10 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { faEye, faPencilAlt } from '@fortawesome/free-solid-svg-icons';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ButtonUpdateComponent } from 'src/app/shared/components/button-view/button-update.component';
 import { ButtonViewComponent } from 'src/app/shared/components/button-view/button-view.component';
 import { IItems, Items } from 'src/app/shared/models/item.model';
 import { ItemsService } from 'src/app/shared/services/api/items/items.service';
 import { SecuService } from 'src/app/shared/services/secu/secu.service';
+import { ProductDetailsComponent } from './product-details/product-details.component';
+import { ProductUpdateComponent } from './product-update/product-update.component';
 
 @Component({
   selector: 'app-gestion-produits',
@@ -20,7 +23,8 @@ export class GestionProduitsComponent implements OnInit {
 
   constructor(
     private cookieService: SecuService,
-    private itemsService: ItemsService
+    private itemsService: ItemsService,
+    private modalService: NgbModal
     ) { }
 
   ngOnInit(): void {
@@ -82,7 +86,7 @@ export class GestionProduitsComponent implements OnInit {
           renderComponent: ButtonViewComponent,
           onComponentInitFunction: (instance: any) => {
             instance.view.subscribe((row: any) => {
-              // this.openOrderCardDialog(row);
+              this.openProductViewDialog(row);
             });
           }
         },
@@ -102,7 +106,7 @@ export class GestionProduitsComponent implements OnInit {
           renderComponent: ButtonUpdateComponent,
           onComponentInitFunction: (instance: any) => {
             instance.view.subscribe((row: any) => {
-              // this.openOrderCardDialog(row);
+              this.openProductUpdateDialog(row);
             });
           }
         }
@@ -113,13 +117,11 @@ export class GestionProduitsComponent implements OnInit {
   initDataSource(): void {
     this.itemsService.getAllItems().subscribe((data: any) => {
       this.items = data;
-      console.warn(this.items);
       if (this.items.length > 0) {
         this.items.map((item: any) => {
           const materials = item.materials.map((material: any) => {
             return  ' ' + material.name;
           });
-          console.warn(materials);
           const obj = {
             item,
             name: item.name,
@@ -132,6 +134,38 @@ export class GestionProduitsComponent implements OnInit {
         });
       }
     });
+  }
+
+  openProductViewDialog(row: any): void {
+    const modalRef = this.modalService.open(ProductDetailsComponent, {
+      size: 'lg',
+      backdrop: 'static'
+    });
+    modalRef.componentInstance.product = row;
+    modalRef.result.then(
+      () => {
+        // Left blank intentionally, nothing to do here
+      },
+      () => {
+        // Left blank intentionally, nothing to do here
+      }
+    );
+  }
+
+  openProductUpdateDialog(row: any): void {
+    const modalRef = this.modalService.open(ProductUpdateComponent, {
+      size: 'lg',
+      backdrop: 'static'
+    });
+    modalRef.componentInstance.product = row;
+    modalRef.result.then(
+      () => {
+        // Left blank intentionally, nothing to do here
+      },
+      () => {
+        // Left blank intentionally, nothing to do here
+      }
+    );
   }
 
 }
