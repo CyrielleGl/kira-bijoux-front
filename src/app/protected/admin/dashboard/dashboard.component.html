@@ -35,6 +35,36 @@
           ></app-indicator>
         </div>
       </div>
+
+      <div class="row justify-content-center flex">
+        <div class="col-3 text-center">
+          <app-indicator
+            [value]="items?.length > 0 ? items?.length : '0'"
+            icon="gem"
+            classToApply="table-bordered-purple"
+            label="Produits disponibles"
+            colorIcon="icon-purple"
+          ></app-indicator>
+        </div>
+        <div class="col-3 text-center">
+          <app-indicator
+            [value]="cancelledItems?.length > 0 ? cancelledItems?.length : '0'"
+            icon="ban"
+            classToApply="table-bordered-red"
+            label="Commandes annulées"
+            colorIcon="icon-red"
+          ></app-indicator>
+        </div>
+        <div class="col-3 text-center">
+          <app-indicator
+            [value]="items?.length > 0 ? items?.length : '0'"
+            icon="calendar-plus"
+            classToApply="table-bordered-blue"
+            label="Produits à recréer"
+            colorIcon="icon-blue"
+          ></app-indicator>
+        </div>
+      </div>
     </div>
 
 </div>
