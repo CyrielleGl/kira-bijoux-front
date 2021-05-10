@@ -7,11 +7,13 @@ import { AlertStockModalComponent } from './components/item-details/alert-stock-
 import { Ng2SmartTableModule } from 'ng2-smart-table';
 import { ButtonViewComponent } from './components/button-view/button-view.component';
 import { IndicatorComponent } from './components/indicator/indicator.component';
+import { ButtonUpdateComponent } from './components/button-view/button-update.component';
 
 @NgModule({
   declarations: [
     AlertStockModalComponent,
     ButtonViewComponent,
+    ButtonUpdateComponent,
     IndicatorComponent
   ],
   imports: [

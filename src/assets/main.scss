@@ -51,7 +51,7 @@ main {
   font-family: "Open-sans-regular";
 }
 
-.main-admin {
+.main_admin {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif !important;
 }
 
@@ -243,6 +243,10 @@ a.ng2-smart-sort-link {
   font-weight: 600 !important;
 }
 
+.ng2-smart-filter input {
+  text-align: center !important;
+}
+
 /*----------------------------*/
 /*------- INDICATORS --------*/
 /*--------------------------*/
@@ -310,6 +314,10 @@ a.ng2-smart-sort-link {
       padding-left: 2.5rem;
       padding-bottom: 3rem;
     }
+    .main_admin {
+      padding-right: 1rem;
+      padding-left: 1rem;
+    }
     .nav-tabs .nav-item {
       border-top: #fff 1px solid;
     }
@@ -326,6 +334,10 @@ a.ng2-smart-sort-link {
       padding-left: 4rem;
       padding-bottom: 4rem;
     }
+    .main_admin {
+      padding-right: 1rem;
+      padding-left: 1rem;
+    }
   }
   
   /* large screens */
@@ -335,6 +347,11 @@ a.ng2-smart-sort-link {
       max-width: 62rem;
       padding-right: 5rem;
       padding-left: 5rem;
+    }
+    .main_admin {
+      max-width: 75rem;
+      padding-right: 1rem;
+      padding-left: 1rem;
     }
   }
   

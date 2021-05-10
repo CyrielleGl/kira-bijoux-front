@@ -22,7 +22,6 @@ export class GestionCommandesComponent implements OnInit {
   user: User | null = null;
   orders: Order[] | any = null;
 
-
   constructor(
     private cookieService: SecuService,
     private modalService: NgbModal,
