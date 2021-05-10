@@ -128,6 +128,10 @@ h6 {
   margin-top: 1rem;
 }
 
+.col-3 {
+  max-width: 100% !important;
+}
+
 /*------------------------*/
 /*----- NAV & TABS ------*/
 /*----------------------*/
@@ -237,6 +241,42 @@ h6 {
 a.ng2-smart-sort-link {
   color: var(--primary) !important;
   font-weight: 600 !important;
+}
+
+/*----------------------------*/
+/*------- INDICATORS --------*/
+/*--------------------------*/
+
+.table-bordered-purple, .table-bordered-blue, .table-bordered-green {
+  border: 2px solid #dee2e6;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  min-width: 12rem;
+}
+
+.table-bordered-purple {
+  color: var(--primary);
+}
+
+.table-bordered-blue {
+  color: #048b9a;
+}
+
+.table-bordered-green {
+  color: #21b88b;
+}
+
+.icon-purple {
+  color: var(--primary);
+}
+
+.icon-blue {
+  color: #048b9a;
+}
+
+.icon-green {
+  color: #21b88b;
 }
 
 /*------------------------*/

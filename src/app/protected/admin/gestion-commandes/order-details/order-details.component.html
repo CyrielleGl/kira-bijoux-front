@@ -8,13 +8,24 @@
 
 <div class="modal-body">
   <div><b>Commande n° {{ commande.commande }}</b> passée le {{ commande.date }}</div>
+  <div>Total TTC : <span style="font-weight: 600;"> {{ order.price }} €</span></div>
 
   <br/>
 
-  <div><span style="font-weight: 600;">Adresse d'envoi : </span>
-    {{ orderAddress?.recipient }} - {{ orderAddress?.first_line }} {{ orderAddress?.second_line }} {{ orderAddress?.post_code }} {{ orderAddress?.town }}</div>
-  <div><span style="font-weight: 600;">Contact client : </span>
-    {{ user?.firstname | titlecase }} {{ user?.firstname | titlecase }} - {{ user?.mail }} - {{ user?.phone }} </div>
+  <div>
+    <i class="fas fa-shipping-fast"></i>
+    <span style="font-weight: 600;"> Adresse d'envoi : </span>
+    {{ orderAddress?.recipient }} - {{ orderAddress?.first_line }} {{ orderAddress?.second_line }} {{ orderAddress?.post_code }} {{ orderAddress?.town }}
+  </div>
+
+  <br/>
+
+  <div>
+    <i class="fas fa-user-alt"></i>
+    <span style="font-weight: 600;"> Contact client : </span>
+    {{ user?.firstname | titlecase }} {{ user?.firstname | titlecase }} - {{ user?.mail }} - {{ user?.phone }}
+  </div>
+  <div style="font-size: 0.8rem">Envoyer un bon d'achat au client</div>
 
   <br/>
 

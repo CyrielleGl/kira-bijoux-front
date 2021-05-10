@@ -6,9 +6,14 @@ import { CookieService } from 'ngx-cookie-service';
 import { AlertStockModalComponent } from './components/item-details/alert-stock-modal/alert-stock-modal.component';
 import { Ng2SmartTableModule } from 'ng2-smart-table';
 import { ButtonViewComponent } from './components/button-view/button-view.component';
+import { IndicatorComponent } from './components/indicator/indicator.component';
 
 @NgModule({
-  declarations: [AlertStockModalComponent, ButtonViewComponent],
+  declarations: [
+    AlertStockModalComponent,
+    ButtonViewComponent,
+    IndicatorComponent
+  ],
   imports: [
     CommonModule,
     NgbModule,
@@ -20,7 +25,8 @@ import { ButtonViewComponent } from './components/button-view/button-view.compon
     NgbModule,
     NgbDropdown,
     FontAwesomeModule,
-    Ng2SmartTableModule
+    Ng2SmartTableModule,
+    IndicatorComponent
   ],
   providers: [
     CookieService
