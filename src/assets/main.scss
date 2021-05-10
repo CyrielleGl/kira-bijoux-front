@@ -255,7 +255,7 @@ a.ng2-smart-sort-link {
 /*------- INDICATORS --------*/
 /*--------------------------*/
 
-.table-bordered-purple, .table-bordered-blue, .table-bordered-green {
+.table-bordered-purple, .table-bordered-blue, .table-bordered-green, .table-bordered-red {
   border: 2px solid #dee2e6;
   border-radius: 0.5rem;
   font-size: 1rem;
@@ -275,6 +275,10 @@ a.ng2-smart-sort-link {
   color: #21b88b;
 }
 
+.table-bordered-red {
+  color: #9e2020;
+}
+
 .icon-purple {
   color: var(--primary);
 }
@@ -285,6 +289,10 @@ a.ng2-smart-sort-link {
 
 .icon-green {
   color: #21b88b;
+}
+
+.icon-red {
+  color: #9e2020;
 }
 
 /*------------------------*/
