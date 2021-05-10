@@ -31,7 +31,6 @@ export class DashboardComponent implements OnInit {
   getAllUsers(): void {
     this.usersService.getAllUsers().subscribe((data: string[]): void => {
       this.users = data;
-      console.warn(this.users);
     });
   }
 
@@ -40,7 +39,8 @@ export class DashboardComponent implements OnInit {
       this.orders = data;
       if (this.orders.length > 0) {
         this.chiffreAffaires = this.orders.reduce((sum: number, o: Order | any) => sum + o.price, 0) + ' €';
-        console.warn(this.chiffreAffaires);
+      } else {
+        this.chiffreAffaires = 'N/A';
       }
     });
   }
