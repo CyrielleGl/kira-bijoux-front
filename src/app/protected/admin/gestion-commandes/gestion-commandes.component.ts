@@ -5,7 +5,6 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { IOrder, Order } from 'src/app/shared/models/order.model';
 import { User } from 'src/app/shared/models/user.model';
 import { OrdersService } from 'src/app/shared/services/api/orders/orders.service';
-import { UsersService } from 'src/app/shared/services/api/users/users.service';
 import { SecuService } from 'src/app/shared/services/secu/secu.service';
 import { OrderDetailsComponent } from './order-details/order-details.component';
 import { formatDateToWeb } from 'src/app/shared/services/utils/utils.service';
@@ -21,7 +20,7 @@ export class GestionCommandesComponent implements OnInit {
   source: any[] = [];
 
   user: User | null = null;
-  orders: IOrder[] | any = null;
+  orders: Order[] | any = null;
 
 
   constructor(

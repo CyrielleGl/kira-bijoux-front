@@ -1,6 +1,40 @@
-<div id="title">
-    <div class="body">
+<div>
+    <div class="title">
       <h2 id="commandes">Dashboard</h2>
-      <p *ngIf="users">Le site compte aujourd'hui <span style="font-weight: 600;">{{users.length}} utilisateurs</span> inscrits.</p>
     </div>
+
+    <div class="body">
+      <p>Toutes les informations concernant votre site e-commerce.</p>
+
+      <div class="row justify-content-center flex" *ngIf="users && orders && chiffreAffaires">
+        <div class="col-3 text-center">
+          <app-indicator
+            [value]="users.length"
+            icon="users"
+            classToApply="table-bordered-blue"
+            label="Utilisateurs inscrits"
+            colorIcon="icon-blue"
+          ></app-indicator>
+        </div>
+        <div class="col-3 text-center">
+          <app-indicator
+            [value]="orders.length"
+            icon="box-open"
+            classToApply="table-bordered-purple"
+            label="Commandes payées"
+            colorIcon="icon-purple"
+          ></app-indicator>
+        </div>
+        <div class="col-3 text-center">
+          <app-indicator
+            [value]="chiffreAffaires"
+            icon="chart-line"
+            classToApply="table-bordered-green"
+            label="Chiffre d'affaires"
+            colorIcon="icon-green"
+          ></app-indicator>
+        </div>
+      </div>
+    </div>
+
 </div>

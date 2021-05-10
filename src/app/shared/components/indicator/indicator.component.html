@@ -1,0 +1,20 @@
+<div class="row">
+    <div class="col-12">
+        <div class="row justify-content-center {{classToApply}} m-2">
+            <div class="col-12 {{classMargin}}" *ngIf="icon">
+                <h2 *ngIf="iconColor" class="{{colorIcon}}">
+                    <fa-icon [icon]="icon" class="{{sizeIcon}}"></fa-icon>
+                </h2>
+                <h2 *ngIf="!iconColor" style="color: var(--primary)">
+                    <fa-icon [icon]="icon"></fa-icon>
+                </h2>
+            </div>
+            <div class="col-12" *ngIf="value">
+                <span>{{value}}</span>
+            </div>
+            <div class="col-12 mb-3" *ngIf="label">
+                <span>{{label}}</span>
+            </div>
+        </div>
+    </div>
+</div>
