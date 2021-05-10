@@ -9,6 +9,8 @@ import { GestionArticlesComponent } from './gestion-articles/gestion-articles.co
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { RouterModule } from '@angular/router';
 import { OrderDetailsComponent } from './gestion-commandes/order-details/order-details.component';
+import { ProductDetailsComponent } from './gestion-produits/product-details/product-details.component';
+import { ProductUpdateComponent } from './gestion-produits/product-update/product-update.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +21,9 @@ import { OrderDetailsComponent } from './gestion-commandes/order-details/order-d
     GestionProduitsComponent,
     GestionArticlesComponent,
     GestionProduitsComponent,
-    OrderDetailsComponent
+    OrderDetailsComponent,
+    ProductDetailsComponent,
+    ProductUpdateComponent
   ],
   imports: [
     SharedModule,

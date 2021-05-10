@@ -9,7 +9,7 @@ import { UsersService } from 'src/app/shared/services/api/users/users.service';
 @Component({
   selector: 'app-order-details',
   templateUrl: './order-details.component.html',
-  styleUrls: ['./order-details.component.scss']
+  styleUrls: []
 })
 export class OrderDetailsComponent implements OnInit {
 
