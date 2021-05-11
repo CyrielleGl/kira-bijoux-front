@@ -6,6 +6,8 @@
     <div class="body">
       <p>Toutes les informations concernant votre site e-commerce.</p>
 
+      <p style="margin-top: 1rem; margin-bottom: 2rem; font-size: 1rem; color: red">Vous avez {{ ordersToPrepare.length }} commandes à préparer !</p>
+
       <div class="row justify-content-center flex" *ngIf="users && orders && chiffreAffaires">
         <div class="col-3 text-center">
           <app-indicator
@@ -25,7 +27,7 @@
             icon="box-open"
             classToApply="table-bordered-purple"
             label="Commandes payées"
-            subtitle="et reçues par les clients"
+            subtitle="à envoyer ou déjà reçues"
             colorIcon="icon-purple"
             (click)="openIndicatorCardDialog(indicatorValidateOrder)"
             ngbTooltip="Voir les commandes payées"
