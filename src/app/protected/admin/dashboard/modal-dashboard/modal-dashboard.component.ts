@@ -42,12 +42,7 @@ export class ModalDashboardComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
-      console.warn(this.keyWord);
-      if (this.keyWord === this.indicatorUsers || this.indicatorValidateOrder) {
-          this.initTableSettings();
-          console.warn(this.users);
-          console.warn(this.validateOrders);
-      }
+      this.initTableSettings();
   }
 
   initTableSettings(): void {
@@ -105,7 +100,7 @@ export class ModalDashboardComponent implements OnInit {
                 }
             }
         };
-    } else if (this.keyWord === this.indicatorValidateOrder) {
+    } else if (this.keyWord === this.indicatorValidateOrder || this.keyWord === this.indicatorCancelledOrders) {
         this.settings = {
             actions: {
               add: false,
@@ -159,7 +154,7 @@ export class ModalDashboardComponent implements OnInit {
               }
             }
           };
-    } else if (this.keyWord === this.indicatorStockedProducts) {
+    } else if (this.keyWord === this.indicatorStockedProducts || this.keyWord === this.indicatorUnstockedProducts) {
         this.settings = {
             actions: {
               add: false,
@@ -280,8 +275,33 @@ export class ModalDashboardComponent implements OnInit {
                 };
             this.source.push(obj);
         });
+    } else if (this.keyWord === this.indicatorValidateOrder) {
+        this.cancelledOrders.map((co: any) => {
+            const obj = {
+                co,
+                commande: co.order.id,
+                date: formatDateToWeb(co.order.inserted_at, 'dd/MM/yyyy'),
+                statut: co.order.status?.name,
+                prix: co.order.price + ' €'
+            };
+            this.source.push(obj);
+        });
+    } else if (this.keyWord === this.indicatorUnstockedProducts) {
+        this.unstockedItems.map((item: any) => {
+            const materials = item.materials.map((material: any) => {
+                return  ' ' + material.name;
+              });
+            const obj = {
+                item,
+                name: item.name,
+                type: item?.item_type?.name,
+                materials: materials.toString(),
+                price: item.price + ' €',
+                stock: item.stock
+                };
+            this.source.push(obj);
+        });
     }
-    console.warn(this.source);
   }
 
   openOrderCardDialog(row: any): void {
