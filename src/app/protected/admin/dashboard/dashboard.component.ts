@@ -8,6 +8,7 @@ import { ItemsService } from 'src/app/shared/services/api/items/items.service';
 import { addConsoleHandler } from 'selenium-webdriver/lib/logging';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ModalDashboardComponent } from './modal-dashboard/modal-dashboard.component';
+import { STATUT_EN_ATTENTE, STATUT_REMBOURSEE } from 'src/app/shared/app-constants';
 
 @Component({
   selector: 'app-dashboard',
@@ -21,6 +22,7 @@ export class DashboardComponent implements OnInit {
   chiffreAffaires: string | any = null;
   items: string[] | any = null;
   validateOrders: [] | any = [];
+  ordersToPrepare: [] | any = [];
   cancelledOrders: [] | any = [];
   unstockedItems: [] | any = [];
   stockedItems: [] | any = [];
@@ -59,18 +61,22 @@ export class DashboardComponent implements OnInit {
       this.orders = data;
       if (this.orders.length > 0) {
         this.orders.map((order: Order) => {
-          if (order.status?.id === 4) {
+          if (order.status?.name === STATUT_REMBOURSEE) {
             const obj = {
               order,
               value: order.status
             };
             this.cancelledOrders.push(obj);
-          } else if (order.status?.id !== 4) {
+          } else if (order.status?.name !== STATUT_REMBOURSEE) {
             const okOrders = {
               order,
               value: order.status
             };
             this.validateOrders.push(okOrders);
+            if (order.status?.name === STATUT_EN_ATTENTE) {
+              const orderToPrepare = order;
+              this.ordersToPrepare.push(orderToPrepare);
+            }
           }
         });
         this.chiffreAffaires = this.validateOrders.reduce((sum: number, vO: any) => sum + vO.order.price, 0) + ' €';

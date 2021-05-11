@@ -16,7 +16,6 @@ export class ProductUpdateComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    console.warn(this.product);
     this.productPictures = this.product.item.item_pictures;
   }
 

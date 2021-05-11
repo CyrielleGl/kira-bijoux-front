@@ -2,10 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { Order } from 'src/app/shared/models/order.model';
 import { User } from 'src/app/shared/models/user.model';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { faEye } from '@fortawesome/free-solid-svg-icons';
+import { faEye, faPencilAlt } from '@fortawesome/free-solid-svg-icons';
 import { ButtonViewComponent } from 'src/app/shared/components/button-view/button-view.component';
 import { OrderDetailsComponent } from '../../gestion-commandes/order-details/order-details.component';
 import { formatDateToWeb } from 'src/app/shared/services/utils/utils.service';
+import { ButtonUpdateComponent } from 'src/app/shared/components/button-view/button-update.component';
+import { ProductUpdateComponent } from '../../gestion-produits/product-update/product-update.component';
+import { ProductDetailsComponent } from '../../gestion-produits/product-details/product-details.component';
 
 @Component({
   selector: 'app-modal-dashboard',
@@ -39,12 +42,7 @@ export class ModalDashboardComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
-      console.warn(this.keyWord);
-      if (this.keyWord === this.indicatorUsers || this.indicatorValidateOrder) {
-          this.initTableSettings();
-          console.warn(this.users);
-          console.warn(this.validateOrders);
-      }
+      this.initTableSettings();
   }
 
   initTableSettings(): void {
@@ -102,7 +100,7 @@ export class ModalDashboardComponent implements OnInit {
                 }
             }
         };
-    } else if (this.keyWord === this.indicatorValidateOrder) {
+    } else if (this.keyWord === this.indicatorValidateOrder || this.keyWord === this.indicatorCancelledOrders) {
         this.settings = {
             actions: {
               add: false,
@@ -156,6 +154,85 @@ export class ModalDashboardComponent implements OnInit {
               }
             }
           };
+    } else if (this.keyWord === this.indicatorStockedProducts || this.keyWord === this.indicatorUnstockedProducts) {
+        this.settings = {
+            actions: {
+              add: false,
+              edit: false,
+              delete: false,
+              position: 'right'
+            },
+            pager: {
+              perPage: 10
+            },
+            columns: {
+              name: {
+                title: 'Nom',
+                filter: true,
+                sort: true
+              },
+              type: {
+                title: 'Type',
+                filter: true,
+                sort: true
+              },
+              materials: {
+                title: 'Matériaux',
+                filter: true,
+                sort: true
+              },
+              price: {
+                title: 'Prix TTC',
+                filter: true,
+                sort: true
+              },
+              stock: {
+                title: 'Stock',
+                filter: true,
+                sort: true
+              },
+              buttonView: {
+                title: '',
+                type: 'custom',
+                filter: false,
+                width: '20px',
+                valuePrepareFonction: (value: any, row: any, cell: any) => {
+                  return {
+                    icon: faEye,
+                    animation: 'pulse',
+                    tooltip: 'Voir le produit',
+                    placement: 'top'
+                  };
+                },
+                renderComponent: ButtonViewComponent,
+                onComponentInitFunction: (instance: any) => {
+                  instance.view.subscribe((row: any) => {
+                    this.openProductViewDialog(row);
+                  });
+                }
+              },
+              buttonUpdate: {
+                title: '',
+                type: 'custom',
+                filter: false,
+                width: '20px',
+                valuePrepareFonction: (value: any, row: any, cell: any) => {
+                  return {
+                    icon: faPencilAlt,
+                    animation: 'pulse',
+                    tooltip: 'Modifier le produit',
+                    placement: 'top'
+                  };
+                },
+                renderComponent: ButtonUpdateComponent,
+                onComponentInitFunction: (instance: any) => {
+                  instance.view.subscribe((row: any) => {
+                    this.openProductUpdateDialog(row);
+                  });
+                }
+              }
+            }
+          };
     }
     this.initDataSource();
   }
@@ -183,8 +260,48 @@ export class ModalDashboardComponent implements OnInit {
             };
             this.source.push(obj);
         });
+    } else if (this.keyWord === this.indicatorStockedProducts) {
+        this.stockedItems.map((item: any) => {
+            const materials = item.materials.map((material: any) => {
+                return  ' ' + material.name;
+              });
+            const obj = {
+                item,
+                name: item.name,
+                type: item?.item_type?.name,
+                materials: materials.toString(),
+                price: item.price + ' €',
+                stock: item.stock
+                };
+            this.source.push(obj);
+        });
+    } else if (this.keyWord === this.indicatorValidateOrder) {
+        this.cancelledOrders.map((co: any) => {
+            const obj = {
+                co,
+                commande: co.order.id,
+                date: formatDateToWeb(co.order.inserted_at, 'dd/MM/yyyy'),
+                statut: co.order.status?.name,
+                prix: co.order.price + ' €'
+            };
+            this.source.push(obj);
+        });
+    } else if (this.keyWord === this.indicatorUnstockedProducts) {
+        this.unstockedItems.map((item: any) => {
+            const materials = item.materials.map((material: any) => {
+                return  ' ' + material.name;
+              });
+            const obj = {
+                item,
+                name: item.name,
+                type: item?.item_type?.name,
+                materials: materials.toString(),
+                price: item.price + ' €',
+                stock: item.stock
+                };
+            this.source.push(obj);
+        });
     }
-    console.warn(this.source);
   }
 
   openOrderCardDialog(row: any): void {
@@ -203,6 +320,38 @@ export class ModalDashboardComponent implements OnInit {
     );
   }
 
+  openProductViewDialog(row: any): void {
+    const modalRef = this.modalService.open(ProductDetailsComponent, {
+      size: 'lg',
+      backdrop: 'static'
+    });
+    modalRef.componentInstance.product = row;
+    modalRef.result.then(
+      () => {
+        // Left blank intentionally, nothing to do here
+      },
+      () => {
+        // Left blank intentionally, nothing to do here
+      }
+    );
+  }
+
+  openProductUpdateDialog(row: any): void {
+    const modalRef = this.modalService.open(ProductUpdateComponent, {
+      size: 'lg',
+      backdrop: 'static'
+    });
+    modalRef.componentInstance.product = row;
+    modalRef.result.then(
+      () => {
+        // Left blank intentionally, nothing to do here
+      },
+      () => {
+        // Left blank intentionally, nothing to do here
+      }
+    );
+  }
+  
   cancel(): void {
     this.activeModal.close();
   }

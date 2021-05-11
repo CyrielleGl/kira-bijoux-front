@@ -20,9 +20,7 @@ export class ProductDetailsComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    console.warn(this.product);
     this.productPictures = this.product.item.item_pictures;
-    console.warn(this.productPictures);
     this.productPictures.map((picture: any) => {
       this.getPictures(picture.id);
     });
@@ -30,7 +28,6 @@ export class ProductDetailsComponent implements OnInit {
 
   getPictures(id: number): void {
     this.itemsService.getPictureById(id).subscribe((data: any) => {
-      console.warn(data);
       const pic = data.name;
       this.pictures.push(pic);
     });

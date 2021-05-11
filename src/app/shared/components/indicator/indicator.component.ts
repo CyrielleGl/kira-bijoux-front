@@ -11,6 +11,9 @@ export class IndicatorComponent implements OnInit, DoCheck {
   @Input()
   icon: string | any;
 
+  @Input()
+  iconWarn = false;
+
   iconColor = true;
 
   @Input()
