@@ -351,7 +351,7 @@ export class ModalDashboardComponent implements OnInit {
       }
     );
   }
-
+  
   cancel(): void {
     this.activeModal.close();
   }

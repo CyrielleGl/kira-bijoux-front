@@ -174,6 +174,30 @@ h6 {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
+ /* ngbTooltip */
+
+  .tooltip-inner {
+    background-color: var(--secondary);
+    color: var(--primary);
+    border: solid 0.2px;
+    border-color: var(--primary);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 0.68rem;
+  }
+
+  ::ng-deep .bs-tooltip-top .arrow::before, .bs-tooltip-auto[x-placement^="top"] .arrow::before {
+    border-top-color: var(--secondary);
+  }
+  ::ng-deep.bs-tooltip-right .arrow::before, .bs-tooltip-auto[x-placement^="right"] .arrow::before {
+    border-right-color: var(--secondary);
+  }
+  ::ng-deep .bs-tooltip-bottom .arrow::before, .bs-tooltip-auto[x-placement^="bottom"] .arrow::before {
+    border-bottom-color: var(--secondary);
+  }
+  ::ng-deep.bs-tooltip-left .arrow::before, .bs-tooltip-auto[x-placement^="left"] .arrow::before {
+    border-left-color: var(--secondary);
+  }
+
 /*------------------------*/
 /*----- NGBTOOLTIP ------*/
 /*----------------------*/
@@ -288,7 +312,6 @@ a.ng2-smart-sort-link {
   background-color: var(--primary-transparent) !important;
   color: var(--secondary) !important;
 }
-
 
 /*----------------------------*/
 /*------- INDICATORS --------*/
