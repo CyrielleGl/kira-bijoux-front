@@ -91,7 +91,7 @@ export class GestionCommandesComponent implements OnInit {
 
   initDataSource(): void {
     // tslint:disable-next-line: deprecation
-    this.ordersService.getAllOrders().subscribe((data: IOrder[]) => {
+    this.ordersService.getAllOrders().subscribe((data: Order[]) => {
       this.orders = data;
       if (this.orders.length > 0) {
         this.orders.map((order: Order) => {
