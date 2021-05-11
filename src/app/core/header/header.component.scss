@@ -44,16 +44,6 @@ a:hover {
     font-family: "Open-sans-regular";
 }
 
-/* Style tooltip */
-
-::ng-deep .tooltip-inner {
-    background-color: var(--secondary);
-    color: var(--primary);
-    border: dotted 0.2px;
-    border-color: var(--primary);
-    font-size: 0.68rem;
-}
-
 /* Logo */
 
 .logo-header {

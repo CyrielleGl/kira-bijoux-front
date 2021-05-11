@@ -11,6 +11,7 @@ import { RouterModule } from '@angular/router';
 import { OrderDetailsComponent } from './gestion-commandes/order-details/order-details.component';
 import { ProductDetailsComponent } from './gestion-produits/product-details/product-details.component';
 import { ProductUpdateComponent } from './gestion-produits/product-update/product-update.component';
+import { ModalDashboardComponent } from './dashboard/modal-dashboard/modal-dashboard.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { ProductUpdateComponent } from './gestion-produits/product-update/produc
     GestionProduitsComponent,
     OrderDetailsComponent,
     ProductDetailsComponent,
-    ProductUpdateComponent
+    ProductUpdateComponent,
+    ModalDashboardComponent
   ],
   imports: [
     SharedModule,

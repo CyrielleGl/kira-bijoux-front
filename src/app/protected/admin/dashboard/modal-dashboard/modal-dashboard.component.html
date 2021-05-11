@@ -1,0 +1,24 @@
+<div id="alert-modal-header" class="modal-header">
+    <h4 class="h4_admin" style="color: var(--primary)" id="edit-heading">
+        {{ keyWord }}</h4>
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+    (click)="cancel()">x
+    </button>
+</div>
+
+<div class="modal-body">
+    <div *ngIf="keyWord === indicatorUsers">
+        <ng2-smart-table [settings]="settings" [source]="source" *ngIf="users"></ng2-smart-table>
+        <p *ngIf="!users" style="color: var(--primary); margin-top: 2rem">Il n'y a pas encore d'utilisateur...</p>
+    </div>
+    <div *ngIf="keyWord === indicatorValidateOrder">
+        <ng2-smart-table [settings]="settings" [source]="source" *ngIf="validateOrders"></ng2-smart-table>
+        <p *ngIf="!validateOrders" style="color: var(--primary); margin-top: 2rem">Il n'y a pas encore eu de commande payée...</p>
+    </div>
+</div>
+
+<div class="modal-footer" id="modal-footer">
+    <button id="close" type="close" class="btn btn-fourth col-3" data-dismiss="modal" (click)="cancel()">
+      <i class="fa fa-ban"></i><span> Fermer</span>
+    </button>
+  </div>

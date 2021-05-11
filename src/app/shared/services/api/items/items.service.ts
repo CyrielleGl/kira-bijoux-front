@@ -27,4 +27,8 @@ export class ItemsService {
   getByName(name: string): Observable<string[]> {
     return this.http.get<string[]>(`${ApiService.ApiUrlItems}/category/item/` + name);
   }
+
+  getPictureById(id: number): Observable<any> {
+    return this.http.get<any>(`${ApiService.ApiUrlPictures}/` + id);
+  }
 }

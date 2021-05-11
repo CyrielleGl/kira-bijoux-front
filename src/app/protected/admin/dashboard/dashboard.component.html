@@ -13,7 +13,10 @@
             icon="users"
             classToApply="table-bordered-blue"
             label="Utilisateurs inscrits"
+            subtitle="depuis le lancement du site"
             colorIcon="icon-blue"
+            (click)="openIndicatorCardDialog(indicatorUsers)"
+            ngbTooltip="Voir la liste des utilisateurs inscrits"
           ></app-indicator>
         </div>
         <div class="col-3 text-center">
@@ -22,7 +25,10 @@
             icon="box-open"
             classToApply="table-bordered-purple"
             label="Commandes payées"
+            subtitle="et reçues par les clients"
             colorIcon="icon-purple"
+            (click)="openIndicatorCardDialog(indicatorValidateOrder)"
+            ngbTooltip="Voir les commandes payées"
           ></app-indicator>
         </div>
         <div class="col-3 text-center">
@@ -31,37 +37,49 @@
             icon="chart-line"
             classToApply="table-bordered-green"
             label="Chiffre d'affaires"
+            subtitle="sur l'ensemble des ventes"
             colorIcon="icon-green"
+            (click)="openIndicatorCardDialog(indicatorCa)"
+            ngbTooltip="Voir le détail du chiffre d'affaires"
           ></app-indicator>
         </div>
       </div>
 
-      <div class="row justify-content-center flex">
+      <div class="row justify-content-center flex" style="margin-top: 2rem;">
         <div class="col-3 text-center">
           <app-indicator
-            [value]="items?.length > 0 ? items?.length : '0'"
+            [value]="stockedItems?.length > 0 ? stockedItems?.length : '0'"
             icon="gem"
             classToApply="table-bordered-purple"
             label="Produits disponibles"
+            subtitle="(4 ou plus en stock)"
             colorIcon="icon-purple"
+            (click)="openIndicatorCardDialog(indicatorStockedProducts)"
+            ngbTooltip="Voir la liste des produits disponibles"
           ></app-indicator>
         </div>
         <div class="col-3 text-center">
           <app-indicator
-            [value]="cancelledItems?.length > 0 ? cancelledItems?.length : '0'"
+            [value]="cancelledOrders?.length > 0 ? cancelledOrders?.length : '0'"
             icon="ban"
             classToApply="table-bordered-red"
             label="Commandes annulées"
+            subtitle="avant ou après réception"
             colorIcon="icon-red"
+            (click)="openIndicatorCardDialog(indicatorCancelledOrders)"
+            ngbTooltip="Voir les commandes annulées"
           ></app-indicator>
         </div>
         <div class="col-3 text-center">
           <app-indicator
-            [value]="items?.length > 0 ? items?.length : '0'"
+            [value]="unstockedItems?.length > 0 ? unstockedItems?.length : '0'"
             icon="calendar-plus"
             classToApply="table-bordered-blue"
-            label="Produits à recréer"
+            label="Produits à fabriquer"
+            subtitle="(moins de 4 en stock)"
             colorIcon="icon-blue"
+            (click)="openIndicatorCardDialog(indicatorUnstockedProducts)"
+            ngbTooltip="Voir la liste des produits à fabriquer"
           ></app-indicator>
         </div>
       </div>

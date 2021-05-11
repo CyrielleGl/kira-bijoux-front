@@ -5,6 +5,9 @@ import { UsersService } from 'src/app/shared/services/api/users/users.service';
 import { SecuService } from 'src/app/shared/services/secu/secu.service';
 import { OrdersService } from 'src/app/shared/services/api/orders/orders.service';
 import { ItemsService } from 'src/app/shared/services/api/items/items.service';
+import { addConsoleHandler } from 'selenium-webdriver/lib/logging';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ModalDashboardComponent } from './modal-dashboard/modal-dashboard.component';
 
 @Component({
   selector: 'app-dashboard',
@@ -17,13 +20,25 @@ export class DashboardComponent implements OnInit {
   orders: Order[] | any = null;
   chiffreAffaires: string | any = null;
   items: string[] | any = null;
-  cancelledItems: string[] | any;
+  validateOrders: [] | any = [];
+  cancelledOrders: [] | any = [];
+  unstockedItems: [] | any = [];
+  stockedItems: [] | any = [];
+
+  indicatorUsers = 'Utilisateurs inscrits';
+  indicatorValidateOrder = 'Commmandes payées';
+  indicatorCa = 'Chiffre d\'affaires';
+  indicatorStockedProducts = 'Produits disponibles';
+  indicatorCancelledOrders = 'Commandes annulées';
+  indicatorUnstockedProducts = 'Produits à fabriquer';
+
 
   constructor(
     private cookieService: SecuService,
     private usersService: UsersService,
     private ordersService: OrdersService,
-    private itemsService: ItemsService
+    private itemsService: ItemsService,
+    private modalService: NgbModal
     ) { }
 
   ngOnInit(): void {
@@ -43,18 +58,22 @@ export class DashboardComponent implements OnInit {
     this.ordersService.getAllOrders().subscribe((data: Order[]) => {
       this.orders = data;
       if (this.orders.length > 0) {
-        this.chiffreAffaires = this.orders.reduce((sum: number, o: Order | any) => sum + o.price, 0) + ' €';
-        console.warn(this.orders);
         this.orders.map((order: Order) => {
           if (order.status?.id === 4) {
             const obj = {
-              name: order.reference,
+              order,
               value: order.status
             };
-            this.cancelledItems.push(obj);
-            console.warn(this.cancelledItems);
+            this.cancelledOrders.push(obj);
+          } else if (order.status?.id !== 4) {
+            const okOrders = {
+              order,
+              value: order.status
+            };
+            this.validateOrders.push(okOrders);
           }
         });
+        this.chiffreAffaires = this.validateOrders.reduce((sum: number, vO: any) => sum + vO.order.price, 0) + ' €';
       } else {
         this.chiffreAffaires = 'N/A';
       }
@@ -64,7 +83,40 @@ export class DashboardComponent implements OnInit {
   getAllItems(): void {
     this.itemsService.getAllItems().subscribe((data: any) => {
       this.items = data;
+      if (this.items.length > 0) {
+        this.items.map((item: any) => {
+          if (item.stock < 4) {
+            const itToDo = item;
+            this.unstockedItems.push(itToDo);
+          } else {
+            const it = item;
+            this.stockedItems.push(it);
+          }
+        });
+      }
     });
+  }
+
+  openIndicatorCardDialog(keyWord: any): void {
+    const modalRef = this.modalService.open(ModalDashboardComponent, {
+      size: 'lg',
+      backdrop: 'static'
+    });
+    modalRef.componentInstance.keyWord = keyWord;
+    modalRef.componentInstance.users = this.users;
+    modalRef.componentInstance.cancelledOrders = this.cancelledOrders;
+    modalRef.componentInstance.validateOrders = this.validateOrders;
+    modalRef.componentInstance.unstockedItems = this.unstockedItems;
+    modalRef.componentInstance.stockedItems = this.stockedItems;
+    modalRef.componentInstance.chiffreAffaires = this.chiffreAffaires;
+    modalRef.result.then(
+      () => {
+        // Left blank intentionally, nothing to do here
+      },
+      () => {
+        // Left blank intentionally, nothing to do here
+      }
+    );
   }
 
 }

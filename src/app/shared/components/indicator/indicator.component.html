@@ -12,8 +12,14 @@
             <div class="col-12" *ngIf="value">
                 <span>{{value}}</span>
             </div>
-            <div class="col-12 mb-3" *ngIf="label">
+            <div class="col-12" *ngIf="label && subtitle">
                 <span>{{label}}</span>
+            </div>
+            <div class="col-12 mb-3" *ngIf="label && !subtitle">
+                <span>{{label}}</span>
+            </div>
+            <div class="col-12 mb-3 indicator-subtitle" *ngIf="subtitle">
+                <span>{{subtitle}}</span>
             </div>
         </div>
     </div>

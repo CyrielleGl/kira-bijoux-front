@@ -20,6 +20,9 @@ export class IndicatorComponent implements OnInit, DoCheck {
   label: string | any;
 
   @Input()
+  subtitle: string | any;
+
+  @Input()
   classMargin = 'mt-3';
 
   @Input()
@@ -27,6 +30,9 @@ export class IndicatorComponent implements OnInit, DoCheck {
 
   @Input()
   sizeIcon: string | any;
+
+  @Input()
+  tooltip: string | any;
 
   constructor() { }
 

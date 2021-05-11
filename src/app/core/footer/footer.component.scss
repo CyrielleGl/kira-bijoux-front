@@ -31,30 +31,6 @@
     padding-bottom: 0.5rem;
     font-size: 1rem;
   }
-
-  /* ngbTooltip */
-
-  ::ng-deep .tooltip-inner {
-    background-color: var(--secondary);
-    color: var(--primary);
-    border: dotted 0.2px;
-    border-color: var(--primary);
-    font-family: "Cinzel";
-    font-size: 0.68rem;
-  }
-
-  ::ng-deep .bs-tooltip-top .arrow::before, .bs-tooltip-auto[x-placement^="top"] .arrow::before {
-    border-top-color: var(--secondary);
-  }
-  ::ng-deep.bs-tooltip-right .arrow::before, .bs-tooltip-auto[x-placement^="right"] .arrow::before {
-    border-right-color: var(--secondary);
-  }
-  ::ng-deep .bs-tooltip-bottom .arrow::before, .bs-tooltip-auto[x-placement^="bottom"] .arrow::before {
-    border-bottom-color: var(--secondary);
-  }
-  ::ng-deep.bs-tooltip-left .arrow::before, .bs-tooltip-auto[x-placement^="left"] .arrow::before {
-    border-left-color: var(--secondary);
-  }
   
   /* nav footer */
   

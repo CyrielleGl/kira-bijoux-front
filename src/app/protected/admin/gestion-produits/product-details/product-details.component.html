@@ -8,11 +8,11 @@
 
 <div class="modal-body">
   {{ product.type }} {{ product.name }} - {{ product.price }}
-<!--   <div *ngIf="productPictures.length > 0">
-    <div *ngFor="let picture of productPictures; let i = index" style="margin-top: 1rem">
-      <img src="{{ picture.path }}{{ picture.name }}"/>
+   <div *ngIf="productPictures.length > 0">
+    <div *ngFor="let picture of pictures; let i = index" style="margin-top: 1rem">
+      <img src="{{ picture }}"/>
     </div>
-  </div> -->
+  </div>
 
 </div>
 
