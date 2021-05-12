@@ -5,7 +5,11 @@
 
     <div class="body">
       <p *ngIf="orders">Depuis la mise en ligne du site, <span style="font-weight: 600;">{{orders.length}} commandes</span> ont déjà été passées :</p>
-      <ng2-smart-table [settings]="settings" [source]="source" *ngIf="orders"></ng2-smart-table>
+      <div class="col-md-12" style = "overflow-x: scroll;" *ngIf="orders">
+        <div class="smart-table-container">
+          <ng2-smart-table [settings]="settings" [source]="source"></ng2-smart-table>
+        </div>
+      </div>
       <p *ngIf="!orders" style="color: var(--primary); margin-top: 2rem">Aucune commande n'a été passée !</p> 
     </div>
 </div>

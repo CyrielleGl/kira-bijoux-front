@@ -176,11 +176,6 @@ export class ModalDashboardComponent implements OnInit {
                 filter: true,
                 sort: true
               },
-              materials: {
-                title: 'Matériaux',
-                filter: true,
-                sort: true
-              },
               price: {
                 title: 'Prix TTC',
                 filter: true,
@@ -265,9 +260,15 @@ export class ModalDashboardComponent implements OnInit {
             const materials = item.materials.map((material: any) => {
                 return  ' ' + material.name;
               });
+            let itemName = '';
+            if (item.name === 'Kena') {
+              itemName = item.name + materials[1];
+            } else {
+              itemName = item.name;
+            }
             const obj = {
                 item,
-                name: item.name,
+                name: itemName,
                 type: item?.item_type?.name,
                 materials: materials.toString(),
                 price: item.price + ' €',
@@ -291,9 +292,15 @@ export class ModalDashboardComponent implements OnInit {
             const materials = item.materials.map((material: any) => {
                 return  ' ' + material.name;
               });
+            let itemName = '';
+            if (item.name === 'Kena') {
+              itemName = item.name + materials[1];
+            } else {
+              itemName = item.name;
+            }
             const obj = {
                 item,
-                name: item.name,
+                name: itemName,
                 type: item?.item_type?.name,
                 materials: materials.toString(),
                 price: item.price + ' €',
@@ -351,7 +358,7 @@ export class ModalDashboardComponent implements OnInit {
       }
     );
   }
-  
+
   cancel(): void {
     this.activeModal.close();
   }

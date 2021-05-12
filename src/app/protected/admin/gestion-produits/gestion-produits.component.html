@@ -4,7 +4,11 @@
     </div>
     <div class="body">
       <p *ngIf="items">Vous avez <span style="font-weight: 600;">{{items.length}} articles</span> dans votre boutique.</p>
-      <ng2-smart-table [settings]="settings" [source]="source" *ngIf="items"></ng2-smart-table>
+      <div class="col-md-12" style = "overflow-x: scroll;" *ngIf="items">
+        <div class="smart-table-container">
+          <ng2-smart-table [settings]="settings" [source]="source"></ng2-smart-table>
+        </div>
+      </div>
       <p *ngIf="!items" style="color: var(--primary); margin-top: 2rem">Il n'y a pas encore d'article dans votre boutique !</p> 
     </div>
 </div>

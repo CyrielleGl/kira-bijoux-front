@@ -21,17 +21,9 @@ export class ProductDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     this.productPictures = this.product.item.item_pictures;
-    this.productPictures.map((picture: any) => {
-      this.getPictures(picture.id);
-    });
+    console.warn(this.product);
   }
 
-  getPictures(id: number): void {
-    this.itemsService.getPictureById(id).subscribe((data: any) => {
-      const pic = data.name;
-      this.pictures.push(pic);
-    });
-  }
 
   cancel(): void {
     this.activeModal.close();
