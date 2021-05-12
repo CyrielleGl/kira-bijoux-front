@@ -8,11 +8,19 @@
 
 <div class="modal-body">
     <div *ngIf="keyWord === indicatorUsers">
-        <ng2-smart-table [settings]="settings" [source]="source" *ngIf="users"></ng2-smart-table>
+        <div class="col-md-12" style = "overflow-x: scroll;" *ngIf="users">
+            <div class="smart-table-container">
+              <ng2-smart-table [settings]="settings" [source]="source"></ng2-smart-table>
+            </div>
+        </div>
         <p *ngIf="!users" style="color: var(--primary); margin-top: 2rem">Il n'y a pas encore d'utilisateur...</p>
     </div>
     <div *ngIf="keyWord === indicatorValidateOrder">
-        <ng2-smart-table [settings]="settings" [source]="source" *ngIf="validateOrders.length > 0"></ng2-smart-table>
+        <div class="col-md-12" style = "overflow-x: scroll;" *ngIf="validateOrders.length > 0">
+            <div class="smart-table-container">
+              <ng2-smart-table [settings]="settings" [source]="source"></ng2-smart-table>
+            </div>
+        </div>
         <p *ngIf="validateOrders.length == 0" style="color: var(--primary); margin-top: 2rem">Il n'y a pas encore eu de commande payée...</p>
     </div>
     <div *ngIf="keyWord === indicatorCa">
@@ -23,15 +31,27 @@
         <p *ngIf="!chiffreAffaires" style="color: var(--primary); margin-top: 2rem">Vous n'avez pas encore fait de chiffre d'affaires</p>
     </div>
     <div *ngIf="keyWord === indicatorStockedProducts">
-        <ng2-smart-table [settings]="settings" [source]="source" *ngIf="stockedItems.length > 0"></ng2-smart-table>
+        <div class="col-md-12" style = "overflow-x: scroll;" *ngIf="stockedItems.length > 0">
+            <div class="smart-table-container">
+              <ng2-smart-table [settings]="settings" [source]="source"></ng2-smart-table>
+            </div>
+        </div>
         <p *ngIf="stockedItems.length == 0" style="color: var(--primary); margin-top: 2rem">Il n'y a plus de produit en stock !</p>
     </div>
     <div *ngIf="keyWord === indicatorCancelledOrders">
-        <ng2-smart-table [settings]="settings" [source]="source" *ngIf="cancelledOrders.length > 0"></ng2-smart-table>
+        <div class="col-md-12" style = "overflow-x: scroll;" *ngIf="cancelledOrders.length > 0">
+            <div class="smart-table-container">
+              <ng2-smart-table [settings]="settings" [source]="source"></ng2-smart-table>
+            </div>
+        </div>        
         <p *ngIf="cancelledOrders.length == 0" style="color: var(--primary); margin-top: 2rem">Aucune commande n'a été annulée !</p>
     </div>
     <div *ngIf="keyWord === indicatorUnstockedProducts">
-        <ng2-smart-table [settings]="settings" [source]="source" *ngIf="unstockedItems.length > 0"></ng2-smart-table>
+        <div class="col-md-12" style = "overflow-x: scroll;" *ngIf="unstockedItems.length > 0">
+            <div class="smart-table-container">
+              <ng2-smart-table [settings]="settings" [source]="source"></ng2-smart-table>
+            </div>
+        </div>        
         <p *ngIf="unstockedItems.length == 0" style="color: var(--primary); margin-top: 2rem">Il n'y a plus de bijoux à fabriquer !</p>
     </div>
 </div>

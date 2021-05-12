@@ -7,11 +7,42 @@
 </div>
 
 <div class="modal-body">
-  {{ product.type }} {{ product.name }} - {{ product.price }}
-   <div *ngIf="productPictures.length > 0">
-    <div *ngFor="let picture of pictures; let i = index" style="margin-top: 1rem">
-      <img src="{{ picture }}"/>
+  <div class="row">
+    <div class="col-12" style="color: var(--primary)">{{ product.item.subtitle }}</div>
+  </div>
+
+  <div class="row" style="margin-top: 1rem;">
+
+    <div class="col-6" id="pictures-item">
+      <p style="font-weight: 500;">Photos :</p>
+      <div id="carouselControls" class="carousel slide" data-ride="carousel" *ngIf="productPictures.length > 0">
+        <div class="carousel-inner">
+          <div class="carousel-item" *ngFor="let picture of productPictures; let i = index; let isFirst = first" [ngClass]="{active:isFirst}" >
+            <img src="{{ picture?.path }}{{ picture?.name}}" class="d-block w-100 carousel-pic" alt="{{ picture?.name }}"/>
+          </div>
+        </div>
+        <a class="carousel-control-prev" href="#carouselControls" role="button" data-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselControls" role="button" data-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
+      </div>
     </div>
+
+    <div class="col-6" id="pictures-infos">
+      <p style="font-weight: 500;">Infos :</p>
+      <ul>
+        <li>Nom : {{ product.name }}</li>
+        <li>Type : {{ product.type }}</li>
+        <li>Matériaux : {{ product.materials }}</li>
+        <li>Sous-titre : {{ product.item.subtitle }}</li>
+        <li>Prix : {{ product.price }}</li>
+      </ul>
+    </div>
+
   </div>
 
 </div>
