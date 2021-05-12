@@ -45,7 +45,6 @@ export class OrderDetailsComponent implements OnInit {
         this.orderId = this.commande.order.id;
       }
       this.getOrderByOrderId(this.orderId);
-      console.warn(this.commande);
     }
   }
 
