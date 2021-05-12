@@ -13,6 +13,7 @@ import { UsersService } from 'src/app/shared/services/api/users/users.service';
 })
 export class OrderDetailsComponent implements OnInit {
 
+  key = '';
   commande: any = {};
   settings: any;
   source: any[] = [];
@@ -36,8 +37,15 @@ export class OrderDetailsComponent implements OnInit {
   ngOnInit(): void {
     this.initSettings();
     if (this.commande) {
-      this.orderId = this.commande.order.id;
+      if (this.key === 'co') {
+        this.orderId = this.commande.co.order.id;
+      } else if (this.key === 'vo') {
+        this.orderId = this.commande.vo.order.id;
+      } else {
+        this.orderId = this.commande.order.id;
+      }
       this.getOrderByOrderId(this.orderId);
+      console.warn(this.commande);
     }
   }
 

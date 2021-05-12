@@ -100,7 +100,7 @@ export class ModalDashboardComponent implements OnInit {
                 }
             }
         };
-    } else if (this.keyWord === this.indicatorValidateOrder || this.keyWord === this.indicatorCancelledOrders) {
+    } else if (this.keyWord === this.indicatorValidateOrder) {
         this.settings = {
             actions: {
               add: false,
@@ -148,13 +148,67 @@ export class ModalDashboardComponent implements OnInit {
                 renderComponent: ButtonViewComponent,
                 onComponentInitFunction: (instance: any) => {
                   instance.view.subscribe((row: any) => {
-                    this.openOrderCardDialog(row);
+                    this.openOrderCardDialog(row, 'vo');
                   });
                 }
               }
             }
           };
-    } else if (this.keyWord === this.indicatorStockedProducts || this.keyWord === this.indicatorUnstockedProducts) {
+    } else if (this.keyWord === this.indicatorCancelledOrders) {
+      this.settings = {
+          actions: {
+            add: false,
+            edit: false,
+            delete: false,
+            position: 'right'
+          },
+          pager: {
+            perPage: 10
+          },
+          columns: {
+            commande: {
+              title: 'N° de commande',
+              filter: false,
+              sort: true
+            },
+            date: {
+              title: 'Date',
+              filter: false,
+              sort: true
+            },
+            statut: {
+              title: 'Statut',
+              filter: false,
+              sort: true
+            },
+            prix: {
+              title: 'Total TTC',
+              filter: false,
+              sort: true
+            },
+            button: {
+              title: '',
+              type: 'custom',
+              filter: false,
+              width: '20px',
+              valuePrepareFonction: (value: any, row: any, cell: any) => {
+                return {
+                  icon: faEye,
+                  animation: 'pulse',
+                  tooltip: 'Voir le détail',
+                  placement: 'top'
+                };
+              },
+              renderComponent: ButtonViewComponent,
+              onComponentInitFunction: (instance: any) => {
+                instance.view.subscribe((row: any) => {
+                  this.openOrderCardDialog(row, 'co');
+                });
+              }
+            }
+          }
+        };
+  } else if (this.keyWord === this.indicatorStockedProducts || this.keyWord === this.indicatorUnstockedProducts) {
         this.settings = {
             actions: {
               add: false,
@@ -311,12 +365,13 @@ export class ModalDashboardComponent implements OnInit {
     }
   }
 
-  openOrderCardDialog(row: any): void {
+  openOrderCardDialog(row: any, key: string): void {
     const modalRef = this.modalService.open(OrderDetailsComponent, {
       size: 'lg',
       backdrop: 'static'
     });
     modalRef.componentInstance.commande = row;
+    modalRef.componentInstance.key = key;
     modalRef.result.then(
       () => {
         // Left blank intentionally, nothing to do here
