@@ -12,6 +12,7 @@ export class ProductUpdateComponent implements OnInit {
   product: any;
   productPictures: any = [];
   Form: FormGroup | any;
+  typeCheck: any;
 
   constructor(
     public activeModal: NgbActiveModal,
@@ -41,6 +42,7 @@ export class ProductUpdateComponent implements OnInit {
 
   save(): void {
     console.warn('save !');
+
   }
 
   deleteItem(item: any, content: any): void {
