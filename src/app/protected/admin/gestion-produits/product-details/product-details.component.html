@@ -34,13 +34,13 @@
 
     <div class="col-6" id="pictures-infos">
       <p style="font-weight: 500;">Infos :</p>
-      <ul>
-        <li>Nom : {{ product.name }}</li>
-        <li>Type : {{ product.type }}</li>
-        <li>Matériaux : {{ product.materials }}</li>
-        <li>Sous-titre : {{ product.item.subtitle }}</li>
-        <li>Description : {{ product.description }}</li>
-        <li>Prix : {{ product.price }}</li>
+      <ul style="list-style: none; padding: 0;">
+        <li style="text-align: justify;"><span style="font-weight: 100; line-height: 2rem;">Nom :</span> {{ product.name }}</li>
+        <li style="text-align: justify;"><span style="font-weight: 100; line-height: 2rem;">Type :</span> {{ product.type }}</li>
+        <li style="text-align: justify;"><span style="font-weight: 100; line-height: 2rem;">Matériaux :</span> {{ product.materials }}</li>
+        <li style="text-align: justify;"><span style="font-weight: 100; line-height: 2rem;">Sous-titre :</span> {{ product.item.subtitle }}</li>
+        <li style="text-align: justify;"><span style="font-weight: 100; line-height: 2rem;">Description :</span> {{ product.item.description }}</li>
+        <li style="text-align: justify;"><span style="font-weight: 100; line-height: 2rem;">Prix :</span> {{ product.price }}</li>
       </ul>
     </div>
 

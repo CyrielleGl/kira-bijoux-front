@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { AdminRoutingModule } from './admin-routing.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AdminComponent } from './admin.component';
 import { GestionCommandesComponent } from './gestion-commandes/gestion-commandes.component';
@@ -30,7 +31,9 @@ import { ModalDashboardComponent } from './dashboard/modal-dashboard/modal-dashb
   imports: [
     SharedModule,
     AdminRoutingModule,
-    RouterModule
+    RouterModule,
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class AdminModule { }
