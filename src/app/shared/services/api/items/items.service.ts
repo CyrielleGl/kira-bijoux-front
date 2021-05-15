@@ -31,4 +31,13 @@ export class ItemsService {
   getPictureById(id: number): Observable<any> {
     return this.http.get<any>(`${ApiService.ApiUrlPictures}/` + id);
   }
+
+  getAllMaterials(): Observable<string[]> {
+    return this.http.get<string[]>(`${ApiService.ApiUrlMaterials}`);
+  }
+
+  getAllTypes(): Observable<string[]> {
+    return this.http.get<string[]>(`${ApiService.ApiUrlItemTypes}`);
+  }
+
 }
