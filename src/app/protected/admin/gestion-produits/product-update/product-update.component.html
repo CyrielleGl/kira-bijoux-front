@@ -7,7 +7,7 @@
 </div>
 
 <div class="modal-body">
-  <form [formGroup]="Form" novalidate (ngSubmit)="save()">
+  <form [formGroup]="Form" novalidate (ngSubmit)="save()" *ngIf="allMaterials">
 
     <div class="row">
       <div class="col-12" style="color: var(--primary)">Modifier les informations du bijou "{{ product.name }}"</div>
@@ -16,37 +16,57 @@
 
     <div>
         <div class="form-group">
-          <label class="form-control-label" for="field_name">Nom</label>
+          <label class="form-control-label" for="field_name">Nom :</label>
           <input class="form-control" type="text" formControlName="name"/>
         </div>
         <div class="form-group">
-          <label class="form-control-label" for="field_type">Type</label>
-          <div class="form-check">
-            <input class="form-check-input" type="radio" formControlName="type" id="exampleRadios1" >
-            <label class="form-check-label" for="exampleRadios1">
-              Collier
-            </label>
+          <label class="form-control-label" for="field_type">Type :</label><br/>
+          <div class="form-check form-check-inline custom-checkbox" *ngFor="let type of allTypes;" (change)="changeType($event)">
+            <input class="form-check-input" type="radio" id="{{type.name}}" value="{{type.name}}" formControlName="type">
+            <label class="form-check-label" for="type">{{ type.name }}</label>
           </div>
         </div>
 
         <div class="form-group">
-          <label class="form-control-label" for="field_materials">Matériaux</label>
-          <input class="form-control" type="text" formControlName="materials"/>
+          <label class="form-control-label" for="field_materials">Matériaux : 
+            <br><span style="color: var(--fourth); font-size: 0.9rem; font-weight: 300;">{{ product.materials }}</span></label>
+          <!-- <input class="form-control" type="text" formControlName="materials"/> -->
+          <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="sampleDropdownMenu" data-toggle="dropdown" style="min-width: 100%; border-color: var(--primary); font-size: 0.8rem;"
+            >Choisir dans la liste</button>
+            <div formArrayName="materials" class="dropdown-menu" style="min-width: 100%; padding-left: 1rem; padding-right: 1rem;">
+              <div class="form-check custom-checkbox" *ngFor="let mat of materialsFormArray().controls; let i = index" (change)="changeMaterials($event)">
+                <div [formGroupName]="i">
+                  <input class="form-check-input" type="checkbox" id="{{ mat.controls.material.value.name }}" value="mat.controls.checked.value" formControlName="checked">
+                  <label class="form-check-label" for="mat">{{ mat.controls.material.value.name }}</label>
+                </div>
+              </div>
+              <div>
+                <i class="fa fa-plus"></i><span> Ajouter un matériau</span>
+              </div>
+            </div>
+            <!-- <select multiple formControlName="materials" (change)="changeMaterials($event)">
+              <option [ngValue]="null" disabled>Choose your profile</option>
+              <option *ngFor="let mat of allMaterials;" [ngValue]="productMat">
+                {{ mat.name }}
+              </option>
+            </select> -->
+          </div>
         </div>
         <div class="form-group">
-          <label class="form-control-label" for="field_subtitle">Sous-titre</label>
+          <label class="form-control-label" for="field_subtitle">Sous-titre :</label>
           <input class="form-control" type="text" formControlName="subtitle"/>
         </div>
         <div class="form-group">
-          <label class="form-control-label" for="field_description">Description</label>
+          <label class="form-control-label" for="field_description">Description :</label>
           <textarea class="form-control" type="text" formControlName="description"></textarea>
         </div>
         <div class="form-group">
-          <label class="form-control-label" for="field_price">Prix</label>
+          <label class="form-control-label" for="field_price">Prix :</label>
           <input class="form-control" type="number" formControlName="price"/>
         </div>
         <p style="text-align: center;">
-          <button type="button" class="btn btn-fourth col-3" style="margin-right: 1rem;" (click)="deleteItem(Form, content)">
+          <button type="button" class="btn btn-fourth col-3 delete-btn" style="margin-right: 1rem;" (click)="deleteItem(Form, content)">
             <i class="fa fa-trash-alt"></i> Supprimer l'article</button>
         </p>
 
@@ -59,8 +79,8 @@
       <button id="close" type="close" class="btn btn-fourth col-3" data-dismiss="modal" (click)="cancel()">
         <i class="fa fa-ban"></i><span> Fermer</span>
       </button>
-      <button id="save" type="submit" class="btn btn-primary col-3" data-dismiss="modal">
-          <i class="fa fa-save"></i><span> Valider</span>
+      <button id="save" type="submit" class="btn btn-primary col-6" data-dismiss="modal">
+          <i class="fa fa-save"></i><span> Valider les modifications</span>
       </button>
     </div>
 

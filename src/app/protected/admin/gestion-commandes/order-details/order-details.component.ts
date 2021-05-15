@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { Address, IAddress } from 'src/app/shared/models/address.model';
-import { IOrder, Order, OrderItems } from 'src/app/shared/models/order.model';
+import { Address } from 'src/app/shared/models/address.model';
+import { Order, OrderItems } from 'src/app/shared/models/order.model';
 import { User } from 'src/app/shared/models/user.model';
 import { OrdersService } from 'src/app/shared/services/api/orders/orders.service';
 import { UsersService } from 'src/app/shared/services/api/users/users.service';
