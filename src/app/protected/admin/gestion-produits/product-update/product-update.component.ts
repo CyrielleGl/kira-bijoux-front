@@ -14,8 +14,11 @@ export class ProductUpdateComponent implements OnInit {
   productPictures: any[] = [];
   productMaterials: any[] = [];
   Form: FormGroup | any;
+  MatForm: FormGroup | any;
   allTypes: any = [];
   allMaterials: any = [];
+  material: any = {};
+  createMaterialSuccess = false;
 
   constructor(
     public activeModal: NgbActiveModal,
@@ -24,7 +27,6 @@ export class ProductUpdateComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    console.warn(this.product);
     this.productPictures = this.product.item.item_pictures;
     this.productMaterials = this.product.item.materials;
     this.getAllTypes();
@@ -35,7 +37,7 @@ export class ProductUpdateComponent implements OnInit {
       materials: new FormArray([]),
       subtitle: new FormControl(this.product.item.subtitle, [Validators.required]),
       description: new FormControl(this.product.item.description, [Validators.required]),
-      price: new FormControl(this.product.item.price, [Validators.required]),
+      price: new FormControl(this.product.item.price, [Validators.required])
     });
     this.getAllMaterials();
   }
@@ -79,6 +81,46 @@ export class ProductUpdateComponent implements OnInit {
 
   changeMaterials(event: any): void {
     console.warn(this.Form);
+  }
+
+  addMaterial(content: any): void {
+    this.MatForm = new FormGroup({
+      id: new FormControl(''),
+      name: new FormControl('', [Validators.required]),
+      type: new FormControl('', [Validators.required])
+    });
+    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then(
+      () => {},
+      () => {
+        this.ngOnInit();
+        setTimeout(() => {
+          this.createMaterialSuccess = false;
+        }, 4000);
+      });
+  }
+
+  saveMaterial(): void {
+    const matType = this.MatForm.controls.type.value;
+    let materialTypeId = 0;
+    if (matType === 'Métaux') {
+      materialTypeId = 1;
+    } else if (matType === 'Pierres fines') {
+      materialTypeId = 2;
+    }
+    const obj = {
+      material_type_id: materialTypeId,
+      name: this.MatForm.controls.name.value
+    };
+    this.itemsService.postMaterial(obj).subscribe((material) => {
+       if (material) {
+         this.createMaterialSuccess = true;
+         document.getElementById('closeAddMat')?.click();
+       }
+    });
+  }
+
+  closAlert(): void {
+    this.createMaterialSuccess = false;
   }
 
   save(): void {

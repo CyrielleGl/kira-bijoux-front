@@ -103,3 +103,37 @@ export class ItemPictures implements IItemPictures {
         public updated_at?: Date
     ) {}
 }
+
+export interface IMaterials {
+    id?: any;
+    material_type?: IMaterialTypes;
+    name?: string;
+    inserted_at?: Date;
+    updated_at?: Date;
+}
+
+export class Materials implements IMaterials {
+    constructor(
+        public id?: any,
+        public material_type?: IMaterialTypes,
+        public name?: string,
+        public inserted_at?: Date,
+        public updated_at?: Date
+    ) {}
+}
+
+export interface IMaterialTypes {
+    id?: any;
+    name?: string;
+    inserted_at?: Date;
+    updated_at?: Date;
+}
+
+export class MaterialTypes implements IMaterialTypes {
+    constructor(
+        public id?: any,
+        public name?: string,
+        public inserted_at?: Date,
+        public updated_at?: Date
+    ) {}
+}

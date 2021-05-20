@@ -41,17 +41,22 @@
                   <label class="form-check-label" for="mat">{{ mat.controls.material.value.name }}</label>
                 </div>
               </div>
-              <div>
-                <i class="fa fa-plus"></i><span> Ajouter un matériau</span>
+              <hr/>
+              <div style="height: 3rem; cursor: pointer; background-color: var(--primary); color: var(--secondary); padding-top: 0.6rem; padding-left: 0.5rem;" (click)="addMaterial(addMat)">
+                <div>
+                  <i class="fa fa-plus-circle"></i><span> Ajouter un matériau</span>
+                </div>
               </div>
             </div>
-            <!-- <select multiple formControlName="materials" (change)="changeMaterials($event)">
-              <option [ngValue]="null" disabled>Choose your profile</option>
-              <option *ngFor="let mat of allMaterials;" [ngValue]="productMat">
-                {{ mat.name }}
-              </option>
-            </select> -->
           </div>
+          <br/>
+          <div class="alert alert-success alert-dismissible fade show col col-12" role="alert" *ngIf=createMaterialSuccess>
+            <span>Le matériau a bien été créé !</span>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close" (click)="closAlert()">
+                <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+        
         </div>
         <div class="form-group">
           <label class="form-control-label" for="field_subtitle">Sous-titre :</label>
@@ -87,6 +92,56 @@
   </form>
 
 </div>
+
+<!-- Add material modal -->
+
+<ng-template #addMat let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Ajouter un matériau</h4>
+    <button type="button" id="closeAddMat" class="close" aria-label="Close" (click)="modal.dismiss()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+
+    <form [formGroup]="MatForm" novalidate (ngSubmit)="saveMaterial()">
+
+      <div class="row">
+      <div class="col-12" style="color: var(--primary)">Renseignez le nom et le type du nouveau matériau</div>
+      </div>
+      <hr />
+
+      <div>
+          <div class="form-group">
+            <label class="form-control-label" for="field_name">Nom :</label>
+            <input class="form-control" type="text" formControlName="name"/>
+          </div>
+          <div class="form-group">
+            <label class="form-control-label" for="field_type">Type :</label><br/>
+            <div class="form-check form-check-inline custom-checkbox" (change)="changeType($event)">
+              <input class="form-check-input" type="radio" id="Métaux" value="Métaux" formControlName="type">
+              <label class="form-check-label" for="type">Métaux</label>
+            </div>
+            <div class="form-check form-check-inline custom-checkbox" (change)="changeType($event)">
+              <input class="form-check-input" type="radio" id="Pierres fines" value="Pierres fines" formControlName="type">
+              <label class="form-check-label" for="type">Pierres fines</label>
+            </div>
+          </div>
+      </div>
+
+      <br/>
+
+      <!-- Modal Footer -->
+      <div class="modal-footer" id="modal-footer">
+        <button id="save" type="submit" class="btn btn-primary col-6" data-dismiss="modal">
+            <i class="fa fa-save"></i><span> Ajouter le matériau</span>
+        </button>
+      </div>
+
+    </form>
+  </div>
+
+</ng-template>
 
 <!-- Confirm delete item modal -->
 

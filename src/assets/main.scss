@@ -156,6 +156,22 @@ input[type="radio"]:checked {
   background-color: var(--primary);
 }
 
+input[type="checkbox"] {
+  appearance: none;
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+  padding: 1px;
+  background-clip: content-box;
+  border: 2px solid #bbbbbb;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+input[type="checkbox"]:checked {
+  background-color: var(--primary);
+}
+
 textarea {
   min-height: 8rem;
 }

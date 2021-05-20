@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ApiService } from '../api.service';
 import { Observable } from 'rxjs';
-import { Items } from 'src/app/shared/models/item.model';
+import { Items, Materials } from 'src/app/shared/models/item.model';
 
 @Injectable({
   providedIn: 'root',
@@ -34,6 +34,10 @@ export class ItemsService {
 
   getAllMaterials(): Observable<string[]> {
     return this.http.get<string[]>(`${ApiService.ApiUrlMaterials}`);
+  }
+
+  postMaterial(formData: any): Observable<any> {
+    return this.http.post<any>(`${ApiService.ApiUrlMaterials}/`, formData);
   }
 
   getAllTypes(): Observable<string[]> {
