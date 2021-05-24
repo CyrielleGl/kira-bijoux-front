@@ -13,6 +13,7 @@ import { OrderDetailsComponent } from './gestion-commandes/order-details/order-d
 import { ProductDetailsComponent } from './gestion-produits/product-details/product-details.component';
 import { ProductUpdateComponent } from './gestion-produits/product-update/product-update.component';
 import { ModalDashboardComponent } from './dashboard/modal-dashboard/modal-dashboard.component';
+import { UserDetailsComponent } from './dashboard/modal-dashboard/user-details/user-details.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { ModalDashboardComponent } from './dashboard/modal-dashboard/modal-dashb
     OrderDetailsComponent,
     ProductDetailsComponent,
     ProductUpdateComponent,
-    ModalDashboardComponent
+    ModalDashboardComponent,
+    UserDetailsComponent
   ],
   imports: [
     SharedModule,

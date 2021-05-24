@@ -13,6 +13,13 @@
               <ng2-smart-table [settings]="settings" [source]="source"></ng2-smart-table>
             </div>
         </div>
+        <br/>
+        <div class="alert alert-success" id="alert-success" role="alert" *ngIf="deleteUserSuccess">
+            <span>L'utilisateur {{ deleteUserName }} a bien été supprimé !</span>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
         <p *ngIf="!users" style="color: var(--primary); margin-top: 2rem">Il n'y a pas encore d'utilisateur...</p>
     </div>
     <div *ngIf="keyWord === indicatorValidateOrder">
@@ -36,6 +43,7 @@
               <ng2-smart-table [settings]="settings" [source]="source"></ng2-smart-table>
             </div>
         </div>
+        <br/>
         <!--             <div class="alert alert-success alert-dismissible fade show col col-12" role="alert" *ngIf=createItemSuccess>
                 <span>Le bijou a bien été créé !</span>
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close" (click)="closAlert()">
@@ -43,7 +51,7 @@
                 </button>
             </div> -->
             <div class="alert alert-success" id="alert-success" role="alert" *ngIf="deleteItemSuccess">
-                <span>Le bijou {{ deleteName }} a bien été supprimé !</span>
+                <span>Le bijou {{ deleteItemName }} a bien été supprimé !</span>
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
@@ -65,6 +73,14 @@
             </div>
         </div>        
         <p *ngIf="unstockedItems.length == 0" style="color: var(--primary); margin-top: 2rem">Il n'y a plus de bijoux à fabriquer !</p>
+    </div>
+    <div *ngIf="keyWord === indicatorOrdersToPrepare">
+        <div class="col-md-12" style = "overflow-x: scroll;" *ngIf="ordersToPrepare.length > 0">
+            <div class="smart-table-container">
+              <ng2-smart-table [settings]="settings" [source]="source"></ng2-smart-table>
+            </div>
+        </div>        
+        <p *ngIf="ordersToPrepare.length == 0" style="color: var(--primary); margin-top: 2rem">Aucune commande à préparer !</p>
     </div>
 </div>
 
