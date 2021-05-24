@@ -44,6 +44,9 @@ export class ModalDashboardComponent implements OnInit {
   deleteUserSuccess = false;
   deleteUserName = '';
 
+  deleteItemSuccess = false;
+  deleteName = '';
+
   constructor(
     public activeModal: NgbActiveModal,
     private modalService: NgbModal
