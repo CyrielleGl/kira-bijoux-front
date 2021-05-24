@@ -9,6 +9,7 @@ import { addConsoleHandler } from 'selenium-webdriver/lib/logging';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ModalDashboardComponent } from './modal-dashboard/modal-dashboard.component';
 import { STATUT_EN_ATTENTE, STATUT_REMBOURSEE } from 'src/app/shared/app-constants';
+import { STATUT_EN_COURS } from './../../../shared/app-constants';
 
 @Component({
   selector: 'app-dashboard',
@@ -33,7 +34,7 @@ export class DashboardComponent implements OnInit {
   indicatorStockedProducts = 'Produits disponibles';
   indicatorCancelledOrders = 'Commandes annulées';
   indicatorUnstockedProducts = 'Produits à fabriquer';
-
+  indicatorOrdersToPrepare = 'Commmandes à préparer';
 
   constructor(
     private cookieService: SecuService,
@@ -73,7 +74,7 @@ export class DashboardComponent implements OnInit {
               value: order.status
             };
             this.validateOrders.push(okOrders);
-            if (order.status?.name === STATUT_EN_ATTENTE) {
+            if (order.status?.name === STATUT_EN_ATTENTE || order.status?.name === STATUT_EN_COURS) {
               const orderToPrepare = order;
               this.ordersToPrepare.push(orderToPrepare);
             }
@@ -115,6 +116,7 @@ export class DashboardComponent implements OnInit {
     modalRef.componentInstance.unstockedItems = this.unstockedItems;
     modalRef.componentInstance.stockedItems = this.stockedItems;
     modalRef.componentInstance.chiffreAffaires = this.chiffreAffaires;
+    modalRef.componentInstance.ordersToPrepare = this.ordersToPrepare;
     modalRef.result.then(
       () => {
         // Left blank intentionally, nothing to do here

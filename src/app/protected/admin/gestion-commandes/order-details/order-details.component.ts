@@ -41,11 +41,12 @@ export class OrderDetailsComponent implements OnInit {
         this.orderId = this.commande.co.order.id;
       } else if (this.key === 'vo') {
         this.orderId = this.commande.vo.order.id;
+      } else if (this.key === 'op') {
+        this.orderId = this.commande.op.id;
       } else {
         this.orderId = this.commande.order.id;
       }
       this.getOrderByOrderId(this.orderId);
-      console.warn(this.commande);
     }
   }
 

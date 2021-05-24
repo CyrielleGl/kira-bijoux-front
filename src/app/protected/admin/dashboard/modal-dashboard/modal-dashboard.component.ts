@@ -9,6 +9,7 @@ import { formatDateToWeb } from 'src/app/shared/services/utils/utils.service';
 import { ButtonUpdateComponent } from 'src/app/shared/components/button-view/button-update.component';
 import { ProductUpdateComponent } from '../../gestion-produits/product-update/product-update.component';
 import { ProductDetailsComponent } from '../../gestion-produits/product-details/product-details.component';
+import { UserDetailsComponent } from './user-details/user-details.component';
 
 @Component({
   selector: 'app-modal-dashboard',
@@ -28,6 +29,7 @@ export class ModalDashboardComponent implements OnInit {
   cancelledOrders: [] | any = [];
   unstockedItems: [] | any = [];
   stockedItems: [] | any = [];
+  ordersToPrepare: [] | any = [];
 
   indicatorUsers = 'Utilisateurs inscrits';
   indicatorValidateOrder = 'Commmandes payées';
@@ -35,6 +37,12 @@ export class ModalDashboardComponent implements OnInit {
   indicatorStockedProducts = 'Produits disponibles';
   indicatorCancelledOrders = 'Commandes annulées';
   indicatorUnstockedProducts = 'Produits à fabriquer';
+  indicatorOrdersToPrepare = 'Commmandes à préparer';
+
+  deleteItemSuccess = false;
+  deleteItemName = '';
+  deleteUserSuccess = false;
+  deleteUserName = '';
 
   deleteItemSuccess = false;
   deleteName = '';
@@ -97,7 +105,7 @@ export class ModalDashboardComponent implements OnInit {
                 renderComponent: ButtonViewComponent,
                 onComponentInitFunction: (instance: any) => {
                     instance.view.subscribe((row: any) => {
-                    // this.openOrderCardDialog(row);
+                      this.openUserViewDialog(row);
                     });
                 }
                 }
@@ -285,7 +293,61 @@ export class ModalDashboardComponent implements OnInit {
               }
             }
           };
-    }
+    } else if (this.keyWord === this.indicatorOrdersToPrepare) {
+      this.settings = {
+          actions: {
+            add: false,
+            edit: false,
+            delete: false,
+            position: 'right'
+          },
+          pager: {
+            perPage: 10
+          },
+          columns: {
+            commande: {
+              title: 'N° de commande',
+              filter: false,
+              sort: true
+            },
+            date: {
+              title: 'Date',
+              filter: false,
+              sort: true
+            },
+            statut: {
+              title: 'Statut',
+              filter: false,
+              sort: true
+            },
+            prix: {
+              title: 'Total TTC',
+              filter: false,
+              sort: true
+            },
+            button: {
+              title: '',
+              type: 'custom',
+              filter: false,
+              width: '20px',
+              valuePrepareFonction: (value: any, row: any, cell: any) => {
+                return {
+                  icon: faEye,
+                  animation: 'pulse',
+                  tooltip: 'Voir le détail',
+                  placement: 'top'
+                };
+              },
+              renderComponent: ButtonViewComponent,
+              onComponentInitFunction: (instance: any) => {
+                instance.view.subscribe((row: any) => {
+                  this.openOrderCardDialog(row, 'op');
+                });
+              }
+            }
+          }
+        };
+  }
     this.initDataSource();
   }
 
@@ -333,7 +395,7 @@ export class ModalDashboardComponent implements OnInit {
                 };
             this.source.push(obj);
         });
-    } else if (this.keyWord === this.indicatorValidateOrder) {
+    } else if (this.keyWord === this.indicatorCancelledOrders) {
         this.cancelledOrders.map((co: any) => {
             const obj = {
                 co,
@@ -365,6 +427,18 @@ export class ModalDashboardComponent implements OnInit {
                 };
             this.source.push(obj);
         });
+    } else if (this.keyWord === this.indicatorOrdersToPrepare) {
+      console.warn(this.ordersToPrepare);
+      this.ordersToPrepare.map((op: any) => {
+        const obj = {
+          op,
+          commande: op.id,
+          date: formatDateToWeb(op.inserted_at, 'dd/MM/yyyy'),
+          statut: op.status?.name,
+          prix: op.price + ' €'
+        };
+        this.source.push(obj);
+      });
     }
   }
 
@@ -377,6 +451,30 @@ export class ModalDashboardComponent implements OnInit {
     modalRef.componentInstance.key = key;
     modalRef.result.then(
       () => {
+        // Left blank intentionally, nothing to do here
+      },
+      () => {
+        // Left blank intentionally, nothing to do here
+      }
+    );
+  }
+
+  openUserViewDialog(row: any): void {
+    const modalRef = this.modalService.open(UserDetailsComponent, {
+      size: 'lg',
+      backdrop: 'static'
+    });
+    modalRef.componentInstance.u = row;
+    modalRef.result.then(
+      (result) => {
+        if (result) {
+          console.warn(result);
+          this.deleteUserName = result;
+          this.deleteUserSuccess = true;
+          setTimeout(() => {
+            window.location.reload();
+          }, 500);
+        }
         // Left blank intentionally, nothing to do here
       },
       () => {
@@ -411,10 +509,10 @@ export class ModalDashboardComponent implements OnInit {
       (result) => {
         if (result) {
           this.deleteItemSuccess = true;
-          this.deleteName = result;
-/*           setTimeout(() => {
+          this.deleteItemName = result;
+          setTimeout(() => {
             window.location.reload();
-          }, 500); */
+          }, 500);
         }
       },
       () => {

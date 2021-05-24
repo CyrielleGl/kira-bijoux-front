@@ -1,0 +1,55 @@
+<div id="alert-modal-header" class="modal-header">
+    <h4 class="modal-title modal-admin" style="color: var(--primary); font-weight: 600" id="edit-heading">
+        {{ user.firstname }}</h4>
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+    (click)="cancel()">x
+    </button>
+</div>
+
+<div class="modal-body">
+  <div class="row">
+    <div class="col-12" style="color: var(--primary)">{{ user.firstname }} {{ user.lastname }}</div>
+  </div>
+
+  <div class="row" style="margin-top: 1rem;">
+    <div class="col-6" id="pictures-infos">
+      <p style="font-weight: 500;">Infos :</p>
+      <ul style="list-style: none; padding: 0;">
+        <li style="text-align: justify;"><span style="font-weight: 100; line-height: 2rem;">Nom : </span>{{ user.lastname }}</li>
+        <li style="text-align: justify;"><span style="font-weight: 100; line-height: 2rem;">Prénom : </span>{{ user.firstname }}</li>
+        <li style="text-align: justify;"><span style="font-weight: 100; line-height: 2rem;">Mail : </span>{{ user.mail }}</li>
+        <li style="text-align: justify;"><span style="font-weight: 100; line-height: 2rem;">Téléphone : </span>{{ user.phone }}</li>
+        <li style="text-align: justify;"><span style="font-weight: 100; line-height: 2rem;">Rôle : </span>{{ user.role.role }}</li>
+      </ul>
+    </div>
+  </div>
+
+  <p style="text-align: center;">
+    <button type="button" class="btn btn-fourth col-3 delete-btn" style="margin-right: 1rem;" (click)="deleteUser(content)">
+      <i class="fa fa-trash-alt"></i> Supprimer l'utilisateur</button>
+  </p>
+
+</div>
+
+<div class="modal-footer" id="modal-footer">
+    <button id="close" type="close" class="btn btn-fourth col-3" data-dismiss="modal" (click)="cancel()">
+      <i class="fa fa-ban"></i><span> Fermer</span>
+    </button>
+</div>
+
+<!-- Confirm delete user modal -->
+
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Supprimer l'utilisateur {{ user.firstname }}</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <p>Êtes-vous sûr de vouloir supprimer cet utilisateur ?</p>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-fourth col-3" (click)="modal.close('validate')"><i class="fa fa-trash-alt"></i> Supprimer</button>
+  </div>
+</ng-template>

@@ -7,8 +7,16 @@
 </div>
 
 <div class="modal-body">
-  <div><b>Commande n° {{ commande?.commande }}</b> passée le {{ commande?.date }}</div>
-  <div>Total TTC : <span style="font-weight: 600;"> {{ order?.price }} €</span></div>
+  <div class="row">
+    <div class="col-6">
+      <div><b>Commande n° {{ commande?.commande }}</b> passée le {{ commande?.date }}</div>
+      <div>Total TTC : <span style="font-weight: 600;"> {{ order?.price }} €</span></div>
+    </div>
+    <div class="col-6">
+      TODO: MODIFIER STATUS
+    </div>
+  </div>
+  
 
   <br/>
 

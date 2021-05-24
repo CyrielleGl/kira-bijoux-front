@@ -6,7 +6,8 @@
     <div class="body">
       <p>Toutes les informations concernant votre site e-commerce.</p>
 
-      <p style="margin-top: 1rem; margin-bottom: 2rem; font-size: 1rem; color: red">Vous avez {{ ordersToPrepare.length }} commandes à préparer !</p>
+      <p style="margin-top: 1rem; margin-bottom: 2rem; font-size: 1rem; color: red; cursor: pointer" 
+      (click)="openIndicatorCardDialog(indicatorOrdersToPrepare)">Vous avez {{ ordersToPrepare.length }} commandes à préparer et/ou à envoyer !</p>
 
       <div class="row justify-content-center flex" *ngIf="users && orders && chiffreAffaires">
         <div class="col-3 text-center">
