@@ -36,6 +36,9 @@ export class ModalDashboardComponent implements OnInit {
   indicatorCancelledOrders = 'Commandes annulées';
   indicatorUnstockedProducts = 'Produits à fabriquer';
 
+  deleteItemSuccess = false;
+  deleteName = '';
+
   constructor(
     public activeModal: NgbActiveModal,
     private modalService: NgbModal
@@ -405,8 +408,14 @@ export class ModalDashboardComponent implements OnInit {
     });
     modalRef.componentInstance.product = row;
     modalRef.result.then(
-      () => {
-        // Left blank intentionally, nothing to do here
+      (result) => {
+        if (result) {
+          this.deleteItemSuccess = true;
+          this.deleteName = result;
+/*           setTimeout(() => {
+            window.location.reload();
+          }, 500); */
+        }
       },
       () => {
         // Left blank intentionally, nothing to do here
