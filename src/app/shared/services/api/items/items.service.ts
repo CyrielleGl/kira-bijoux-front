@@ -20,6 +20,18 @@ export class ItemsService {
     return this.http.get<string[]>(`${ApiService.ApiUrlItems}`);
   }
 
+  getItemById(itemId: number): Observable<any> {
+    return this.http.get<any>(`${ApiService.ApiUrlItems}/` + itemId);
+  }
+
+  saveItem(id: number, Form: any): Observable<Items[]> {
+    return this.http.put<Items[]>(`${ApiService.ApiUrlItems}/` + id, Form);
+  }
+
+  deleteItem(id: number): Observable<string[]> {
+    return this.http.delete<string[]>(`${ApiService.ApiUrlItems}/` + id);
+  }
+
   getByCategory(name: string): Observable<string[]> {
     return this.http.get<string[]>(`${ApiService.ApiUrlItems}/category/` + name);
   }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Form, FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { IItems } from 'src/app/shared/models/item.model';
 import { ItemsService } from 'src/app/shared/services/api/items/items.service';
 
 @Component({
@@ -19,6 +20,7 @@ export class ProductUpdateComponent implements OnInit {
   allMaterials: any = [];
   material: any = {};
   createMaterialSuccess = false;
+  item?: IItems;
 
   constructor(
     public activeModal: NgbActiveModal,
@@ -27,13 +29,14 @@ export class ProductUpdateComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    console.warn(this.product);
+    this.item = this.product.item;
+    console.warn(this.item);
     this.productPictures = this.product.item.item_pictures;
     this.productMaterials = this.product.item.materials;
     this.getAllTypes();
     this.Form = new FormGroup({
       id: new FormControl(this.product.id),
-      name: new FormControl(this.product.name, [Validators.required]),
+      name: new FormControl(this.product.item.name, [Validators.required]),
       type: new FormControl(this.product.type, [Validators.required]),
       materials: new FormArray([]),
       subtitle: new FormControl(this.product.item.subtitle, [Validators.required]),
@@ -125,14 +128,47 @@ export class ProductUpdateComponent implements OnInit {
   }
 
   save(): void {
-    console.warn('save !');
+    const materials = this.Form.value.materials;
+    const checkedMaterials: any[] = [];
+    materials.forEach((material: any) => {
+      if (material.checked) {
+        checkedMaterials.push(material.material.id);
+      }
+    });
+    const type = this.Form.value.type;
+    let typeId = 0;
+    if (type === 'Collier') {
+      typeId = 1;
+    } else if (type === 'Bracelet') {
+      typeId = 2;
+    } else if (type === 'BO') {
+      typeId = 3;
+    }
+    /** ----------------------------------- */
+    /** WAITING FOR BACKEND REVUE FOR ITEM */
+    /** --------------------------------- */
+
+/*     if (this.item) {
+      this.item.description = this.Form.value.description;
+      this.item.item_type_id = type;
+      this.item.materials = checkedMaterials;
+      this.item.name = this.Form.value.name;
+      this.item.price = this.Form.value.price;
+      this.item.subtitle = this.Form.value.subtitle;
+    }
+    this.itemsService.saveItem(this.item?.id, this.item).subscribe((updatedItem: any) => {
+      // this.activeModal.close(updatedItem);
+    }); */
   }
 
-  deleteItem(item: any, content: any): void {
+  deleteItem(content: any): void {
     this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then(
       (result) => {
         if (result) {
-          console.warn('deleteItem : ', result);
+          const name = this.product.item.name;
+          this.itemsService.deleteItem(this.product.item.id).subscribe(() => {
+            this.activeModal.close(name);
+          });
         }
       },
       () => {});
