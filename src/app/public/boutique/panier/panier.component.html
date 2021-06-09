@@ -1,97 +1,97 @@
 <main>
-    <div class="panier" id="panier">
+  <div class="panier" id="panier">
 
-        <div class="title-body">
-            <h2 class="h2_user">MON PANIER</h2>
-        </div>
-        
-        <!--
-        // TODO: CREATE LINK API
-        -->
+      <div class="title-body">
+          <h2 class="h2_user">MON PANIER</h2>
+      </div>
+      
+      <!--
+      // TODO: CREATE LINK API
+      -->
 
-        <div class="container mb-4 contenu-panier">
-            <div class="row">
+      <div class="container mb-4 contenu-panier">
+          <div class="row">
 
-                    <div class="table-responsive">
-                        <table class="table table-striped">
-                            <thead>
-                                <tr> <!-- Row 1 -->
-                                    <th scope="col"> </th>
-                                    <th scope="col">Produit</th>
-                                    <th scope="col">Disponible</th>
-                                    <th scope="col" class="text-center">Quantité</th>
-                                    <th scope="col" class="text-right">Prix</th>
-                                    <th> </th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <!-- Row 2 --> <!-- TODO: create *ngFor with data (img, name, stock, prix) --> 
-                                <!-- https://dummyimage.com/50x50/55595c/fff -->
-                                <tr *ngFor="let item of shoppingCart"> 
-                                    <td>
-                                      <img src="{{ item.item.item_pictures[0]?.name ? 
-                                        item.item.item_pictures[0].name : 
-                                        'https://dummyimage.com/50x50/55595c/fff' }}"
-                                        alt="{{ item.item.item_pictures[0]?.name }}"/>
-                                    </td>
-                                    <td>{{ item.item?.name }}</td>
-                                    <td>{{ item.item?.stock }} en stock</td>
-                                    <td>
-                                      <input #quantityItem (focusout)="putItemToShoppingCart(item.item?.id, quantityItem.value)"
-                                        class="form-control" type="text" value="{{ item?.quantity }}" /></td>
-                                    <td class="text-right">{{ item.item?.price | currency:'EUR':'symbol':'1.2-2':'fr' }}</td>
-                                    <td class="text-right">
-                                      <button (click)="deleteItemToShoppingCart(item.item?.id)" class="btn btn-sm btn-danger">
-                                        <i class="fa fa-trash"></i> </button> </td>
-                                </tr>
+                  <div class="table-responsive">
+                      <table class="table table-striped">
+                          <thead>
+                              <tr> <!-- Row 1 -->
+                                  <th scope="col"> </th>
+                                  <th scope="col">Produit</th>
+                                  <th scope="col">Disponible</th>
+                                  <th scope="col" class="text-center">Quantité</th>
+                                  <th scope="col" class="text-right">Prix</th>
+                                  <th> </th>
+                              </tr>
+                          </thead>
+                          <tbody>
+                              <!-- Row 2 --> <!-- TODO: create *ngFor with data (img, name, stock, prix) --> 
+                              <!-- https://dummyimage.com/50x50/55595c/fff -->
+                              <tr *ngFor="let item of shoppingCart"> 
+                                  <td>
+                                    <img src="{{ item.item.item_pictures[0]?.name ? 
+                                      item.item.item_pictures[0].name : 
+                                      'https://dummyimage.com/50x50/55595c/fff' }}"
+                                      alt="{{ item.item.item_pictures[0]?.name }}"/>
+                                  </td>
+                                  <td>{{ item.item?.name }}</td>
+                                  <td>{{ item.item?.stock }} en stock</td>
+                                  <td>
+                                    <input #quantityItem (focusout)="putItemToShoppingCart(item.item?.id, quantityItem.value)"
+                                      class="form-control" type="text" value="{{ item?.quantity }}" /></td>
+                                  <td class="text-right">{{ item.item?.price | currency:'EUR':'symbol':'1.2-2':'fr' }}</td>
+                                  <td class="text-right">
+                                    <button (click)="deleteItemToShoppingCart(item.item?.id)" class="btn btn-sm btn-danger">
+                                      <i class="fa fa-trash"></i> </button> </td>
+                              </tr>
 
-                                <tr> <!-- Row 3 -->
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td>Sous-Total</td>
-                                    <td class="text-right">{{ this.subTotalPrice | currency:'EUR':'symbol':'1.2-2':'fr' }}</td>
-                                </tr>
-                                <tr> <!-- Row 4 -->
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td>Livraison</td>
-                                    <td class="text-right">6,90 €</td>
-                                </tr>
-                                <tr> <!-- Row 5 -->
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td><strong>Total</strong></td>
-                                    <td class="text-right"><strong>{{ this.totalPrice | currency:'EUR':'symbol':'1.2-2':'fr' }}</strong></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    
-                <div *ngIf="submitError" class="text-danger text-center w-100 mb-3">
-                  La quantité saisi est incorrecte
-                </div>
-                
-                <!-- Buttons action -->
-                <div class="col mb-2">
-                    <div class="row">
-                        <div class="col-sm-12  col-md-6">
-                            <button (click)="redirectToBoutique()" 
-                              class="btn btn-block btn-light">Je veux refaire un tour !</button>
-                        </div>
-                        <div class="col-sm-12 col-md-6 text-right">
-                            <button (click)="onSubmitValidation(this.totalPrice)" 
-                              class="btn btn-lg btn-block btn-success text-uppercase">Je valide</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+                              <tr> <!-- Row 3 -->
+                                  <td></td>
+                                  <td></td>
+                                  <td></td>
+                                  <td></td>
+                                  <td>Sous-Total</td>
+                                  <td class="text-right">{{ this.subTotalPrice | currency:'EUR':'symbol':'1.2-2':'fr' }}</td>
+                              </tr>
+                              <tr> <!-- Row 4 -->
+                                  <td></td>
+                                  <td></td>
+                                  <td></td>
+                                  <td></td>
+                                  <td>Livraison</td>
+                                  <td class="text-right">6,90 €</td>
+                              </tr>
+                              <tr> <!-- Row 5 -->
+                                  <td></td>
+                                  <td></td>
+                                  <td></td>
+                                  <td></td>
+                                  <td><strong>Total</strong></td>
+                                  <td class="text-right"><strong>{{ this.totalPrice | currency:'EUR':'symbol':'1.2-2':'fr' }}</strong></td>
+                              </tr>
+                          </tbody>
+                      </table>
+                  </div>
+                  
+              <div *ngIf="submitError" class="text-danger text-center w-100 mb-3">
+                La quantité saisi est incorrecte
+              </div>
+              
+              <!-- Buttons action -->
+              <div class="col mb-2">
+                  <div class="row">
+                      <div class="col-sm-12  col-md-6">
+                          <button (click)="redirectToBoutique()" 
+                            class="btn btn-block btn-light">Je veux refaire un tour !</button>
+                      </div>
+                      <div class="col-sm-12 col-md-6 text-right">
+                          <button (click)="onSubmitValidation(this.totalPrice)" 
+                            class="btn btn-lg btn-block btn-success text-uppercase">Je valide</button>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
 
-    </div>
+  </div>
 </main>

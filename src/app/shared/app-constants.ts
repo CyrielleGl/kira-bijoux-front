@@ -1,12 +1,12 @@
 export class AppConstants {
 
-    public static get appTitle(): string {
-        return 'Kira';
-    }
+  public static get appTitle(): string {
+      return 'Kira';
+  }
 
-    public static get urlLogoHeader(): string {
-        return 'assets/img/visuels/logo-kira-header.png';
-    }
+  public static get urlLogoHeader(): string {
+      return 'assets/img/visuels/logo-kira-header.png';
+  }
 
 }
 
@@ -22,3 +22,5 @@ export const STATUT_EN_COURS = 'en cours de préparation';
 export const STATUT_ENVOYEE = 'envoyée';
 export const STATUT_LIVREE = 'livrée';
 export const STATUT_REMBOURSEE = 'remboursée';
+
+export const API_KEY = 'pk_test_51IK3A9DZJNachaJLWJjkbbMsxHCchwjw4AVoyivGRMhEMhrgO4rnyY0fDgw016Wesj6k4emzkzTb3JfcWgmFt7ns00etr8NGJb';
