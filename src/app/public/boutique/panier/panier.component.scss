@@ -17,3 +17,12 @@
     color: var(--secondary);
     border-color: var(--primary-ligth);
 }
+
+tr td img {
+  width: 50px;
+  height: auto;
+}
+
+.adaptive-row {
+  padding-top: 25px;
+}

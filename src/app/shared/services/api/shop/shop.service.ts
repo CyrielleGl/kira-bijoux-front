@@ -19,19 +19,23 @@ export class ShopService {
     return this.http.get<string[]>(`${ApiService.ApiUrlShop}`);
   }
 
-  getShoppingCartByUser(userId: number): Observable<string[]> {
-    return this.http.get<string[]>(`${ApiService.ApiUrlShop}/user/` + userId);
+  getShoppingCartById(id: number): Observable<string[]> {
+    return this.http.get<string[]>(`${ApiService.ApiUrlShop}/` + id);
+  }
+
+  getShoppingCartByUser(userAddressId: number): Observable<string[]> {
+    return this.http.get<string[]>(`${ApiService.ApiUrlShop}/user-address/` + userAddressId);
   }
 
   postItemToShoppingCart(formData: any): Observable<string[]> {
     return this.http.post<string[]>(`${ApiService.ApiUrlShop}`, formData);
   }
 
-  putItemToShoppingCart(itemId: number, userId: number, formData: any): Observable<string[]> {
-    return this.http.put<string[]>(`${ApiService.ApiUrlShop}/${itemId}/${userId}`, formData);
+  putItemToShoppingCart(itemId: number, orderId: number, formData: any): Observable<string[]> {
+    return this.http.put<string[]>(`${ApiService.ApiUrlShop}/${itemId}/${orderId}`, formData);
   }
 
-  deleteItemToShoppingCart(itemId: number, userId: number): Observable<string[]> {
-    return this.http.delete<string[]>(`${ApiService.ApiUrlShop}/${itemId}/${userId}`);
+  deleteItemToShoppingCart(itemId: number, orderId: number): Observable<string[]> {
+    return this.http.delete<string[]>(`${ApiService.ApiUrlShop}/${itemId}/${orderId}`);
   }
 }

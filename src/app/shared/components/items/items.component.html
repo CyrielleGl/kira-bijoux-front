@@ -20,8 +20,10 @@
 <div class="row row-cols-1 row-cols-md-3">
   <div class="col mb-4 sm-12" *ngFor="let item of item">
     <div class="img-overlay" id="{{ item.name }}-box" style="width: 18rem; height: 18rem;">
-      <img class="image img-thumbnail" src="https://www.laliberte.ch/media/image/12/normal/apredart_0011.jpg" 
-      alt="card image cap" />
+      <img class="image img-thumbnail" src="{{ item.item_pictures[0] ? 
+        item.item_pictures[0].path + item.item_pictures[0].name :   
+        ('https://www.laliberte.ch/media/image/12/normal/apredart_0011.jpg') }}" 
+      alt="card image cap"/>
       <div class="img-caption">
         <div class="link" style="padding-top: 2rem;">
           <h5 class="title" id="{{ item.name }}">{{ item.name }}</h5>

@@ -84,7 +84,7 @@ export class ItemsComponent implements OnInit {
   addToBasket(itemId: string, quantity: string): void {
     const formData = {
       item_id: parseInt(itemId, 10),
-      user_id: parseInt(this.cookieService.get('kira-bijoux-id'), 10),
+      user_address_id: parseInt(this.cookieService.get('kira-bijoux-id'), 10),
       quantity: parseInt(quantity, 10),
     };
 
