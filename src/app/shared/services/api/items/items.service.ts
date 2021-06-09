@@ -24,6 +24,10 @@ export class ItemsService {
     return this.http.get<any>(`${ApiService.ApiUrlItems}/` + itemId);
   }
 
+  addItem(Form: any): Observable<string[]> {
+    return this.http.post<string[]>(`${ApiService.ApiUrlItems}/`, Form);
+  }
+
   saveItem(id: number, Form: any): Observable<string[]> {
     return this.http.put<string[]>(`${ApiService.ApiUrlItems}/` + id, Form);
   }

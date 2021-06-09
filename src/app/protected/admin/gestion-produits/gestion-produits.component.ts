@@ -20,6 +20,9 @@ export class GestionProduitsComponent implements OnInit {
   source: any[] = [];
 
   items: string[] | any = null;
+  updateOk = false;
+  addOk = false;
+  deleteOk = false;
 
   constructor(
     private cookieService: SecuService,
@@ -165,7 +168,20 @@ export class GestionProduitsComponent implements OnInit {
     });
     modalRef.componentInstance.product = row;
     modalRef.result.then(
-      () => {
+      (result: any) => {
+        if (result === 'added') {
+          window.scrollTo(0, 0);
+          this.addOk = true;
+          setTimeout(() => {  window.location.reload(); }, 700);
+      } else if (result === 'updated') {
+          window.scrollTo(0, 0);
+          this.updateOk = true;
+          setTimeout(() => {  window.location.reload(); }, 700);
+        } else if (result.includes('delete')) {
+          window.scrollTo(0, 0);
+          this.deleteOk = true;
+          setTimeout(() => {  window.location.reload(); }, 700);
+        }
         // Left blank intentionally, nothing to do here
       },
       () => {
