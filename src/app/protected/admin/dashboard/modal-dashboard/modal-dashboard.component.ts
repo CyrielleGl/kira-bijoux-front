@@ -40,12 +40,9 @@ export class ModalDashboardComponent implements OnInit {
   indicatorOrdersToPrepare = 'Commmandes à préparer';
 
   deleteItemSuccess = false;
-  deleteItemName = '';
+  updateItemSuccess = false;
   deleteUserSuccess = false;
   deleteUserName = '';
-
-  deleteItemSuccess = false;
-  deleteName = '';
 
   constructor(
     public activeModal: NgbActiveModal,
@@ -507,12 +504,12 @@ export class ModalDashboardComponent implements OnInit {
     modalRef.componentInstance.product = row;
     modalRef.result.then(
       (result) => {
-        if (result) {
+        if (result.includes('delete')) {
           this.deleteItemSuccess = true;
-          this.deleteItemName = result;
-          setTimeout(() => {
-            window.location.reload();
-          }, 500);
+          setTimeout(() => {  window.location.reload(); }, 700);
+        } else if (result === 'updated') {
+          this.updateItemSuccess = true;
+          setTimeout(() => {  window.location.reload(); }, 700);
         }
       },
       () => {

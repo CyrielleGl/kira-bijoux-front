@@ -29,25 +29,46 @@ export class ProductUpdateComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.item = this.product.item;
-    this.productPictures = this.product.item.item_pictures;
-    this.productMaterials = this.product.item.materials;
-    this.getAllTypes();
-    this.Form = new FormGroup({
-      id: new FormControl(this.product.id),
-      name: new FormControl(this.product.item.name, [Validators.required]),
-      type: new FormControl(this.product.type, [Validators.required]),
-      length: new FormControl(this.item?.length, [Validators.required]),
-      materials: new FormArray([]),
-      subtitle: new FormControl(this.item?.subtitle, [Validators.required]),
-      description: new FormControl(this.item?.description, [Validators.required]),
-      price: new FormControl(this.item?.price, [Validators.required]),
-      stock: new FormControl(this.item?.stock, [Validators.required]),
-      tva: new FormControl(this.item?.tva, [Validators.required]),
-      visibility: new FormControl(this.item?.visibility)
-    });
-    console.warn(this.Form);
     this.getAllMaterials();
+    this.getAllTypes();
+
+    console.warn(this.product);
+    if (this.product === 'addArticle') {
+      this.item = {
+        visibility: true
+      };
+      this.Form = new FormGroup({
+        id: new FormControl(),
+        name: new FormControl('', [Validators.required]),
+        type: new FormControl('', [Validators.required]),
+        length: new FormControl('', [Validators.required]),
+        materials: new FormArray([]),
+        subtitle: new FormControl('', [Validators.required]),
+        description: new FormControl('', [Validators.required]),
+        price: new FormControl(0, [Validators.required]),
+        stock: new FormControl(0, [Validators.required]),
+        tva: new FormControl(0.2, [Validators.required]),
+        visibility: new FormControl(true)
+      });
+    } else {
+      this.item = this.product.item;
+      this.productPictures = this.product.item.item_pictures;
+      this.productMaterials = this.product.item.materials;
+      this.Form = new FormGroup({
+        id: new FormControl(this.product.id),
+        name: new FormControl(this.product.item.name, [Validators.required]),
+        type: new FormControl(this.product.type, [Validators.required]),
+        length: new FormControl(this.item?.length, [Validators.required]),
+        materials: new FormArray([]),
+        subtitle: new FormControl(this.item?.subtitle, [Validators.required]),
+        description: new FormControl(this.item?.description, [Validators.required]),
+        price: new FormControl(this.item?.price, [Validators.required]),
+        stock: new FormControl(this.item?.stock, [Validators.required]),
+        tva: new FormControl(this.item?.tva, [Validators.required]),
+        visibility: new FormControl(this.item?.visibility)
+      });
+      console.warn(this.Form);
+    }
   }
 
   getAllTypes(): void {
@@ -166,10 +187,17 @@ export class ProductUpdateComponent implements OnInit {
         visibility: this.Form.controls.visibility.value
       };
       console.warn('obj', obj);
-      this.itemsService.saveItem(this.item?.id, obj).subscribe((updatedItem: any) => {
-        console.warn('updatedItem', updatedItem);
-        // this.activeModal.close(updatedItem);
-      });
+      if (this.product === 'addArticle') {
+        this.itemsService.addItem(obj).subscribe((addedItem: any) => {
+          this.activeModal.close('added');
+          console.warn('addedItem', addedItem);
+        });
+      } else {
+        this.itemsService.saveItem(this.item?.id, obj).subscribe((updatedItem: any) => {
+          this.activeModal.close('updated');
+          console.warn('updatedItem', updatedItem);
+        });
+      }
     }
   }
 
@@ -179,7 +207,7 @@ export class ProductUpdateComponent implements OnInit {
         if (result) {
           const name = this.product.item.name;
           this.itemsService.deleteItem(this.product.item.id).subscribe(() => {
-            this.activeModal.close(name);
+            this.activeModal.close('delete ' + name);
           });
         }
       },

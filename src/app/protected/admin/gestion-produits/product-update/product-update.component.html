@@ -1,6 +1,8 @@
 <div id="alert-modal-header" class="modal-header">
-    <h4 class="modal-title modal-admin" style="color: var(--primary); font-weight: 600" id="edit-heading">
+    <h4 class="modal-title modal-admin" style="color: var(--primary); font-weight: 600" id="edit-heading" *ngIf="product !== 'addArticle'">
         {{ product.name }}</h4>
+        <h4 class="modal-title modal-admin" style="color: var(--primary); font-weight: 600" id="edit-heading" *ngIf="product === 'addArticle'">
+         Ajouter un article</h4>
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
     (click)="cancel()">x
     </button>
@@ -9,15 +11,18 @@
 <div class="modal-body">
   <form [formGroup]="Form" novalidate (ngSubmit)="save()" *ngIf="allMaterials && item">
 
-    <div class="row">
+    <div class="row" *ngIf="product !== 'addArticle'">
       <div class="col-12" style="color: var(--primary)">Modifier les informations du bijou "{{ product.name }}"</div>
+    </div>
+    <div class="row" *ngIf="product === 'addArticle'">
+      <div class="col-12" style="color: var(--primary)">Ajouter un nouveau bijou !</div>
     </div>
     <hr />
 
     <div>
         <div class="form-group">
           <label class="form-control-label" for="field_name">Nom :</label>
-          <input class="form-control" type="text" formControlName="name"/>
+          <input class="form-control" type="text" formControlName="name" placeholder="Nom du bijou"/>
         </div>
         <div class="form-group">
           <label class="form-control-label" for="field_type">Type :</label><br/>
@@ -59,19 +64,19 @@
         </div>
         <div class="form-group">
           <label class="form-control-label" for="field_subtitle">Sous-titre :</label>
-          <input class="form-control" type="text" formControlName="subtitle"/>
+          <input class="form-control" type="text" formControlName="subtitle" placeholder="Le bijou en 3 mots..."/>
         </div>
         <div class="form-group">
           <label class="form-control-label" for="field_description">Description :</label>
-          <textarea class="form-control" type="text" formControlName="description"></textarea>
+          <textarea class="form-control" type="text" formControlName="description" placeholder="Description du bijou ! Plus de détails que le sous-titre, des idées d'associations..."></textarea>
         </div>
         <div class="form-group">
           <label class="form-control-label" for="field_length">Longueur :</label>
-          <input class="form-control" type="text" formControlName="length">
+          <input class="form-control" type="text" formControlName="length" placeholder="35 cm">
         </div>
         <div class="form-group">
           <label class="form-control-label" for="field_price">Prix :</label>
-          <input class="form-control" type="number" formControlName="price"/>
+          <input class="form-control" type="number" step="0.01" formControlName="price"/>
         </div>
         <div class="form-group">
           <label class="form-control-label" for="field_stock">Stock :</label>
@@ -90,7 +95,7 @@
             <label class="form-check-label" for="visibility">false</label>
           </div>
         </div>
-        <p style="text-align: center;">
+        <p style="text-align: center;" *ngIf="product !== 'addArticle'">
           <button type="button" class="btn btn-fourth col-3 delete-btn" style="margin-right: 1rem;" (click)="deleteItem(content)">
             <i class="fa fa-trash-alt"></i> Supprimer l'article</button>
         </p>
@@ -104,9 +109,12 @@
       <button id="close" type="close" class="btn btn-fourth col-3" data-dismiss="modal" (click)="cancel()">
         <i class="fa fa-ban"></i><span> Fermer</span>
       </button>
-      <button id="save" type="submit" class="btn btn-primary col-6" data-dismiss="modal">
+      <button id="save" type="submit" class="btn btn-primary col-6" data-dismiss="modal" *ngIf="product !== 'addArticle'">
           <i class="fa fa-save"></i><span> Valider les modifications</span>
       </button>
+      <button id="save" type="submit" class="btn btn-primary col-6" data-dismiss="modal" *ngIf="product === 'addArticle'">
+        <i class="fa fa-save"></i><span> Ajouter l'article !</span>
+    </button>
     </div>
 
   </form>
