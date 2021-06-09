@@ -24,8 +24,8 @@ export class ItemsService {
     return this.http.get<any>(`${ApiService.ApiUrlItems}/` + itemId);
   }
 
-  saveItem(id: number, Form: any): Observable<Items[]> {
-    return this.http.put<Items[]>(`${ApiService.ApiUrlItems}/` + id, Form);
+  saveItem(id: number, Form: any): Observable<string[]> {
+    return this.http.put<string[]>(`${ApiService.ApiUrlItems}/` + id, Form);
   }
 
   deleteItem(id: number): Observable<string[]> {

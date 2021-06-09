@@ -7,7 +7,7 @@
 </div>
 
 <div class="modal-body">
-  <form [formGroup]="Form" novalidate (ngSubmit)="save()" *ngIf="allMaterials">
+  <form [formGroup]="Form" novalidate (ngSubmit)="save()" *ngIf="allMaterials && item">
 
     <div class="row">
       <div class="col-12" style="color: var(--primary)">Modifier les informations du bijou "{{ product.name }}"</div>
@@ -66,8 +66,29 @@
           <textarea class="form-control" type="text" formControlName="description"></textarea>
         </div>
         <div class="form-group">
+          <label class="form-control-label" for="field_length">Longueur :</label>
+          <input class="form-control" type="text" formControlName="length">
+        </div>
+        <div class="form-group">
           <label class="form-control-label" for="field_price">Prix :</label>
           <input class="form-control" type="number" formControlName="price"/>
+        </div>
+        <div class="form-group">
+          <label class="form-control-label" for="field_stock">Stock :</label>
+          <input class="form-control" type="number" formControlName="stock"/>
+        </div>
+        <div class="form-group">
+          <label class="form-control-label" for="field_tva">TVA :</label>
+          <input class="form-control" type="number" formControlName="tva"/>
+        </div>
+        <div class="form-group">
+          <label class="form-control-label" for="field_visibility">Visibilité :</label><br/>
+          <div class="form-check form-check-inline custom-checkbox" (change)="changeType($event)">
+            <input class="form-check-input" type="radio" id="true" [value]="true" formControlName="visibility" [(ngModel)]="item.visibility">
+            <label class="form-check-label" for="visibility" style="margin-right: 1rem;">true</label>
+            <input class="form-check-input" type="radio" id="false" [value]="false" formControlName="visibility" [(ngModel)]="item.visibility">
+            <label class="form-check-label" for="visibility">false</label>
+          </div>
         </div>
         <p style="text-align: center;">
           <button type="button" class="btn btn-fourth col-3 delete-btn" style="margin-right: 1rem;" (click)="deleteItem(content)">
