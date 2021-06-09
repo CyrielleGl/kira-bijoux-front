@@ -39,6 +39,7 @@ export class ModalDashboardComponent implements OnInit {
   indicatorUnstockedProducts = 'Produits à fabriquer';
   indicatorOrdersToPrepare = 'Commmandes à préparer';
 
+  deleteItemSuccess = false;
   deleteItemName = '';
   deleteUserSuccess = false;
   deleteUserName = '';

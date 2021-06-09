@@ -1,9 +1,12 @@
 export interface IItems {
     id?: any;
     item_parent?: IItemParents;
+    collection_id?: number;
     subtitle?: string;
     description?: string;
+    item_type_id?: number;
     length?: string;
+    materials?: IMaterials[];
     name?: string;
     price?: number;
     stock?: number;
@@ -17,9 +20,12 @@ export class Items implements IItems {
     constructor(
         public id?: any,
         public item_parent?: IItemParents,
+        public collection_id?: number,
         public subtitle?: string,
         public description?: string,
+        public item_type_id?: number,
         public length?: string,
+        public materials?: IMaterials[],
         public name?: string,
         public price?: number,
         public stock?: number,

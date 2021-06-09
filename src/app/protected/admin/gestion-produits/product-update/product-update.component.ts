@@ -30,7 +30,6 @@ export class ProductUpdateComponent implements OnInit {
 
   ngOnInit(): void {
     this.item = this.product.item;
-    console.warn(this.item);
     this.productPictures = this.product.item.item_pictures;
     this.productMaterials = this.product.item.materials;
     this.getAllTypes();
@@ -38,11 +37,16 @@ export class ProductUpdateComponent implements OnInit {
       id: new FormControl(this.product.id),
       name: new FormControl(this.product.item.name, [Validators.required]),
       type: new FormControl(this.product.type, [Validators.required]),
+      length: new FormControl(this.item?.length, [Validators.required]),
       materials: new FormArray([]),
-      subtitle: new FormControl(this.product.item.subtitle, [Validators.required]),
-      description: new FormControl(this.product.item.description, [Validators.required]),
-      price: new FormControl(this.product.item.price, [Validators.required])
+      subtitle: new FormControl(this.item?.subtitle, [Validators.required]),
+      description: new FormControl(this.item?.description, [Validators.required]),
+      price: new FormControl(this.item?.price, [Validators.required]),
+      stock: new FormControl(this.item?.stock, [Validators.required]),
+      tva: new FormControl(this.item?.tva, [Validators.required]),
+      visibility: new FormControl(this.item?.visibility)
     });
+    console.warn(this.Form);
     this.getAllMaterials();
   }
 
@@ -81,6 +85,8 @@ export class ProductUpdateComponent implements OnInit {
 
   changeType(event: any): void {
     console.warn('changeType', event.target.id);
+    console.warn('form', this.Form.controls.visibility.value);
+
   }
 
   changeMaterials(event: any): void {
@@ -144,21 +150,27 @@ export class ProductUpdateComponent implements OnInit {
     } else if (type === 'BO') {
       typeId = 3;
     }
-    /** ----------------------------------- */
-    /** WAITING FOR BACKEND REVUE FOR ITEM */
-    /** --------------------------------- */
 
-/*     if (this.item) {
-      this.item.description = this.Form.value.description;
-      this.item.item_type_id = type;
-      this.item.materials = checkedMaterials;
-      this.item.name = this.Form.value.name;
-      this.item.price = this.Form.value.price;
-      this.item.subtitle = this.Form.value.subtitle;
+    if (this.item) {
+      const obj = {
+        collection_id: 1,
+        description: this.Form.controls.description.value,
+        item_type_id: typeId,
+        length: this.Form.value.length,
+        materials: checkedMaterials,
+        name: this.Form.value.name,
+        price: this.Form.value.price,
+        stock: this.Form.value.stock,
+        subtitle: this.Form.value.subtitle,
+        tva: this.Form.value.tva,
+        visibility: this.Form.controls.visibility.value
+      };
+      console.warn('obj', obj);
+      this.itemsService.saveItem(this.item?.id, obj).subscribe((updatedItem: any) => {
+        console.warn('updatedItem', updatedItem);
+        // this.activeModal.close(updatedItem);
+      });
     }
-    this.itemsService.saveItem(this.item?.id, this.item).subscribe((updatedItem: any) => {
-      // this.activeModal.close(updatedItem);
-    }); */
   }
 
   deleteItem(content: any): void {
