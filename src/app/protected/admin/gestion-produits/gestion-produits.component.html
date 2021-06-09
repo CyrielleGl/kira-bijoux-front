@@ -4,7 +4,13 @@
     </div>
     <div class="body">
       <p *ngIf="items">Vous avez <span style="font-weight: 600;">{{items.length}} articles</span> dans votre boutique.</p>
-      <div class="col-md-12" style = "overflow-x: scroll;" *ngIf="items">
+      <div class="inline-block">
+        <button type="button" class="btn btn-primary float-right add-article">
+          <i class="fas fa-plus"></i>&nbsp;
+          <p class="card-line">Ajouter un article</p>
+        </button>
+    </div>
+      <div class="col-md-12" style="overflow-x: scroll;" *ngIf="items">
         <div class="smart-table-container">
           <ng2-smart-table [settings]="settings" [source]="source"></ng2-smart-table>
         </div>
