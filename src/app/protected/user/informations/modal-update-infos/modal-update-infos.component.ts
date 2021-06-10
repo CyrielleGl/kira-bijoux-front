@@ -81,13 +81,14 @@ export class ModalUpdateInfosComponent implements OnInit {
       post_code: adress.value.post_code,
       town: adress.value.town,
       country: adress.value.country,
+      user_id: this.user.id
     };
-    this.addressService.postAdress(this.user.id, adressForm).subscribe((data) => {
-        if (data) {
-          this.addOk = true;
-          setTimeout(() => {  window.location.reload(); }, 500);
-        }
-      });
+    this.addressService.postAdress(adressForm).subscribe((data) => {
+      if (data) {
+        this.addOk = true;
+        setTimeout(() => {  window.location.reload(); }, 500);
+      }
+    });
   }
 
   deleteAdress(adress: any, content: any): void {
@@ -125,9 +126,10 @@ export class ModalUpdateInfosComponent implements OnInit {
         second_line: this.Form.controls.second_line.value,
         post_code: this.Form.controls.post_code.value,
         town: this.Form.controls.town.value,
-        country: this.Form.controls.country.value
+        country: this.Form.controls.country.value,
+        user_id: this.user.id
       });
-      this.addressService.putAdress(this.user.id, this.adress.id, adress).subscribe(
+      this.addressService.putAdress(this.adress.id, adress).subscribe(
         (data: Address | null) => {
           this.adress = data;
           this.updateOk = true;

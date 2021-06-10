@@ -20,6 +20,7 @@ export class ItemDetailsComponent implements OnInit {
   noMoreStock = false;
   category = '';
   keyWord = '';
+  productPictures: any = [];
   BOUTIQUE_BO_KEYWORD = BOUTIQUE_BO_KEYWORD;
   BOUTIQUE_COLLIERS_KEYWORD = BOUTIQUE_COLLIERS_KEYWORD;
   BOUTIQUE_BRACELETS_KEYWORD = BOUTIQUE_BRACELETS_KEYWORD;
@@ -57,6 +58,7 @@ export class ItemDetailsComponent implements OnInit {
     this.itemsService.getByName(nameItem).subscribe(
       (data: string[]) => {
         this.currentItem = data[0];
+        this.productPictures = this.currentItem.item_pictures;
         if (this.currentItem.stock <= 3 && this.currentItem.stock !== 0) {
           this.stockVisibility = true;
         }
@@ -87,7 +89,7 @@ export class ItemDetailsComponent implements OnInit {
   addToBasket(itemId: string, quantity: string): void {
     const formData = {
       item_id: parseInt(itemId, 10),
-      user_id: parseInt(this.cookieService.get('kira-bijoux-id'), 10),
+      user_address_id: parseInt(this.cookieService.get('kira-bijoux-id'), 10),
       quantity: parseInt(quantity, 10),
     };
 
