@@ -106,27 +106,40 @@ export class ItemDetailsComponent implements OnInit {
       quantity: parseInt(quantity, 10),
     };
 
-    this.orderService.getOrdersByUserId(idUser).subscribe((order) => {
-      if (order.length == 0) {
-        this.createOrder(formOrderData, formShopData);        
-      } else if (order.length > 0) {
-        if (order[0].status?.name != 'en attente') {
-          this.orderService.putOrder(order[0].id, formOrderData).subscribe((order) => {
+    let res: boolean = this.verifyAddresses();
+    if (res) {
+      this.orderService.getOrdersByUserId(idUser).subscribe((order) => {
+        if (order.length == 0) {
+          this.createOrder(formOrderData, formShopData);        
+        } else if (order.length > 0) {
+          if (order[0].status?.name != 'en attente') {
+            this.orderService.putOrder(order[0].id, formOrderData).subscribe((order) => {
+              this.postItemToShoppingCart(formShopData);
+            });
+          } else {
             this.postItemToShoppingCart(formShopData);
-          });
-        } else {
-          this.postItemToShoppingCart(formShopData);
+          }
         }
+      }); 
+    }
+  }
+
+  private verifyAddresses(): boolean {
+    let res: boolean = true;
+    this.usersService.getUserState().subscribe((user) => { 
+      let addressesLength: number = Number(user?.addresses?.length);
+      if (addressesLength == 0) {
+        alert('Veuillez renseigner une adresse');
+        res = false;
       }
-    }); 
+    });
+    return res;
   }
 
   private createOrder(formOrderData: any, formShopData: any): void {
     this.usersService.getUserState().subscribe((user) => { 
       let addressesLength: number = Number(user?.addresses?.length);
-      if (addressesLength == 0) {
-        alert('Veuillez renseigner une adresse');
-      } else if (addressesLength > 0) {
+      if (addressesLength > 0) {
         this.orderService.postOrder(formOrderData).subscribe((order) => {
           this.postItemToShoppingCart(formShopData);
         });
