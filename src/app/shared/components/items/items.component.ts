@@ -3,7 +3,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { BOUTIQUE_BO_KEYWORD, BOUTIQUE_BRACELETS_KEYWORD, BOUTIQUE_COLLIERS_KEYWORD, BOUTIQUE_NOUVEAUTES_KEYWORD } from '../../app-constants';
 import { ItemsService } from '../../services/api/items/items.service';
+import { OrdersService } from '../../services/api/orders/orders.service';
 import { ShopService } from '../../services/api/shop/shop.service';
+import { UsersService } from '../../services/api/users/users.service';
 
 @Component({
   selector: 'app-items',
@@ -28,6 +30,8 @@ export class ItemsComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private itemsService: ItemsService,
     private shopService: ShopService,
+    private orderService: OrdersService,
+    private usersService: UsersService,
     private cookieService: CookieService
     ) { }
 
@@ -81,19 +85,50 @@ export class ItemsComponent implements OnInit {
     this.router.navigateByUrl('boutique/' + this.keyWord + '/' + item.name).then();
   }
 
-  addToBasket(itemId: string, quantity: string): void {
-    const formData = {
+  addToBasket(itemId: string, quantity: string, itemPrice: number): void {
+    let idUser: number = parseInt(this.cookieService.get('kira-bijoux-id'), 10);
+
+    const formOrderData = {
+      order_status_id: 1,
+      payment_type_id: 1,
+      user_address_id: parseInt(this.cookieService.get('kira-bijoux-id'), 10),
+      price: itemPrice,
+    };
+
+    const formShopData = {
       item_id: parseInt(itemId, 10),
       user_address_id: parseInt(this.cookieService.get('kira-bijoux-id'), 10),
       quantity: parseInt(quantity, 10),
     };
 
-    this.shopService.postItemToShoppingCart(formData).subscribe(
-      (data: any[]) => { document.location.reload(); },
-      err => {
-        alert('La quantité saisi est incorrecte');
+    this.orderService.getOrdersByUserId(idUser).subscribe((order) => {
+      if (order.length == 0) {
+        this.createOrder(formOrderData);        
+      } else if (order.length > 0) {
+        if (order[0].status?.name != 'en attente') {
+          this.orderService.putOrder(order[0].id, formOrderData)
+        }
       }
-    );
+      this.shopService.postItemToShoppingCart(formShopData).subscribe(
+        (data: any[]) => { document.location.reload(); },
+        err => {
+          alert('La quantité saisi est incorrecte');
+        }
+      );
+    });   
+  }
+
+  private createOrder(formOrderData: any): void {
+    this.usersService.getUserState().subscribe((user) => { 
+      let addressesLength: number = Number(user?.addresses?.length);
+      if (addressesLength == 0) {
+        alert('Veuillez renseigner une adresse');
+      } else if (addressesLength > 0) {
+        this.orderService.postOrder(formOrderData).subscribe((order) => {
+          console.log(order);
+        });
+      }
+    });
   }
 
 }
