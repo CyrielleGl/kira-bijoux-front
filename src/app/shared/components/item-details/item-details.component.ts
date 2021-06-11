@@ -108,32 +108,38 @@ export class ItemDetailsComponent implements OnInit {
 
     this.orderService.getOrdersByUserId(idUser).subscribe((order) => {
       if (order.length == 0) {
-        this.createOrder(formOrderData);        
+        this.createOrder(formOrderData, formShopData);        
       } else if (order.length > 0) {
         if (order[0].status?.name != 'en attente') {
-          this.orderService.putOrder(order[0].id, formOrderData)
+          this.orderService.putOrder(order[0].id, formOrderData).subscribe((order) => {
+            this.postItemToShoppingCart(formShopData);
+          });
+        } else {
+          this.postItemToShoppingCart(formShopData);
         }
       }
-      this.shopService.postItemToShoppingCart(formShopData).subscribe(
-        (data: any[]) => { document.location.reload(); },
-        err => {
-          this.submitError = true; 
-        }
-      );
     }); 
   }
 
-  private createOrder(formOrderData: any): void {
+  private createOrder(formOrderData: any, formShopData: any): void {
     this.usersService.getUserState().subscribe((user) => { 
       let addressesLength: number = Number(user?.addresses?.length);
       if (addressesLength == 0) {
         alert('Veuillez renseigner une adresse');
       } else if (addressesLength > 0) {
         this.orderService.postOrder(formOrderData).subscribe((order) => {
-          console.log(order);
+          this.postItemToShoppingCart(formShopData);
         });
       }
     });
   }
 
+  private postItemToShoppingCart(formShopData: any): void {
+    this.shopService.postItemToShoppingCart(formShopData).subscribe(
+      (data: any[]) => { document.location.reload(); },
+      err => {
+        this.submitError = true; 
+      }
+    );
+  }
 }
