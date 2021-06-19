@@ -41,7 +41,7 @@
           <div class="add-item-basket" *ngIf="this.noMoreStock === false">
               <div class="row">
                   <input #quantityItem class="form-control" type="text" value="1" style="width: 4rem;"/>
-                  <button (click)="addToBasket(this.currentItem?.id, quantityItem.value, this.currentItem?.price)" 
+                  <button (click)="addToBasket(this.currentItem?.id, quantityItem.value)" 
                     class="btn btn-sm btn-primary">Ajouter au panier&nbsp;&nbsp;<i class="fa fa-shopping-basket"></i></button>
                   <span class="favoris" placement="right" ngbTooltip="Ajouter aux favoris"><i class="fa fa-heart"></i></span>
               </div>

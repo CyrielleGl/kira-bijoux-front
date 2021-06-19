@@ -85,14 +85,18 @@ export class ItemsComponent implements OnInit {
     this.router.navigateByUrl('boutique/' + this.keyWord + '/' + item.name).then();
   }
 
-  addToBasket(itemId: string, quantity: string, itemPrice: number): void {
+  addToBasket(itemId: string, quantity: string): void {
     let idUser: number = parseInt(this.cookieService.get('kira-bijoux-id'), 10);
+    let itemPrice: number = Math.floor(Math.random() * (1000 - 100) + 100) / 100;
 
     const formOrderData = {
       order_status_id: 1,
       payment_type_id: 1,
       user_address_id: parseInt(this.cookieService.get('kira-bijoux-id'), 10),
       price: itemPrice,
+      received_at: '',
+      send_at: '',
+      reference: '',
     };
 
     const formShopData = {
@@ -104,9 +108,7 @@ export class ItemsComponent implements OnInit {
     let res: boolean = this.verifyAddresses();
     if (res) {
       this.orderService.getOrdersByUserId(idUser).subscribe((order) => {
-        if (order.length == 0) {
-          this.createOrder(formOrderData, formShopData);        
-        } else if (order.length > 0) {
+        if (order.length > 0) {
           if (order[0].status?.name != 'en attente') {
             this.orderService.putOrder(order[0].id, formOrderData).subscribe((order) => {
               this.postItemToShoppingCart(formShopData);
@@ -115,6 +117,8 @@ export class ItemsComponent implements OnInit {
             this.postItemToShoppingCart(formShopData);
           }
         }   
+      }, err => { 
+        this.createOrder(formOrderData, formShopData); 
       });   
     }
   }
