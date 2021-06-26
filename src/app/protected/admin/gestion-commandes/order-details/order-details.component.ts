@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { Address } from 'src/app/shared/models/address.model';
-import { Order, OrderItems } from 'src/app/shared/models/order.model';
+import { Order, OrderItems, OrderStatus } from 'src/app/shared/models/order.model';
 import { User } from 'src/app/shared/models/user.model';
 import { OrdersService } from 'src/app/shared/services/api/orders/orders.service';
 import { UsersService } from 'src/app/shared/services/api/users/users.service';
+import { IOrderStatus } from './../../../../shared/models/order.model';
 
 @Component({
   selector: 'app-order-details',
@@ -27,6 +28,8 @@ export class OrderDetailsComponent implements OnInit {
   orderAddressId = 0;
   user: User | any = null;
   userid = 0;
+  listOrderStatus: OrderStatus[] | any = null;
+  selected: string | any = '';
 
   constructor(
     public activeModal: NgbActiveModal,
@@ -88,6 +91,7 @@ export class OrderDetailsComponent implements OnInit {
       this.orderAddress = this.order?.address;
       this.userid = this.orderAddress?.user;
       this.getUserById();
+      this.getOrderStatus();
     });
   }
 
@@ -106,6 +110,25 @@ export class OrderDetailsComponent implements OnInit {
           this.load = true;
         });
       }
+    });
+  }
+
+  getOrderStatus(): void {
+    this.ordersService.getAllOrderStatus().subscribe((data: any) => {
+      this.listOrderStatus = data;
+    });
+    this.selected = this.order.status.name;
+  }
+
+  changeStatus(): void {
+    console.warn(this.selected);
+    console.warn('idOrder', this.order.id);
+    const obj = {
+      name: this.selected.toString(),
+    };
+    console.warn('obj', obj);
+    this.ordersService.updateOrderStatus(this.order.id, obj).subscribe((data: any) => {
+      console.warn(data);
     });
   }
 

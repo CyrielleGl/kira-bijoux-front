@@ -13,4 +13,5 @@ export class ApiService {
   public static readonly ApiUrlShop: string = `${ApiService.BasicApiUrl}/shops`;
   public static readonly ApiUrlOrders: string = `${ApiService.BasicApiUrl}/orders`;
   public static readonly ApiUrlOrderItems: string = `${ApiService.BasicApiUrl}/order-items`;
+  public static readonly ApiUrlOrderStatus: string = `${ApiService.BasicApiUrl}/order-status`;
 }

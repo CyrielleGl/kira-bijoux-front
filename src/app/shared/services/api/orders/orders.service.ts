@@ -29,4 +29,12 @@ export class OrdersService {
     return this.http.get<any>(`${ApiService.ApiUrlOrderItems}/order/` + idOrder);
   }
 
+  getAllOrderStatus(): Observable<any> {
+    return this.http.get<any>(`${ApiService.ApiUrlOrderStatus}`);
+  }
+
+  updateOrderStatus(idOrder: number, orderStatus: any): Observable<string[]> {
+    return this.http.put<string[]>(`${ApiService.ApiUrlOrderStatus}/` + idOrder, orderStatus);
+  }
+
 }

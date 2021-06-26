@@ -13,7 +13,9 @@
       <div>Total TTC : <span style="font-weight: 600;"> {{ order?.price }} €</span></div>
     </div>
     <div class="col-6">
-      TODO: MODIFIER STATUS
+      <select [(ngModel)]="selected" (change)="changeStatus()">
+        <option *ngFor="let status of listOrderStatus"> {{ status.name | titlecase }}</option>
+      </select>
     </div>
   </div>
   
