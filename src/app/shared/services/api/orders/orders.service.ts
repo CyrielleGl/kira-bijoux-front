@@ -29,4 +29,11 @@ export class OrdersService {
     return this.http.get<any>(`${ApiService.ApiUrlOrderItems}/order/` + idOrder);
   }
 
+  postOrder(formData: any): Observable<string[]> {
+    return this.http.post<string[]>(`${ApiService.ApiUrlOrders}`, formData);
+  }
+
+  putOrder(id: number, formData: any): Observable<string[]> {
+    return this.http.put<string[]>(`${ApiService.ApiUrlOrders}/` + id, formData);
+  }
 }
