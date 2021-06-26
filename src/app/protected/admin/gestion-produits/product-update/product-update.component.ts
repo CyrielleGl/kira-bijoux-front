@@ -31,8 +31,6 @@ export class ProductUpdateComponent implements OnInit {
   ngOnInit(): void {
     this.getAllMaterials();
     this.getAllTypes();
-
-    console.warn(this.product);
     if (this.product === 'addArticle') {
       this.item = {
         visibility: true
@@ -67,7 +65,6 @@ export class ProductUpdateComponent implements OnInit {
         tva: new FormControl(this.item?.tva, [Validators.required]),
         visibility: new FormControl(this.item?.visibility)
       });
-      console.warn(this.Form);
     }
   }
 
@@ -81,7 +78,6 @@ export class ProductUpdateComponent implements OnInit {
     this.itemsService.getAllMaterials().subscribe((data: string[]) => {
       this.allMaterials = data;
       this.addMaterialsToMaterialsArray();
-      console.warn('this.Form', this.Form);
     });
   }
 
@@ -186,16 +182,13 @@ export class ProductUpdateComponent implements OnInit {
         tva: this.Form.value.tva,
         visibility: this.Form.controls.visibility.value
       };
-      console.warn('obj', obj);
       if (this.product === 'addArticle') {
         this.itemsService.addItem(obj).subscribe((addedItem: any) => {
           this.activeModal.close('added');
-          console.warn('addedItem', addedItem);
         });
       } else {
         this.itemsService.saveItem(this.item?.id, obj).subscribe((updatedItem: any) => {
           this.activeModal.close('updated');
-          console.warn('updatedItem', updatedItem);
         });
       }
     }

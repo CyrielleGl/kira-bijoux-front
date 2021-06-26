@@ -21,7 +21,6 @@ export class ProductDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     this.productPictures = this.product.item.item_pictures;
-    console.warn(this.product);
   }
 
 

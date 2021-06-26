@@ -30,6 +30,7 @@ export class OrderDetailsComponent implements OnInit {
   userid = 0;
   listOrderStatus: OrderStatus[] | any = null;
   selected: string | any = '';
+  statusChanged = false;
 
   constructor(
     public activeModal: NgbActiveModal,
@@ -116,19 +117,19 @@ export class OrderDetailsComponent implements OnInit {
   getOrderStatus(): void {
     this.ordersService.getAllOrderStatus().subscribe((data: any) => {
       this.listOrderStatus = data;
+      this.selected = this.order.status.name;
     });
-    this.selected = this.order.status.name;
   }
 
   changeStatus(): void {
-    console.warn(this.selected);
-    console.warn('idOrder', this.order.id);
     const obj = {
       name: this.selected.toString(),
     };
-    console.warn('obj', obj);
     this.ordersService.updateOrderStatus(this.order.id, obj).subscribe((data: any) => {
       console.warn(data);
+      if (data) {
+        this.statusChanged = true;
+      }
     });
   }
 
@@ -140,6 +141,10 @@ export class OrderDetailsComponent implements OnInit {
 
   cancel(): void {
     this.activeModal.close();
+  }
+
+  closAlert(): void {
+    this.statusChanged = false;
   }
 
 }

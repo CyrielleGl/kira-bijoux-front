@@ -12,15 +12,22 @@
       <div><b>Commande n° {{ commande?.commande }}</b> passée le {{ commande?.date }}</div>
       <div>Total TTC : <span style="font-weight: 600;"> {{ order?.price }} €</span></div>
     </div>
-    <div class="col-6">
+    <div class="col-6" *ngIf="order">
       <select [(ngModel)]="selected" (change)="changeStatus()">
-        <option *ngFor="let status of listOrderStatus"> {{ status.name | titlecase }}</option>
+        <option *ngFor="let status of listOrderStatus"> {{ status?.name | titlecase }}</option>
       </select>
+      <div class="alert alert-success alert-dismissible fade show col col-10" role="alert" 
+      style="margin-top: 1rem; margin-bottom: 0rem !important; font-size: 0.8rem" *ngIf="statusChanged">
+        <span>Le statut de la commande a bien été modifié !</span>
+        <button type="button" class="close" style="line-height: 0.6 !important;" data-dismiss="alert" aria-label="Close" (click)="closAlert()">
+            <span aria-hidden="true" style="font-size: 1.2rem;">&times;</span>
+        </button>
+      </div>
     </div>
   </div>
   
 
-  <br/>
+  <hr/>
 
   <div>
     <i class="fas fa-shipping-fast"></i>
@@ -35,7 +42,7 @@
     <span style="font-weight: 600;"> Contact client : </span>
     {{ user?.firstname | titlecase }} {{ user?.firstname | titlecase }} - {{ user?.mail }} - {{ user?.phone }}
   </div>
-  <div style="font-size: 0.8rem">Envoyer un bon d'achat au client</div>
+  <div style="font-size: 0.8rem"><a>Envoyer un bon d'achat au client</a></div>
 
   <br/>
 

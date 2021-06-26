@@ -21,7 +21,6 @@ export class UserDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     this.user = this.u.user;
-    console.warn(this.user);
   }
 
   deleteUser(content: any): void {

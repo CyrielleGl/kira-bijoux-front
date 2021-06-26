@@ -425,7 +425,6 @@ export class ModalDashboardComponent implements OnInit {
             this.source.push(obj);
         });
     } else if (this.keyWord === this.indicatorOrdersToPrepare) {
-      console.warn(this.ordersToPrepare);
       this.ordersToPrepare.map((op: any) => {
         const obj = {
           op,
@@ -465,7 +464,6 @@ export class ModalDashboardComponent implements OnInit {
     modalRef.result.then(
       (result) => {
         if (result) {
-          console.warn(result);
           this.deleteUserName = result;
           this.deleteUserSuccess = true;
           setTimeout(() => {
